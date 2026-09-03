@@ -37,11 +37,16 @@ async function send(page, text) {
 }
 
 async function waitForText(page, text) {
-  await page.waitForFunction(
-    expected => (document.querySelector('#chatStream')?.textContent || '').includes(expected),
-    text,
-    { timeout: 10_000 }
-  );
+  try {
+    await page.waitForFunction(
+      expected => (document.querySelector('#chatStream')?.textContent || '').includes(expected),
+      text,
+      { timeout: 10_000 }
+    );
+  } catch (error) {
+    const snapshot = await page.locator('#chatStream').innerText().catch(() => '');
+    throw new Error(`Timed out waiting for: ${text}\nCurrent chat stream:\n${snapshot}`, { cause: error });
+  }
 }
 
 let browser;
@@ -53,6 +58,7 @@ try {
   const pageErrors = [];
   const consoleErrors = [];
   const failedLocalRequests = [];
+  const badLocalResponses = [];
   const unexpectedDialogs = [];
   let acceptNextDialog = false;
 
@@ -61,8 +67,14 @@ try {
     if (message.type() === 'error') consoleErrors.push(message.text());
   });
   page.on('requestfailed', request => {
-    if (request.url().startsWith(baseURL)) {
-      failedLocalRequests.push(`${request.method()} ${request.url()} - ${request.failure()?.errorText || 'failed'}`);
+    if (!request.url().startsWith(baseURL)) return;
+    const errorText = request.failure()?.errorText || 'failed';
+    if (request.resourceType() === 'media' && errorText === 'net::ERR_ABORTED') return;
+    failedLocalRequests.push(`${request.method()} ${request.url()} - ${errorText}`);
+  });
+  page.on('response', response => {
+    if (response.url().startsWith(baseURL) && response.status() >= 400) {
+      badLocalResponses.push(`${response.status()} ${response.request().method()} ${response.url()}`);
     }
   });
   page.on('dialog', async dialog => {
@@ -134,6 +146,7 @@ try {
   assert.deepEqual(unexpectedDialogs, [], `Unexpected browser dialogs: ${unexpectedDialogs.join('\n')}`);
   assert.deepEqual(pageErrors, [], `Page errors:\n${pageErrors.join('\n')}`);
   assert.deepEqual(failedLocalRequests, [], `Failed local requests:\n${failedLocalRequests.join('\n')}`);
+  assert.deepEqual(badLocalResponses, [], `HTTP error responses:\n${badLocalResponses.join('\n')}`);
   assert.deepEqual(consoleErrors, [], `Console errors:\n${consoleErrors.join('\n')}`);
 
   console.log('HHagent browser smoke passed: demo isolation, repeated prompts, XSS handling, draft privacy and clear-data flow.');
