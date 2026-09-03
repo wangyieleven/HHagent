@@ -1,4 +1,4 @@
-/* Loads the hardening layer before the conversation-first layout. */
+/* Loads input normalization and hardening before the conversation-first layout. */
 (function(){
   'use strict';
   var current=document.currentScript;
@@ -18,7 +18,8 @@
     });
   }
 
-  load('hehe-assistant-hardening.js',function(){return !!window.HeheHardening;})
+  load('hehe-assistant-input-normalizer.js',function(){return !!window.HeheInputNormalizer;})
+    .then(function(){return load('hehe-assistant-hardening.js',function(){return !!window.HeheHardening;});})
     .then(function(){return load('hehe-assistant-layout-core.js');})
     .catch(function(error){
       console.error('[HHagent] layout modules failed to load.',error);
