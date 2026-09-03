@@ -26,12 +26,23 @@ function handleResponse(data) {
 }
 
 function legacyDemoResponse() {
+  const empty = []
+  empty.records = []
+  empty.rows = []
+  empty.list = []
+  empty.content = []
+  empty.total = 0
+  empty.current = 1
+  empty.pages = 0
+  empty.size = 0
   return handleResponse({
     code: 0,
     isSuccess: true,
     success: true,
     msg: 'HHagent demo mode: live API disabled',
-    data: null
+    data: empty,
+    rows: [],
+    total: 0
   })
 }
 
