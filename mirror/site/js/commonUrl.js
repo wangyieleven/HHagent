@@ -1,22 +1,52 @@
-// commonUrl.js
-const BASE_HOST = "http://172.25.169.103";
+/* Runtime API configuration for the static HHagent prototype. */
+(function (window, document) {
+  'use strict';
 
-const ApiModules = {
-    changj: `${BASE_HOST}/ChuangXinApi/v1/changj`,
-};
+  var defaults = {
+    mode: 'demo',
+    enableLiveApi: false,
+    enableAuth: false,
+    enableVisitLog: false,
+    apiBase: '',
+    currentUserEndpoint: '/portal/oauth/currentUser',
+    visitLogEndpoint: ''
+  };
+  var supplied = window.__HH_RUNTIME_CONFIG__ || {};
+  var config = Object.assign({}, defaults, supplied);
 
-const ApiUrls = {
-    getChangjingReqMana: `${ApiModules.changj}/getChangjingReqMana`,
-    getPublishList: `${ApiModules.changj}/getPublishList`,
-    getChengGuoList: `${ApiModules.changj}/getChengGuoList`,
-	getPublishReqCnt: `${ApiModules.changj}/getPublishReqCnt`,
+  if (!['demo', 'sandbox', 'production'].includes(config.mode)) config.mode = 'demo';
+  config.apiBase = typeof config.apiBase === 'string' ? config.apiBase.replace(/\/+$/, '') : '';
+  config.enableLiveApi = config.mode !== 'demo' && config.enableLiveApi === true && !!config.apiBase;
+  config.enableAuth = config.mode !== 'demo' && config.enableAuth === true;
+  config.enableVisitLog = config.mode !== 'demo' && config.enableVisitLog === true;
 
+  var currentScript = document.currentScript;
+  var mockUrl = currentScript
+    ? new URL('../mock/legacy-api-disabled.json', currentScript.src).href
+    : new URL('/mock/legacy-api-disabled.json', window.location.origin).href;
+
+  function endpoint(path) {
+    return config.enableLiveApi ? config.apiBase + path : mockUrl;
+  }
+
+  var ApiModules = Object.freeze({
+    changj: config.enableLiveApi ? config.apiBase + '/ChuangXinApi/v1/changj' : mockUrl
+  });
+
+  var ApiUrls = Object.freeze({
+    getChangjingReqMana: endpoint('/ChuangXinApi/v1/changj/getChangjingReqMana'),
+    getPublishList: endpoint('/ChuangXinApi/v1/changj/getPublishList'),
+    getChengGuoList: endpoint('/ChuangXinApi/v1/changj/getChengGuoList'),
+    getPublishReqCnt: endpoint('/ChuangXinApi/v1/changj/getPublishReqCnt'),
     getPublishListByType: function (type) {
-        return `${ApiModules.changj}/getPublishList?changjingType=${type}`;
+      if (!config.enableLiveApi) return mockUrl;
+      return endpoint('/ChuangXinApi/v1/changj/getPublishList?changjingType=' + encodeURIComponent(type));
     }
-};
+  });
 
-// 挂到全局，便于 Freemarker 模板里其他 JS 使用
-window.BASE_HOST = BASE_HOST;
-window.ApiModules = ApiModules;
-window.ApiUrls = ApiUrls;
+  window.__HH_RUNTIME_CONFIG__ = Object.freeze(config);
+  window.HH_DEMO_MODE = config.mode === 'demo';
+  window.BASE_HOST = config.enableLiveApi ? config.apiBase : '';
+  window.ApiModules = ApiModules;
+  window.ApiUrls = ApiUrls;
+})(window, document);
