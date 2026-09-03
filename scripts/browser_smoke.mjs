@@ -107,7 +107,7 @@ try {
   await send(page, '我想预约参观，下周三下午，5个人');
   await waitForText(page, '单位名称和联系人');
   await send(page, '单位北京测试公司，联系人张三，手机号13800138000');
-  await waitForText(page, '来访主要想了解什么');
+  await waitForText(page, '这次参观主要想了解什么');
 
   const storedDrafts = await page.evaluate(() => Object.keys(sessionStorage)
     .filter(key => key.startsWith('hehe-ui-v2:'))
