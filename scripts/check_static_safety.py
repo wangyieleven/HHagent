@@ -20,6 +20,9 @@ REQUIRED_FILES = [
     SITE / "index.html",
     SITE / "css" / "hehe-assistant.css",
     SITE / "js" / "commonUrl.js",
+    SITE / "js" / "Common_AjaxCallApi.js",
+    SITE / "js" / "common_ajax.js",
+    SITE / "js" / "hdSyn.js",
     SITE / "js" / "header-login.js",
     SITE / "js" / "visit-log.js",
     SITE / "js" / "hehe-assistant-forms.js",
@@ -28,6 +31,7 @@ REQUIRED_FILES = [
     SITE / "js" / "hehe-assistant-hardening.js",
     SITE / "js" / "hehe-assistant-layout-core.js",
     SITE / "mock" / "legacy-api-disabled.json",
+    ROOT / "scripts" / "browser_smoke.mjs",
 ]
 
 CRITICAL_ASSET_REFERENCES = [
@@ -39,6 +43,9 @@ CRITICAL_ASSET_REFERENCES = [
 
 RUNTIME_JS = [
     SITE / "js" / "commonUrl.js",
+    SITE / "js" / "Common_AjaxCallApi.js",
+    SITE / "js" / "common_ajax.js",
+    SITE / "js" / "hdSyn.js",
     SITE / "js" / "header-login.js",
     SITE / "js" / "visit-log.js",
     SITE / "js" / "hehe-assistant-conversation.js",
@@ -97,6 +104,27 @@ def main() -> int:
     if "enableLiveApi" not in common_url or "legacy-api-disabled.json" not in common_url:
         fail(errors, "commonUrl.js 必须默认落到本地 Mock，并通过显式配置启用真实 API")
 
+    common_call = read_text(SITE / "js" / "Common_AjaxCallApi.js")
+    common_ajax = read_text(SITE / "js" / "common_ajax.js")
+    if "hhIsDemoRuntime" not in common_call or "hhDemoApiEnvelope" not in common_call:
+        fail(errors, "Common_AjaxCallApi.js 必须在 demo 模式直接返回空结果，不能发起业务请求")
+    if "isDemoRuntime" not in common_ajax or "legacyDemoResponse" not in common_ajax:
+        fail(errors, "common_ajax.js 必须在 demo 模式阻断直接 POST 和公共接口调用")
+
+    hd_syn = read_text(SITE / "js" / "hdSyn.js")
+    forbidden_hd_syn = {
+        "完整页面 URL": r"location\.href|document\.URL",
+        "浏览器持久存储": r"localStorage|sessionStorage",
+        "beforeunload": r"beforeunload",
+        "原生 XHR": r"XMLHttpRequest",
+        "持久设备 ID": r"device[_-]?id|Device-Id",
+    }
+    for label, pattern in forbidden_hd_syn.items():
+        if re.search(pattern, hd_syn, re.IGNORECASE):
+            fail(errors, f"hdSyn.js 仍包含{label}")
+    if "enableHdSyn===true" not in hd_syn or "config.mode!=='demo'" not in hd_syn:
+        fail(errors, "hdSyn.js 必须在 demo 模式默认关闭，并要求显式同源配置")
+
     visit_log = read_text(SITE / "js" / "visit-log.js")
     forbidden_visit_patterns = {
         "完整页面 URL": r"location\.href",
@@ -143,9 +171,14 @@ def main() -> int:
     except json.JSONDecodeError as exc:
         fail(errors, f"Mock JSON 无法解析：{exc}")
 
+    browser_smoke = read_text(ROOT / "scripts" / "browser_smoke.mjs")
+    for required in ["chromium", "算力申请的材料要点", "window.__HH_XSS__", "13800138000", "清除本次演示数据"]:
+        if required not in browser_smoke:
+            fail(errors, f"browser_smoke.mjs 缺少核心回归断言：{required}")
+
     node = shutil.which("node")
     if node:
-        for path in RUNTIME_JS + [SITE / "js" / "hehe-assistant-forms.js"]:
+        for path in RUNTIME_JS + [SITE / "js" / "hehe-assistant-forms.js", ROOT / "scripts" / "browser_smoke.mjs"]:
             result = subprocess.run(
                 [node, "--check", str(path)],
                 cwd=ROOT,
