@@ -41,8 +41,6 @@
   }
 
   function demoEnvelope(value) {
-    var path = '';
-    try { path = new URL(String(value || ''), window.location.href).pathname; } catch (error) {}
     var empty = [];
     empty.records = [];
     empty.rows = [];
@@ -58,7 +56,7 @@
       success: true,
       msg: 'HHagent demo mode: live API disabled',
       message: 'HHagent demo mode: live API disabled',
-      data: /\/page\/?$/.test(path) ? empty : null,
+      data: empty,
       rows: [],
       total: 0
     };
