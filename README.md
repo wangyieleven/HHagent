@@ -33,7 +33,7 @@ python3 -m http.server 8734 --bind 127.0.0.1 --directory mirror/site
 
 运行时默认使用 `demo` 模式：
 
-- 真实业务 API、认证请求和访问日志全部关闭；
+- 真实业务 API、认证请求、`hdSyn` 埋点和访问日志全部关闭；
 - 旧业务接口统一返回本地空结果 Mock，不再使用硬编码私网地址；
 - 登录脚本不会把 Token、用户 ID 或角色 ID 写入 `localStorage` / `sessionStorage`；
 - 助手草稿和演示记录在写入浏览器存储前会移除联系人、手机号、证件号、密码和令牌等敏感信息；
@@ -68,6 +68,8 @@ window.__HH_RUNTIME_CONFIG__ = {
 | `mirror/site/js/commonUrl.js` | Demo / Sandbox / Production 运行时接口开关 |
 | `mirror/site/js/header-login.js` | 不落地令牌的安全登录状态展示 |
 | `mirror/site/js/visit-log.js` | 默认关闭、显式启用的同源访问日志模块 |
+| `mirror/site/js/hdSyn.js` | 默认关闭、不采集身份与设备标识的兼容埋点层 |
+| `mirror/site/js/Common_AjaxCallApi.js` / `common_ajax.js` | Demo 模式直接返回空结果的旧接口适配层 |
 | `mirror/site/js/hehe-assistant-layout.js` | 轻量模块加载器 |
 | `mirror/site/js/hehe-assistant-hardening.js` | Demo 隔离、存储脱敏、富文本白名单与运行提示 |
 | `mirror/site/js/hehe-assistant-layout-core.js` | 欢迎、对话、更多、任务视图及无障碍交互 |
@@ -75,6 +77,7 @@ window.__HH_RUNTIME_CONFIG__ = {
 | `mirror/site/js/hehe-assistant-forms.js` | 表单、回执和业务流程原型 |
 | `mirror/site/mock/legacy-api-disabled.json` | Demo 模式下旧业务接口的空结果响应 |
 | `scripts/check_static_safety.py` | 关键资源、私网地址、存储、日志和 JS 语法检查 |
+| `scripts/browser_smoke.mjs` | Chromium 核心流程、注入、草稿隐私和清理回归 |
 | `UI 原型/` | 参考图与原型设计文档 |
 | `audit-output/` | UI 与流程走查截图，包含历史版本 |
 | `dibj_site_data_*` | 页面与目录采集参考资料，不是在线业务数据库 |
@@ -95,7 +98,8 @@ python3 scripts/check_static_safety.py
 - 访问日志是否仍使用完整 URL、同步请求或 `beforeunload`；
 - 对话草稿、初始化和日期解析保护是否存在；
 - Mock JSON 是否有效；
-- Node.js 可用时，对核心 JavaScript 执行 `node --check`。
+- Node.js 可用时，对核心 JavaScript 执行 `node --check`；
+- GitHub Actions 中启动 Chromium，验证 Demo 隔离、重复提问、富文本注入、草稿脱敏和清理流程。
 
 相同检查已配置在 `.github/workflows/static-safety.yml`，Pull Request 和 `main` 分支推送都会执行。
 
