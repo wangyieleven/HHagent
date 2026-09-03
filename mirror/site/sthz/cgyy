@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="SiteName" content="数智北京创新中心">
+    <title>预约参观 - 数智北京创新中心</title>
+    <!-- 栏目埋点 -->
+<meta name="SiteName" content="数智北京创新中心">
+<meta name="SiteDomain" content="dibj.cn">
+<meta name="SiteIDCode" content="1100000248">
+<meta name="District" content="北京" >
+<meta name="ColumnName" content="预约参观">
+<meta name="ColumnDescription" content="">
+<meta name="ColumnKeywords" content="">
+<meta name="ColumnType" content="COLUMN">
+<script language="javascript">
+var _yfx_nodeid = "cc8efed1d5194326b085c12fba898603";
+var _yfx_nodeName = "预约参观";
+var _yfx_contentid = "";
+var _yfx_title = "";
+
+</script>
+<script type="application/ld+json">
+"@context":"https://schema.org"
+"@type": "WebPage",
+"name":"预约参观",
+"url":"https://www.dibj.cn/sthz/cgyy/'
+</script>        <!-- 栏目埋点 -->
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/layui.css">
+
+        <script>
+            var LAYUI_GLOBAL = {
+                dir: '/'
+            };
+        </script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/layui.js"></script>
+        <script
+            src="/js/applyVisitReservation.js?_t=20260729180927049"></script>
+        <script src="/js/hdSyn.js?_t=20260729180927049"></script>
+        <script src="/js/visit-log.js?_t=20260729180927049"></script>
+        <style>
+            body {
+                background: #EFF0F5;
+            }
+
+            .container {
+                width: 80%;
+                margin: 0 auto;
+                padding: 32px 0;
+            }
+
+            /* 申请表 */
+            .sqb_col {
+                width: 100%;
+                background: #fff;
+                display: block;
+                border-radius: 6px;
+                padding-bottom: 80px;
+            }
+
+            .sqb_col h2 {
+                width: 100%;
+                border-bottom: 1px solid #EFEFEF;
+                padding: 26px 0 0 24px;
+                display: inline-block;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+
+            .sqb_col h2 span {
+                font: bold 18px/100% "微软雅黑";
+                color: #e8a62f;
+                padding-bottom: 16px;
+                display: inline-block;
+                margin-bottom: 0;
+                width: auto;
+                border-bottom: 2px solid #e8a62f;
+            }
+
+            .sqb_col .top_tips {
+                font: 400 16px/170% "微软雅黑";
+                color: #18395C;
+                text-indent: 2em;
+                padding: 16px;
+                width: 94%;
+                margin: 0px auto;
+                display: block;
+                overflow: hidden;
+                background: url(https://dibj.cn/images/index_bg_2.png) no-repeat right bottom;
+            }
+
+            .sqb_col .iteam {
+                width: 80%;
+                display: table;
+                margin: 0px auto;
+                margin-top: 16px;
+                min-height: 38px;
+            }
+
+            .sqb_col .iteam p {
+                float: left;
+                font: 400 16px/38px "微软雅黑";
+                color: #333;
+                text-align: right;
+                padding-right: 25px;
+            }
+
+            .sqb_col .iteam p span {
+                color: #D9001B;
+            }
+
+            .sqb_col .iteam .input {
+                width: 400px;
+                float: left;
+                position: relative;
+            }
+
+            .sqb_col .iteam .input2 {
+                width: 220px;
+                float: left;
+                position: relative;
+            }
+
+            .sqb_col .iteam .input3 {
+                width: calc(100% - 300px);
+                float: left;
+                position: relative;
+            }
+
+            .sqb_col .iteam .input5 {
+                width: 120px;
+                position: relative;
+                margin-left: 6px;
+                border: 0;
+                border-bottom: 1px solid #ced4da;
+            }
+
+            .sqb_col .iteam input {
+                width: 100%;
+                height: 38px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 0 14px;
+                font: 400 14px/38px "微软雅黑";
+                color: #7F7F7F;
+            }
+
+            .sqb_col .iteam select {
+                width: 100%;
+                height: 38px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 0 14px;
+                font: 400 14px/38px "微软雅黑";
+                color: #7F7F7F;
+            }
+
+            .sqb_col .iteam #charCount {
+                position: absolute;
+                bottom: 10px;
+                right: 8px;
+                color: #b6b2b2;
+            }
+
+            .sqb_col .iteam #charCount2 {
+                position: absolute;
+                bottom: 10px;
+                right: 8px;
+                color: #b6b2b2;
+            }
+
+            .sqb_col .iteam textarea {
+                width: 100%;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 8px;
+                font: 400 14px/150% "微软雅黑";
+                color: #7F7F7F;
+                position: relative;
+            }
+
+            .sqb_col .iteam textarea.t1 {
+                padding-bottom: 20px;
+            }
+
+            .sqb_col .iteam option:first-child {
+                display: none;
+            }
+
+            .sqb_col .iteam .text {
+                width: 100%;
+                height: 38px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 0 14px;
+                font: 400 14px/38px "微软雅黑";
+                color: #7F7F7F;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .sqb_col .iteam .text2 {
+                width: 100%;
+                height: 38px;
+                border: 1px solid rgba(228, 228, 228, 1);
+                background: rgba(242, 242, 242, 1);
+                border-radius: 4px;
+                padding: 0 14px;
+                font: 400 14px/38px "微软雅黑";
+                color: #ccc;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .sqb_col .btn_iteam {
+                width: 100%;
+                display: block;
+                text-align: center;
+                color: #7F7F7F;
+                margin-top: 32px;
+                overflow: hidden;
+            }
+
+            .sqb_col .btn_iteam .btn {
+                font: 400 16px/36px "微软雅黑";
+                color: #7F7F7F;
+                text-align: center;
+                cursor: pointer;
+                width: 200px;
+                height: 38px;
+                display: inline-block;
+                margin: 0px 42px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+            }
+
+            .sqb_col .btn_iteam .btn.confirm {
+                background: #ff7a25;
+                color: #fff;
+            }
+
+            .sqb_col .btn_iteam .btn.confirm:disabled {
+                background: #d7dbe2;
+                color: #999;
+                cursor: not-allowed;
+            }
+
+            #show-agreement {
+                font: 400 16px/36px "微软雅黑";
+                background: #fff;
+                color: #7F7F7F;
+                text-align: center;
+                cursor: pointer;
+                width: auto;
+                padding: 0 16px;
+                height: 38px;
+                display: inline-block;
+                margin: 0px 16px 0 0;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+            }
+
+            #accept_c {
+                margin: 12px 12px 0 0;
+                width: 16px;
+                height: 16px;
+            }
+
+            #accept_l {
+                color: #7F7F7F;
+                line-height: 38px;
+                font-size: 16px;
+            }
+
+            .contact-tip {
+                text-align: center;
+                margin-top: 16px;
+                font-size: 14px;
+                color: #7F7F7F;
+                line-height: 1.8;
+            }
+
+            .contact-tip .dot {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                background-color: #ff7a25;
+                border-radius: 50%;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+
+            .contact-tip .phones {
+                color: #ff7a25;
+                font-weight: 500;
+            }
+
+            .sqb_col .iteam .input4 {
+                float: left;
+                width: calc(100% - 300px);
+            }
+
+            .sqb_col .iteam .tip {
+                width: 100%;
+                position: absolute;
+                left: 0;
+                bottom: -18px;
+                font: 400 14px/100% "微软雅黑";
+                color: #7F7F7F;
+                text-align: left;
+            }
+
+            .sqb_col .tips {
+                width: 94%;
+                margin: 0px auto;
+                display: block;
+                overflow: hidden;
+                padding: 16px 0;
+                font: 400 14px/150% "微软雅黑";
+                color: #7F7F7F;
+                text-align: left;
+            }
+
+            .sqb_col .upload {
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+            }
+
+            .sqb_col .upload .upload-button {
+                color: #fff;
+                background-color: #ff7a25;
+                border-color: #ff7a25;
+                display: inline-block;
+                line-height: 1;
+                white-space: nowrap;
+                cursor: pointer;
+                border: 1px solid #dcdfe6;
+                -webkit-appearance: none;
+                text-align: center;
+                box-sizing: border-box;
+                outline: none;
+                margin: 0;
+                transition: .1s;
+                font-weight: 500;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                padding: 12px 20px;
+                font-size: 14px;
+                border-radius: 4px;
+            }
+
+            .sqb_col .upload__input {
+                display: none;
+            }
+
+            .sqb_col .upload__tip {
+                font: 400 16px / 38px "微软雅黑";
+                color: #7F7F7F;
+            }
+
+            .sqb_col .iteam .textleft {
+                text-align: left;
+            }
+
+            .sqb_col .iteam .input4 ul li a {
+                font: 400 16px / 38px "微软雅黑";
+                color: #ff7a25;
+            }
+
+            #file-list img {
+                float: left;
+                margin: 6px 10px 0 0;
+            }
+
+            .sqb_col h3 {
+                font: bold 16px / 100% "微软雅黑";
+                color: #666;
+                width: 94%;
+                border-bottom: 1px solid #EFEFEF;
+                margin: 0px auto;
+                margin-top: 24px;
+                padding: 20px 0 10px 0px;
+                display: block;
+                overflow: hidden;
+            }
+
+            .sqb_col h3 span {
+                width: 6px;
+                height: 18px;
+                display: inline-block;
+                background: #ff7a25;
+                margin: 0px 10px 0 0;
+                float: left;
+            }
+
+            .sqb_col .m0 {
+                margin-top: 0 !important;
+            }
+
+            .sqb_col .iteam .col_3 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 40% 28% 28%;
+                grid-gap: 1.5%;
+            }
+
+            .sqb_col .iteam .col_3 span {
+                float: left;
+                font: 400 16px/38px "微软雅黑";
+                color: #333;
+                text-align: right;
+                padding-right: 6px;
+                width: auto;
+            }
+
+            .sqb_col .iteam .col_3 input {
+                width: calc(100% - 60px);
+            }
+
+            .sqb_col .iteam .col_3 div:nth-child(1) input {
+                width: calc(100% - 102px);
+            }
+
+            /* 弹窗样式 */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+            }
+
+            .modal-content {
+                background: white;
+                text-align: center;
+                margin: 10% auto;
+                padding: 20px;
+                width: 70%;
+                max-width: 800px;
+                height: 60vh;
+                border-radius: 5px;
+                position: relative;
+            }
+
+            .modal-content h3 {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #EFEFEF;
+                padding: 26px 0 0 24px;
+                display: inline-block;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+
+            .modal-content h3 span {
+                font: bold 18px/100% "微软雅黑";
+                color: #ff7a25;
+                padding-bottom: 16px;
+                display: inline-block;
+                margin-bottom: 0;
+                width: auto;
+                border-bottom: 2px solid #ff7a25;
+            }
+
+            #agreement-text {
+                font: 400 16px/170% "微软雅黑";
+                color: #333;
+                text-align: left;
+                height: calc(80% - 40px);
+                overflow-y: auto;
+            }
+
+            #agreement-text p {
+                text-indent: 2em;
+                padding: 10px 0;
+            }
+
+            .close {
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font: bold 18px/100% "微软雅黑";
+                color: #333;
+                cursor: pointer;
+            }
+
+            .error {
+                color: red;
+            }
+
+            #accept_btn {
+                font: 400 14px/36px "微软雅黑";
+                background: rgba(24, 144, 255, 1);
+                color: #fff;
+                display: inline-block;
+                margin: 0px auto;
+                margin-top: 16px;
+                width: 120px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+            }
+
+            @media only screen and (max-width: 1700px) {
+                .container {
+                    width: 90%;
+                }
+
+                @media only screen and (max-width: 830px) {
+                    body {
+                        min-width: 100%;
+                    }
+
+                    .sqb_col .iteam p {
+                        width: 100%;
+                        text-align: left;
+                    }
+
+                    .sqb_col .iteam .input,
+                    .sqb_col .iteam .input2,
+                    .sqb_col .iteam .input3,
+                    .sqb_col .iteam .input4,
+                    .sqb_col .iteam .input5 {
+                        width: 100%;
+                    }
+
+                }
+            }
+        </style>
+        <style>
+            /* ====== 预约表单 start============= */
+
+            .form-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .sqb_col {
+                min-height: calc(100vh - 196px);
+            }
+
+            /* 头部布局 */
+            .header-wrapper {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .header-wrapper h2 {
+                margin: 0;
+            }
+
+            .header-buttons {
+                display: flex;
+                gap: 10px;
+                padding-right: 10px;
+                position: absolute;
+                right: 0px;
+                bottom: 4px;
+            }
+
+            .notice-btn,
+            #backBtn {
+                width: 120px;
+            }
+
+            /* 移动端布局：按钮在标题下方单独一行 */
+            @media only screen and (max-width: 830px) {
+                .header-wrapper {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .notice-btn,
+                #backBtn {
+                    width: 90px;
+                }
+
+                .header-buttons {
+                    width: 100%;
+                    padding: 10px 0 0 0;
+                    margin-right: 10px;
+                    position: relative;
+                    justify-content: flex-end;
+                }
+            }
+
+            .sqb_col .iteam .input3 {
+                margin-bottom: 30px;
+            }
+
+            .sqb_col .iteam .input3 {
+                width: calc(100% - 240px);
+
+            }
+
+            .reservation-form .iteam p {
+                font-size: 14px;
+                color: #333;
+            }
+
+            /* .reservation-form .input {
+            width: 440px;
+        } */
+
+            .reservation-form input,
+            .reservation-form select {
+                height: 42px;
+                border: 1px solid #dcdfe6;
+                border-radius: 2px;
+                font-size: 14px;
+            }
+
+            .radio-group {
+                line-height: 42px;
+            }
+
+            .radio-group label {
+                margin-right: 24px;
+                cursor: pointer;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .radio-group input[type="radio"] {
+                width: auto;
+                height: auto;
+                margin-right: 6px;
+            }
+
+            /* 日期面板 */
+
+            .date-panel {
+                border: 1px solid #ebeef5;
+                border-radius: 4px;
+                background: #fff;
+                padding: 18px;
+            }
+
+            .month-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 18px;
+            }
+
+            .month-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: #1f2d3d;
+            }
+
+            .date-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .date-item {
+                width: 100px;
+                min-height: 70px;
+                border: 1px solid #ebeef5;
+                border-radius: 6px;
+                text-align: center;
+                cursor: pointer;
+                transition: all .2s;
+                padding: 8px 4px;
+                box-sizing: border-box;
+            }
+
+            .date-item:hover {
+                border-color: #ff7a25;
+                background-color: #f5f7fa;
+            }
+
+            .date-item .week {
+                color: #999;
+                font-size: 11px;
+                margin-bottom: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .date-item .day {
+                font-size: 15px;
+                color: #333;
+                font-weight: 500;
+                margin-bottom: 4px;
+            }
+
+            .date-item .reason {
+                font-size: 10px;
+                color: #f56c6c;
+                margin-top: 2px;
+                line-height: 1.2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .date-item .reason.available {
+                color: #67c23a;
+            }
+
+            .input2 .date-panel {
+                width: 392px;
+            }
+
+            @media only screen and (max-width: 750px) {
+                .input2 .date-panel {
+                    width: 100%;
+                }
+
+                .sqb_col .iteam .input3 {
+                    width: 100%;
+                }
+
+                .slot-name {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .slot-title {
+                    margin-right: 0;
+                    margin-bottom: 2px;
+                }
+
+                .slot-time {
+                    font-size: 12px;
+                }
+            }
+
+            /* 按钮 */
+
+            .submit-btn {
+                width: 106px;
+                height: 34px;
+                border: none;
+                border-radius: 3px;
+                background: #d7dbe2;
+                color: #fff;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+            .submit-btn:hover {
+                background: #ff7a25;
+            }
+
+            .submit-btn:disabled {
+                background: #d7dbe2;
+                cursor: not-allowed;
+            }
+
+            .submit-btn.active {
+                background: #ff7a25;
+                cursor: pointer;
+            }
+
+            /* 日期选中状态 */
+            .date-item.selected {
+                border-color: #ff7a25;
+                background: #ecf5ff;
+            }
+
+            .date-item.disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+            .date-item.disabled .day {
+                color: #999;
+            }
+
+            /* 场次选择 */
+            .slot-grid {
+                display: flex;
+                gap: 16px;
+            }
+
+            .slot-item {
+                flex: 1;
+                padding: 16px;
+                border: 1px solid #ebeef5;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: all .2s;
+            }
+
+            .slot-item:hover {
+                border-color: #ff7a25;
+            }
+
+            .slot-item.selected {
+                border-color: #ff7a25;
+                background: #ecf5ff;
+            }
+
+            .slot-item.full {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .slot-info .slot-name {
+                font-size: 14px;
+                color: #333;
+                margin-bottom: 4px;
+            }
+
+
+
+            .slot-time {
+                color: #666;
+            }
+
+            .slot-info .slot-capacity {
+                font-size: 12px;
+                color: #67c23a;
+            }
+
+            .slot-item.full .slot-capacity {
+                color: #f56c6c;
+            }
+
+            .slot-radio {
+                width: 18px;
+                height: 18px;
+                border: 2px solid #dcdfe6;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                outline: none;
+                background: #fff;
+            }
+
+            .slot-radio:focus {
+                border-color: #ff7a25;
+                box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.2);
+            }
+
+            .slot-item.selected .slot-radio {
+                border-color: #ff7a25;
+                background: #ff7a25;
+            }
+
+            /* 解决谷歌浏览器自动填充背景色问题 */
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-text-fill-color: #333;
+                -webkit-box-shadow: 0 0 0 30px white inset !important;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+
+            /* 输入框提示词样式 */
+            input::placeholder,
+            textarea::placeholder {
+                color: #C0C4CC !important;
+                opacity: 1;
+            }
+
+            /* 输入框内实际填写的文字颜色 */
+            input,
+            textarea {
+                color: #333 !important;
+            }
+
+            .error-tip {
+                color: #f56c6c;
+                font-size: 12px;
+                display: block;
+            }
+
+            .iteam input.error {
+                border-color: #f56c6c;
+            }
+
+            .iteam select.error {
+                border-color: #f56c6c;
+            }
+
+            .form-tab-content {
+                display: none;
+            }
+
+            .form-tab-content.active {
+                display: block;
+            }
+
+            #backBtn:hover {
+                color: #ff7a25;
+                border-color: #ff7a25;
+            }
+
+            /* 只作用于参观须知弹窗 */
+            .notice-layer .layui-layer-btn .layui-layer-btn0 {
+                background-color: #ff7a25 !important;
+                border-color: #ff7a25 !important;
+                color: #fff !important;
+                border-radius: 20px !important;
+                box-shadow: 0 4px 15px rgba(255, 122, 37, .3) !important;
+            }
+
+            /* 复选框网格布局 */
+            .checkbox-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px 24px;
+            }
+
+            .checkbox-item {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .sqb_col .iteam .input .checkbox-item input[type="checkbox"] {
+                width: 20px !important;
+                height: 20px !important;
+                margin-right: 8px;
+                cursor: pointer;
+                border: 1px solid #dcdfe6;
+                border-radius: 4px;
+                outline: none;
+                appearance: none;
+                -webkit-appearance: none;
+                position: relative;
+                flex-shrink: 0;
+            }
+
+            .checkbox-item input[type="checkbox"]::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 10px;
+                height: 10px;
+                background: #ff7a25;
+                border-radius: 2px;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+
+            .checkbox-item input[type="checkbox"]:checked::before {
+                opacity: 1;
+            }
+
+            .checkbox-item input[type="checkbox"]:checked {
+                border-color: #ff7a25;
+                background: #ecf5ff;
+            }
+
+            .checkbox-label {
+                font-size: 14px;
+                color: #333;
+                line-height: 1.5;
+            }
+
+            /* 参观详情标题 */
+            .visit-detail-title {
+                font: bold 16px / 100% "微软雅黑";
+                color: #666;
+                width: 80%;
+                border-bottom: 1px solid #EFEFEF;
+                margin: 24px auto 0 auto;
+                padding: 20px 0 10px 0px;
+                display: block;
+                overflow: hidden;
+            }
+
+            .visit-detail-title span {
+                width: 6px;
+                height: 18px;
+                display: inline-block;
+                background: #ff7a25;
+                margin: 0px 10px 0 0;
+                float: left;
+            }
+
+            /* 个人信息两列布局 */
+            .form-row {
+                display: flex;
+                gap: 24px;
+                width: 80%;
+                margin: 16px auto 0 auto;
+            }
+
+            /* 参观详情区域 */
+            .visit-detail {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .visit-detail .iteam {
+                width: 100%;
+                display: block;
+                margin-top: 16px;
+            }
+
+            .visit-detail .iteam p {
+                text-align: left;
+                padding-right: 0;
+                margin-bottom: 8px;
+            }
+
+            .visit-detail .iteam .input {
+                width: 100%;
+                float: none;
+            }
+
+            .visit-detail .iteam .input textarea {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form-field {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form-field.full-width {
+                flex: none;
+                width: 100%;
+            }
+
+            .form-field label {
+                font: 400 16px/1.5 "微软雅黑";
+                color: #333;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            .form-field label span {
+                color: #D9001B;
+            }
+
+            .form-field input[type="text"],
+            .form-field input[type="number"],
+            .form-field input[type="email"] {
+                width: 100%;
+                height: 42px;
+                border: 1px solid #dcdfe6;
+                border-radius: 4px;
+                padding: 0 14px;
+                font: 400 14px/42px "微软雅黑";
+                color: #7F7F7F;
+                box-sizing: border-box;
+            }
+
+            .form-field input[type="radio"] {
+                width: auto;
+                height: auto;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .form-field .checkbox-item input[type="checkbox"] {
+                width: 20px !important;
+                height: 20px !important;
+                margin-right: 8px;
+                cursor: pointer;
+                border: 1px solid #dcdfe6;
+                border-radius: 4px;
+                outline: none;
+                appearance: none;
+                -webkit-appearance: none;
+                position: relative;
+                flex-shrink: 0;
+            }
+
+            .form-field textarea {
+                width: 100%;
+                height: 80px;
+                border: 1px solid #dcdfe6;
+                border-radius: 4px;
+                padding: 10px 14px;
+                font: 400 14px/1.5 "微软雅黑";
+                color: #7F7F7F;
+                box-sizing: border-box;
+                resize: vertical;
+            }
+
+            .form-field input.readonly {
+                background: #f5f7fa;
+                cursor: not-allowed;
+            }
+
+            .form-field .radio-group {
+                display: flex;
+                gap: 32px;
+            }
+
+            .form-field .radio-group label {
+                display: flex;
+                align-items: center;
+                font: 400 16px/1.5 "微软雅黑";
+                color: #333;
+                cursor: pointer;
+                margin-bottom: 0;
+            }
+
+            .form-field .radio-group input[type="radio"] {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+                cursor: pointer;
+            }
+
+            /* 移动端适配 */
+            @media only screen and (max-width: 768px) {
+                .checkbox-grid {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                }
+
+                .checkbox-item {
+                    font-size: 13px;
+                }
+
+                .checkbox-item input[type="checkbox"] {
+                    width: 16px;
+                    height: 16px;
+                }
+
+                .checkbox-item input[type="checkbox"]::before {
+                    width: 8px;
+                    height: 8px;
+                }
+
+                .sqb_col .iteam .input textarea {
+                    padding: 8px 10px;
+                }
+
+                .form-row {
+                    flex-direction: column;
+                    gap: 16px;
+                    width: 90%;
+                }
+
+                .form-field label {
+                    font-size: 14px;
+                }
+
+                .form-field input {
+                    height: 38px;
+                    font-size: 13px;
+                    padding: 0 12px;
+                }
+
+                .visit-detail-title {
+                    width: 90%;
+                }
+
+                .visit-detail {
+                    width: 90%;
+                }
+            }
+        </style>
+</head>
+
+<body>
+    <!-- header 开始 -->
+ <script src="/js/header.js"></script>        <!-- header 结束 -->
+
+        <div class="container">
+            <!-- 内容 开始 -->
+            <div class="sqb_col">
+                <div class="header-wrapper">
+                    <h2><span>数智北京创新中心参观预约</span></h2>
+                    <div class="header-buttons">
+                        <button id="show-notice" class="notice-btn"
+                            style="padding: 6px 14px; background: #fff; color: #ff7a25; border: 1px solid #ff7a25; border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.3s ease;">
+                            参观须知
+                        </button>
+                        <button id="backBtn" onclick="window.history.back()"
+                            style="padding: 6px 14px; background: #fff; color: #666; border: 1px solid #666; border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.3s ease;">
+                            返回
+                        </button>
+                    </div>
+                </div>
+
+                <form id="register-form" class="reservation-form" novalidate>
+                    <div class="form-container">
+
+                        <h3 class="visit-detail-title"><span></span>预约信息</h3>
+
+                        <!-- 申请类别 -->
+                        <div class="form-row">
+                            <div class="form-field full-width">
+                                <label><span>* </span>申请类别</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="applyType" value="1" checked>
+                                        个人预约
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="applyType" value="2">
+                                        社会团体预约
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 参观日期 -->
+                        <div class="form-row">
+                            <div class="form-field full-width">
+                                <label><span>* </span>参观日期</label>
+                                <div class="date-panel" id="datePanel">
+                                    <div class="month-header">
+                                        <span class="month-title" id="currentMonthTitle">未来30天可预约日期</span>
+                                    </div>
+                                    <div class="date-grid" id="dateGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 场次选择 -->
+                        <div class="form-row" id="slotIteam" style="display:none;">
+                            <div class="form-field full-width">
+                                <label><span>* </span>参观场次</label>
+                                <div class="slot-grid" id="slotGrid">
+                                    <div class="slot-item" data-slot="1">
+                                        <div class="slot-info">
+                                            <div class="slot-name"><span class="slot-title"></span>第一场</span><span
+                                                    class="slot-time">13:30-14:30</span></div>
+                                            <div class="slot-capacity">剩余 <span id="slot1Capacity">20</span> 人</div>
+                                        </div>
+                                        <div class="slot-radio" tabindex="0"></div>
+                                    </div>
+                                    <div class="slot-item" data-slot="2">
+                                        <div class="slot-info">
+                                            <div class="slot-name"><span class="slot-title">第二场</span><span
+                                                    class="slot-time">15:00-16:00</span></div>
+                                            <div class="slot-capacity">剩余 <span id="slot2Capacity">20</span> 人</div>
+                                        </div>
+                                        <div class="slot-radio" tabindex="0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 个人预约表单 -->
+                        <div id="personalForm">
+                            <h3 class="visit-detail-title"><span></span>个人信息</h3>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label><span>* </span>姓名</label>
+                                    <input type="text" id="userName" placeholder="请输入真实姓名">
+                                </div>
+                                <div class="form-field">
+                                    <label><span>* </span>身份证号</label>
+                                    <input type="text" id="idCard" placeholder="18位身份证号码" maxlength="18">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label><span>* </span>手机号</label>
+                                    <input type="text" id="mobile" placeholder="请输入手机号" maxlength="11">
+                                </div>
+                                <div class="form-field">
+                                    <label>电子邮箱</label>
+                                    <input type="email" id="email" placeholder="请输入邮箱地址">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label>工作单位</label>
+                                    <input type="text" id="workUnit" placeholder="请输入工作单位">
+                                </div>
+                                <div class="form-field">
+                                    <label>参观人数</label>
+                                    <input type="number" id="companionCount" placeholder="请输入参观人数" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 社会团体预约表单 -->
+                        <div id="groupForm" style="display:none;">
+                            <h3 class="visit-detail-title"><span></span>团体信息</h3>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label><span>* </span>单位名称</label>
+                                    <input type="text" id="unitName" placeholder="请输入完整的企事业单位或院校名称">
+                                </div>
+                                <div class="form-field">
+                                    <label><span>* </span>预计总人数</label>
+                                    <input type="number" id="groupCount" placeholder="超20人团队将由工作人员一对一排期" min="1">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label><span>* </span>领队姓名</label>
+                                    <input type="text" id="leaderName" placeholder="请输入真实姓名">
+                                </div>
+                                <div class="form-field">
+                                    <label><span>* </span>领队手机号</label>
+                                    <input type="text" id="leaderMobile" placeholder="用于接收回执与电话沟通" maxlength="11">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 参观详情 -->
+                        <!-- <h3 class="visit-detail-title"><span></span>参观详情</h3>
+                        <div class="form-row">
+                            <div class="form-field full-width">
+                                <label>参观目的和需求</label>
+                                <textarea id="visitTarget" placeholder="请简要说明参观目的和需求" rows="3"></textarea>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="form-row">
+                            <div class="form-field full-width">
+                                <label><span>* </span>数智体验项目（可多选）</label>
+                                <div class="checkbox-grid">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="customProcess" value="1">
+                                        <span class="checkbox-label">听取一次数智宣介</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="customProcess" value="2">
+                                        <span class="checkbox-label">参与一项数智体验</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="customProcess" value="3">
+                                        <span class="checkbox-label">开启一场数智旅程</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="customProcess" value="4">
+                                        <span class="checkbox-label">参加一个数智交流</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="customProcess" value="5">
+                                        <span class="checkbox-label">留下一份数智建议</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field full-width">
+                                <label>备注</label>
+                                <textarea id="remark" placeholder="如有特殊需求请在此说明（选填）" rows="3"></textarea>
+                            </div>
+                        </div> -->
+
+                        <!-- 提交 -->
+
+                        <div class="btn_iteam">
+                            <button type="submit" id="submitBtn" class="btn confirm">提交申请</button>
+                        </div>
+
+                        <div class="contact-tip">
+                            <span class="dot"></span>若有预约相关需求，欢迎拨打联系电话：<span
+                                class="phones">010-59703511、010-59703522</span>
+                        </div>
+                </form>
+                <!-- 内容 结束 -->
+            </div>
+        </div>
+
+        <!-- 内容 结束 -->
+        </div>
+        <!-- footer 开始 -->
+
+<script type="text/javascript">
+      const articleId = null;
+    const siteId = "c8cbc1d238c049bb9dd997dd3f61069e";
+    const columnId = "cc8efed1d5194326b085c12fba898603";
+</script>
+<script type="text/javascript" src="/js/ua-parser.min.js"></script>
+<script type="text/javascript" src="/js/saveColumn.js"></script>
+<script type="text/javascript" src="/js/footer.js"></script>
+            <!-- footer 开始 -->
+            <script>
+                layui.use(['laydate'], function () {
+                    var laydate = layui.laydate;
+
+                    laydate.render({
+                        elem: '#visitTime',
+                        type: 'datetime',
+                        format: 'yyyy-MM-dd HH:mm',
+                        min: new Date().toISOString().slice(0, 10),
+                        trigger: 'click',
+                        theme: '#ff7a25',
+                        calendar: true,
+                        done: function (value, date) {
+                            console.log('选择的日期时间：' + value);
+                        }
+                    });
+                });
+
+                function checkLength() {
+                    var textarea = document.getElementById('remark');
+                    var remaining = 500 - textarea.value.length; // 计算剩余字符数
+                    document.getElementById('charCount').innerText = '剩余字符数：' + remaining; // 更新显示
+                }
+
+                function openTrafficImage(img) {
+                    var screenWidth = window.innerWidth;
+                    var isMobile = screenWidth <= 768;
+
+                    layer.open({
+                        type: 1,
+                        title: '地址',
+                        closeBtn: 1,
+                        shade: 0.7,
+                        shadeClose: true,
+                        content: '<div style="display: flex; justify-content: center; align-items: center; min-height: 100%; padding: 20px; background: #f5f5f5;">' +
+                            '<img src="' + img.src + '" style="max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);" />' +
+                            '</div>',
+                        area: isMobile ? ['95%', '90%'] : ['80%', '80%'],
+                        success: function (imgLayero, index) {
+                            imgLayero.css({
+                                'border-radius': '12px',
+                                'overflow': 'hidden'
+                            });
+
+                            var closeBtn = imgLayero.find('.layui-layer-close');
+                            if (closeBtn.length > 0) {
+                                closeBtn.css({
+                                    'width': isMobile ? '36px' : '40px',
+                                    'height': isMobile ? '36px' : '40px',
+                                    'line-height': isMobile ? '36px' : '40px',
+                                    'border-radius': '50%',
+                                    'background': 'rgba(0,0,0,0.6)',
+                                    'color': '#fff',
+                                    'font-size': isMobile ? '16px' : '18px',
+                                    'top': '10px',
+                                    'right': '10px',
+                                    'text-align': 'center'
+                                }).html('×');
+                            }
+                        }
+                    });
+                }
+
+            </script>
+            <script>
+                document.getElementById('show-notice').addEventListener('click', function () {
+                    var contentHtml = '<style>' +
+                        '.notice-container { padding: 16px 20px 8px; max-height: calc(82vh - 70px); overflow-y: auto; }' +
+                        '.notice-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 24px; text-align: center; }' +
+                        '.notice-item { display: flex; align-items: flex-start; margin-bottom: 20px; }' +
+                        '.notice-num { width: 28px; height: 28px; border-radius: 50%; background: #ff7a25; color: #fff; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 16px; box-shadow: 0 2px 8px rgba(54, 158, 255, 0.3); }' +
+                        '.notice-content { flex: 1; }' +
+                        '.notice-content h4 { font-size: 15px; font-weight: 600; color: #303133; margin-bottom: 6px; }' +
+                        '.notice-content p { font-size: 14px; color: #606266; line-height: 1.6; }' +
+                        '.traffic-section { margin-top: 8px; }' +
+                        '.traffic-image-wrapper { display: flex; justify-content: center; margin-top: 8px; }' +
+                        '.traffic-image { width: 100%; max-width: 380px; height: 160px; object-fit: cover; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }' +
+                        '.traffic-image:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); }' +
+                        '.click-tip { font-size: 12px; color: #909399; text-align: center; margin-top: 8px; }' +
+                        '@media only screen and (max-width: 768px) {' +
+                        '    .notice-container { padding: 16px !important; }' +
+                        '    .notice-title { font-size: 16px !important; margin-bottom: 16px !important; }' +
+                        '    .notice-item { margin-bottom: 16px !important; }' +
+                        '    .notice-num { width: 24px !important; height: 24px !important; font-size: 12px !important; margin-right: 12px !important; }' +
+                        '    .notice-content h4 { font-size: 14px !important; }' +
+                        '    .notice-content p { font-size: 13px !important; }' +
+                        '    .traffic-image { max-width: 100% !important; height: auto !important; }' +
+                        '}' +
+                        '</style>' +
+                        '<div class="notice-container">' +
+                        '<div class="notice-title">参观须知</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">1</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>开放时间</h4>' +
+                        '<p>每周三 13:30 - 16:30 开放参观</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">2</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>预约限制</h4>' +
+                        '<p>个人预约单场限30人，团队需提前一周申请</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">3</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>入场凭证</h4>' +
+                        '<p>预约成功后请携带身份证原件准时到达</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">4</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>安全事项</h4>' +
+                        '<p>老人幼童需有成人陪护，如遇法定节假日、执行重要接待任务等特殊情况另行公告通知。</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">5</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>联系电话</h4>' +
+                        '<p>010-59703511 / 010-59703522</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="notice-item">' +
+                        '<div class="notice-num">6</div>' +
+                        '<div class="notice-content">' +
+                        '<h4>地址</h4>' +
+                        '<p>数智北京创新中心 北京市通州区新华东街48号</p>' +
+                        '<div class="traffic-section">' +
+                        '<div class="traffic-image-wrapper">' +
+                        '<img id="traffic-img" class="traffic-image" src="/images/cxzxdz.png" alt="地址" onclick="openTrafficImage(this)" />' +
+                        '</div>' +
+                        '<div class="click-tip">点击图片放大查看</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+                    var screenWidth = window.innerWidth;
+                    var popupWidth = screenWidth <= 768 ? '92%' : '520px';
+                    layer.open({
+                        type: 1,
+                        title: false,
+                        closeBtn: 0,
+                        shadeClose: false,
+                        content: contentHtml,
+                        skin: 'notice-layer',
+
+                        // ✔ PC：660px + 82vh
+                        area: screenWidth <= 768 ? ['92%', 'auto'] : ['660px', '80vh'],
+
+                        // ✔ 控制整体居中留白
+                        offset: screenWidth <= 768 ? '10vh' : '13vh',
+
+                        btn: ['我已知悉'],
+                        btnAlign: 'center',
+                        scrollbar: false,
+
+                        yes: function (index) {
+                            layer.close(index);
+                        },
+
+                        success: function (layero, index) {
+
+                            layero.find('.layui-layer-content').css({
+                                height: 'auto',
+                                padding: '0',
+                                overflow: 'hidden'
+                            });
+
+                            layero.find('.notice-container').css({
+                                maxHeight: 'calc(82vh - 70px)',
+                                overflowY: 'auto',
+                                boxSizing: 'border-box',
+                                padding: '16px 20px 8px'
+                            });
+
+                            layero.css({
+                                borderRadius: '12px',
+                                overflow: 'hidden'
+                            });
+
+                            var $btn = $('.layui-layer-btn0', layero);
+
+                            $btn.css({
+                                width: screenWidth <= 768 ? '150px' : '180px',
+                                height: screenWidth <= 768 ? '36px' : '40px',
+                                background: '#ff7a25',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: screenWidth <= 768 ? '18px' : '20px',
+                                fontSize: screenWidth <= 768 ? '14px' : '15px',
+                                fontWeight: '500',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 15px rgba(255,122,37,.3)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: '0 auto'
+                            });
+
+                            layero.find('.layui-layer-btn').css({
+                                padding: '8px 0 12px 0',
+                                marginTop: '0'
+                            });
+                        }
+                    });
+                });
+            </script>
+            <script>if (window.history.length <= 1) { var b = document.getElementById('backBtn'); if (b) b.style.display = 'none'; }</script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+﻿接口表名,数据类别,字段名,非空条数,非空率,示例值
+GOV_DATA,数字资源-政府侧数据,id,10659,1,10534
+GOV_DATA,数字资源-政府侧数据,biz_unique_id,10659,1,CH-AH-AM-AC
+GOV_DATA,数字资源-政府侧数据,data_code,10659,1,CH-AH-AM-AC
+GOV_DATA,数字资源-政府侧数据,data_name,10659,1,药品批准信息（归集中）
+GOV_DATA,数字资源-政府侧数据,dept_name,10659,1,北京市药品监督管理局
+GOV_DATA,数字资源-政府侧数据,service_type,10659,1,DATA
+GOV_DATA,数字资源-政府侧数据,is_shared,10659,1,无条件共享
+GOV_DATA,数字资源-政府侧数据,is_open,10659,1,是
+GOV_DATA,数字资源-政府侧数据,sample_data_json,8863,0.831503893423398,"[{""药品批准文号"":""国药准字H202163602"",""药品有效期"":""2027-01-23"",""注册分类"":""中药品种"",""剂型"":""丸剂"",""药品通用名称"":""氯雷他定片"",""药品持有人名称"":""北京医保全新大药房有限责任公司""},{"
+GOV_DATA,数字资源-政府侧数据,sample_data_keyword,8860,0.8312224411295619,国药准字H202163602。药品有效期。中药品种。丸剂。氯雷他定片。北京医保全新大药房有限责任公司；国药准字H202113239。药品有效期。中药品种。颗粒剂。氯雷他定片。北京金象大药房医药连锁有限责任公司
+GOV_DATA,数字资源-政府侧数据,data_url,1134,0.10638896707008162,http://data.beijing.gov.cn/zyml/ajg/sypjdglj/5884409951b242d29c8c96414ca8a75e.htm
+GOV_DATA,数字资源-政府侧数据,create_time,10659,1,2026-06-05 23:59:59
+GOV_DATA,数字资源-政府侧数据,update_time,10659,1,2026-09-02 18:35:28
+GOV_DATA,数字资源-政府侧数据,data_time,10563,0.9909935265972417,2024-02-08 11:39:47
+GOV_DATA,数字资源-政府侧数据,del_status,10659,1,0
+GOV_DATA,数字资源-政府侧数据,valid_status,10659,1,0
+GOV_DATA,数字资源-政府侧数据,visit_count,10659,1,233
+GOV_DATA,数字资源-政府侧数据,domain_name,10659,1,医疗卫生
+GOV_DATA,数字资源-政府侧数据,domain_type,10659,1,社会民生类
+GOV_DATA,数字资源-政府侧数据,organation_name,10542,0.9890233605403884,科技与标准处（信息化处）
+GOV_DATA,数字资源-政府侧数据,data_subject,10659,1,其他类数据资源
+GOV_DATA,数字资源-政府侧数据,favorited,10659,1,false
+LAB_DATA,数字资源-联合实验室数据,id,678,1,678
+LAB_DATA,数字资源-联合实验室数据,biz_unique_id,678,1,1602762886791122962
+LAB_DATA,数字资源-联合实验室数据,catalog_id,678,1,"99999,99999999999986,"
+LAB_DATA,数字资源-联合实验室数据,catalog_name,678,1,"联合实验室数据,数智消费实验室,"
+LAB_DATA,数字资源-联合实验室数据,data_name,678,1,线下消费数据
+LAB_DATA,数字资源-联合实验室数据,dept_name,678,1,首都经济贸易大学
+LAB_DATA,数字资源-联合实验室数据,description,18,0.02654867256637168,中国消费大数据由首都经济贸易大学与蚂蚁商业联盟共同建设，数据库实时汇总来自全国30个省、市、自治区的9000余家零售商超门店的消费信息。目前，已积累千亿条POS机消费数据，包括商品名称、售价、销售数量、销售时间等核心信息。
+LAB_DATA,数字资源-联合实验室数据,service_type,678,1,DATA
+LAB_DATA,数字资源-联合实验室数据,create_time,678,1,2026-08-14 14:13:10
+LAB_DATA,数字资源-联合实验室数据,update_time,678,1,2026-08-18 00:07:18
+LAB_DATA,数字资源-联合实验室数据,data_time,678,1,2026-08-14 14:14:38
+LAB_DATA,数字资源-联合实验室数据,del_status,678,1,0
+LAB_DATA,数字资源-联合实验室数据,valid_status,678,1,0
+LAB_DATA,数字资源-联合实验室数据,sample_data_json,15,0.022123893805309734,"[
+    {
+        ""企业ID"": ""CAA-01"",
+        ""门店ID"": 3,
+        ""商品ID"": 1108060000000,
+        ""商品条码"": 6972550000000,
+"
+LAB_DATA,数字资源-联合实验室数据,visit_count,678,1,9
+LAB_DATA,数字资源-联合实验室数据,data_source,678,1,true
+LAB_DATA,数字资源-联合实验室数据,favorited,678,1,false
+LAB_DATA,数字资源-联合实验室数据,key_advantages,7,0.01032448377581121,"•肝胆数标，权威立项：发布中国首个肝癌、肝胆疾病标准化数据团体规范，入选工信部 AI 医疗器械揭榜挂帅优胜项目，行业权威性突出。 
+•覆盖全域，多模态配对：覆盖肝、胆、胰全器官 10 余类常见病与疑难重症，包含多项精细化指标，填补肝胆领域"
+SOCIAL_DATA,数字资源-社会侧数据,id,2794,1,2794
+SOCIAL_DATA,数字资源-社会侧数据,biz_unique_id,2794,1,bss_4
+SOCIAL_DATA,数字资源-社会侧数据,product_name,2794,1,铁路货车闸瓦运用故障数据
+SOCIAL_DATA,数字资源-社会侧数据,description,2753,0.9853256979241232,集合国家能源集团自备重载铁路货车闸瓦运用故障数据，完成闸瓦运用故障专题数据的监测、持续跟踪及数据资产归档。对闸瓦运用故障进行分级分类，为铁路货车安全关键配件闸瓦质量提供精准故障源头数据
+SOCIAL_DATA,数字资源-社会侧数据,description_plain,2753,0.9853256979241232,集合国家能源集团自备重载铁路货车闸瓦运用故障数据，完成闸瓦运用故障专题数据的监测、持续跟踪及数据资产归档。对闸瓦运用故障进行分级分类，为铁路货车安全关键配件闸瓦质量提供精准故障源头数据
+SOCIAL_DATA,数字资源-社会侧数据,product_tags,2643,0.9459556191839656,"货车,货车"
+SOCIAL_DATA,数字资源-社会侧数据,org_name,2758,0.9871152469577666,国能铁路装备有限责任公司
+SOCIAL_DATA,数字资源-社会侧数据,goods_industry,2794,1,无
+SOCIAL_DATA,数字资源-社会侧数据,original_url,2794,1,https://mall.bjidex.com/transaction-management/data-product-details?productId=bss_4
+SOCIAL_DATA,数字资源-社会侧数据,create_time,2794,1,2026-06-24 14:40:16
+SOCIAL_DATA,数字资源-社会侧数据,update_time,2794,1,2026-06-24 14:40:16
+SOCIAL_DATA,数字资源-社会侧数据,del_status,2794,1,0
+SOCIAL_DATA,数字资源-社会侧数据,valid_status,2794,1,0
+SOCIAL_DATA,数字资源-社会侧数据,visit_count,2794,1,0
+SOCIAL_DATA,数字资源-社会侧数据,favorited,2794,1,false
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,id,364,1,364
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,biz_unique_id,364,1,PD2023112716091839
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,product_name,364,1,投资风险综合态势
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,product_intro,364,1,整合投资领域企业的数据和相关信息，帮助投资者了解融资企业经营情况、降低投资风险。
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,detail_desc,364,1,<p>投资决策：投资风险综合态势数据产品可以提供有关监管机构、媒体信息以及公告的相关信息，帮助投资者评估投资标的的可持续性、潜在风险和回报。投资者可以通过对数据进行分析和比较，做出更明智的投资决策。</p>
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,detail_desc_plain,364,1,投资决策：投资风险综合态势数据产品可以提供有关监管机构、媒体信息以及公告的相关信息，帮助投资者评估投资标的的可持续性、潜在风险和回报。投资者可以通过对数据进行分析和比较，做出更明智的投资决策。
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,industry,364,1,金融业
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,field,364,1,未知领域
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,use_limit_desc,29,0.07967032967032966,<p>使用用途限制：仅限于在金融行业使用；</p><p>使用范围限制：仅限于在国内地区使用；</p><p>禁止用途：禁止未经授权售卖给第三方。</p>
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,use_limit_desc_plain,29,0.07967032967032966,使用用途限制：仅限于在金融行业使用；使用范围限制：仅限于在国内地区使用；禁止用途：禁止未经授权售卖给第三方。
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,product_keywords,364,1,"金融,风控,风控"
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,data_update_frequency,364,1,未知
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,product_example,364,1,url_hash|【监管数据】监管唯一ID|varchar|【监管数据】监管唯一ID|0; url|【监管数据】原文url连接|varchar|【监管数据】原文url连接|1; title|【监管数据】监管标题|varchar|【监管数据】
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,data_url,364,1,https://mall.bjidex.com/transaction-management/data-product-details?productId=bss_746
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,del_status,364,1,0
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,create_time,364,1,2026-06-08 12:01:56
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,update_time,364,1,2026-06-08 12:01:56
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,valid_status,364,1,0
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,visit_count,364,1,0
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,favorited,364,1,false
+APP_INNOVATION,创新成果-应用创新成果,id,29,1,1
+APP_INNOVATION,创新成果-应用创新成果,biz_unique_id,29,1,42
+APP_INNOVATION,创新成果-应用创新成果,app_group_id,29,1,15
+APP_INNOVATION,创新成果-应用创新成果,app_group_name,29,1,社会治安防控
+APP_INNOVATION,创新成果-应用创新成果,top_group_code,29,1,APPLICATION
+APP_INNOVATION,创新成果-应用创新成果,achievement_code,29,1,数据安全一体化平台
+APP_INNOVATION,创新成果-应用创新成果,achievement_provider,29,1,云创数安
+APP_INNOVATION,创新成果-应用创新成果,achievement_desc,29,1,"轻量级、免改造，助力企业实现基于数据分类分级的全生命周期安全管理
+核心能力包括：数据资产地图与可视化管理、数据分类分级策略管理、数据分类分级、动静态脱敏、加密存储、文件水印、权限管理、访问控制等"
+APP_INNOVATION,创新成果-应用创新成果,achievement_type,29,1,社会治安防控
+APP_INNOVATION,创新成果-应用创新成果,apply_industry,29,1,S
+APP_INNOVATION,创新成果-应用创新成果,served_scene,28,0.9655172413793104,无
+APP_INNOVATION,创新成果-应用创新成果,online_time,29,1,2025-07-02 18:41:54
+APP_INNOVATION,创新成果-应用创新成果,create_time,29,1,2026-06-09 14:23:26
+APP_INNOVATION,创新成果-应用创新成果,update_time,29,1,2026-07-28 02:01:11
+APP_INNOVATION,创新成果-应用创新成果,del_status,29,1,0
+APP_INNOVATION,创新成果-应用创新成果,favorited,29,1,false
+DATA_INNOVATION,创新成果-数据创新成果,id,606,1,536
+DATA_INNOVATION,创新成果-数据创新成果,biz_unique_id,606,1,722
+DATA_INNOVATION,创新成果-数据创新成果,app_group_id,606,1,32
+DATA_INNOVATION,创新成果-数据创新成果,app_group_name,606,1,API产品
+DATA_INNOVATION,创新成果-数据创新成果,top_group_code,606,1,DATA
+DATA_INNOVATION,创新成果-数据创新成果,achievement_code,606,1,企业严重违法核查
+DATA_INNOVATION,创新成果-数据创新成果,achievement_provider,606,1,贵州数据宝网络科技有限公司
+DATA_INNOVATION,创新成果-数据创新成果,achievement_desc,606,1,本产品核查企业严重违法失信记录。严重违法涉及危害公共安全、破坏市场秩序等行为，在保险核保中通常是一票否决的硬指标。
+DATA_INNOVATION,创新成果-数据创新成果,achievement_type,606,1,API产品
+DATA_INNOVATION,创新成果-数据创新成果,apply_industry,606,1,"F,J,L,M,S"
+DATA_INNOVATION,创新成果-数据创新成果,served_scene,0,0,
+DATA_INNOVATION,创新成果-数据创新成果,online_time,606,1,2026-08-14 16:08:27
+DATA_INNOVATION,创新成果-数据创新成果,create_time,606,1,2026-08-15 02:01:13
+DATA_INNOVATION,创新成果-数据创新成果,update_time,606,1,2026-08-15 02:01:13
+DATA_INNOVATION,创新成果-数据创新成果,del_status,606,1,0
+DATA_INNOVATION,创新成果-数据创新成果,favorited,606,1,false
+CLOUD_NETWORK_CALC,创新服务-云网算资源,id,26,1,27
+CLOUD_NETWORK_CALC,创新服务-云网算资源,biz_unique_id,26,1,1498287085874016270
+CLOUD_NETWORK_CALC,创新服务-云网算资源,catalog_id,26,1,"327,329,1514201701485326336,"
+CLOUD_NETWORK_CALC,创新服务-云网算资源,catalog_name,26,1,"裸金属服务,"
+CLOUD_NETWORK_CALC,创新服务-云网算资源,resource_name,26,1,裸金属服务
+CLOUD_NETWORK_CALC,创新服务-云网算资源,description,5,0.19230769230769232,信创-网络服务-负载均衡
+CLOUD_NETWORK_CALC,创新服务-云网算资源,service_type,26,1,CLOUD
+CLOUD_NETWORK_CALC,创新服务-云网算资源,create_time,26,1,2026-06-17 16:12:06
+CLOUD_NETWORK_CALC,创新服务-云网算资源,update_time,26,1,2026-06-30 15:16:49
+CLOUD_NETWORK_CALC,创新服务-云网算资源,data_time,26,1,2026-06-11 10:50:27
+CLOUD_NETWORK_CALC,创新服务-云网算资源,del_status,26,1,0
+CLOUD_NETWORK_CALC,创新服务-云网算资源,valid_status,26,1,0
+CLOUD_NETWORK_CALC,创新服务-云网算资源,visit_count,26,1,1
+CLOUD_NETWORK_CALC,创新服务-云网算资源,favorited,26,1,false
+COMPONENT_RESOURCE,创新服务-组件资源,id,180,1,177
+COMPONENT_RESOURCE,创新服务-组件资源,biz_unique_id,180,1,1518
+COMPONENT_RESOURCE,创新服务-组件资源,catalog_id,180,1,"2,600,604,"
+COMPONENT_RESOURCE,创新服务-组件资源,catalog_name,180,1,"数据开发与服务,"
+COMPONENT_RESOURCE,创新服务-组件资源,component_name,180,1,应用管理组件
+COMPONENT_RESOURCE,创新服务-组件资源,provider,180,1,清雁科技（北京）有限公司
+COMPONENT_RESOURCE,创新服务-组件资源,component_desc,180,1,"应用管理组件将数据分析与计算能力封装为可分发应用，运行于隔离沙箱并与数据权限精细绑定，实现""数据不动、价值流动""。"
+COMPONENT_RESOURCE,创新服务-组件资源,component_version,180,1,2.0.0
+COMPONENT_RESOURCE,创新服务-组件资源,process_type,179,0.9944444444444445,2
+COMPONENT_RESOURCE,创新服务-组件资源,create_time,180,1,2026-08-09 02:01:13
+COMPONENT_RESOURCE,创新服务-组件资源,update_time,180,1,2026-09-02 17:55:58
+COMPONENT_RESOURCE,创新服务-组件资源,data_time,180,1,2026-08-07 14:38:18
+COMPONENT_RESOURCE,创新服务-组件资源,del_status,180,1,0
+COMPONENT_RESOURCE,创新服务-组件资源,valid_status,180,1,0
+COMPONENT_RESOURCE,创新服务-组件资源,visit_count,180,1,17
+COMPONENT_RESOURCE,创新服务-组件资源,favorited,180,1,false
+COMPONENT_RESOURCE,创新服务-组件资源,deploy_url,10,0.05555555555555555,https://www.baidu.com
+COMMON_SERVICE,创新服务-共性服务,id,8,1,8
+COMMON_SERVICE,创新服务-共性服务,article_title,8,1,京办
+COMMON_SERVICE,创新服务-共性服务,article_content,8,1,"京办
+“ 京办”作为“一网统管”的统一接口，是面向政务工作场景搭建覆盖市、区、街、居四级的统一基础协同办公平台，是加快数字赋能基层治理、实现精治共治法治的重要载体和通道。 "
+COMMON_SERVICE,创新服务-共性服务,article_content_plain,8,1,"京办
+“ 京办”作为“一网统管”的统一接口，是面向政务工作场景搭建覆盖市、区、街、居四级的统一基础协同办公平台，是加快数字赋能基层治理、实现精治共治法治的重要载体和通道。 "
+COMMON_SERVICE,创新服务-共性服务,publish_time,8,1,2026-06-15 00:00:00
+COMMON_SERVICE,创新服务-共性服务,column_name,8,1,京办
+COMMON_SERVICE,创新服务-共性服务,data_url,8,1,https://dibj.cn/fzpt/szzy/gxfw/jb
+COMMON_SERVICE,创新服务-共性服务,create_time,8,1,2026-06-15 19:29:11
+COMMON_SERVICE,创新服务-共性服务,update_time,8,1,2026-06-15 19:35:17
+COMMON_SERVICE,创新服务-共性服务,del_status,8,1,0
+COMMON_SERVICE,创新服务-共性服务,favorited,8,1,false
+SETTLED_PROJECT,创新服务-入驻项目,id,165,1,167
+SETTLED_PROJECT,创新服务-入驻项目,biz_unique_id,165,1,452
+SETTLED_PROJECT,创新服务-入驻项目,ability_org_id,165,1,176
+SETTLED_PROJECT,创新服务-入驻项目,ability_org_name,165,1,蚂蚁密算公司
+SETTLED_PROJECT,创新服务-入驻项目,project_name,165,1,公共数据要素促进精准就业项目
+SETTLED_PROJECT,创新服务-入驻项目,project_target,165,1,1）精准就业项目 通过密态计算技术，连接「公共数据、企业数据、互联网流量」，实现“数据不动，价值流动”。通过多方数据融合分析与数据模型建立，实现待业者技能、求职意愿与岗位需求的高效匹配。结合“京通”、支付宝等平台的信息触达能力，提升就业信息
+SETTLED_PROJECT,创新服务-入驻项目,expected_result,165,1,当前就业服务仍面临现实痛点。求职招聘虽已大量线上化，但数字化水平仍有待提升，且存在求职者与用人单位之间信任不足的问题，导致整个流程中出现以下问题：一是求职者与岗位信息不对称，资质核验难、岗位筛选成本高、效率低；二是劳动力供需存在结构性错配，
+SETTLED_PROJECT,创新服务-入驻项目,create_time,165,1,2026-09-01 15:41:15
+SETTLED_PROJECT,创新服务-入驻项目,update_time,165,1,2026-09-02 02:01:00
+SETTLED_PROJECT,创新服务-入驻项目,data_time,165,1,2026-09-01 15:51:12
+SETTLED_PROJECT,创新服务-入驻项目,del_status,165,1,0
+SETTLED_PROJECT,创新服务-入驻项目,favorited,165,1,false
+SCENE_DEMAND,创新服务-场景需求,id,191,1,191
+SCENE_DEMAND,创新服务-场景需求,biz_unique_id,191,1,1582
+SCENE_DEMAND,创新服务-场景需求,scene_name,191,1,“两客一危一重”跨区域联合监管场景
+SCENE_DEMAND,创新服务-场景需求,scene_open_dept,191,1,通州区政务服务和数据管理局
+SCENE_DEMAND,创新服务-场景需求,scene_batch,191,1,通州区八月场景发布
+SCENE_DEMAND,创新服务-场景需求,scene_summary,191,1,1.围绕“两客一危一重”车辆跨区域联合监管业务需求，通过卫星定位监测、异常智能预警、跨区域信息同步、数据融合分析等技术，融合危险货物运输信息、营运车辆卫星定位数据、人车户基础信息、高速公路通行数据、省界公路交通情况调查统计数据，通过全口径运
+SCENE_DEMAND,创新服务-场景需求,scene_status,189,0.9895287958115183,“两客一危一重”车辆跨区域运营时，属地无法实现全行程动态监管，只掌握属地备案车辆运营数据，违规行为跨区域溯源难、横传处置慢。
+SCENE_DEMAND,创新服务-场景需求,scene_innovation_demand,189,0.9895287958115183,实现“两客一危”运行状态实施监测、异常情况智能预警及违规行为跨区域溯源。通过融合卫星定位、危险品运单、高速通行及省界交通量等多源数据，打破数据壁垒，将监管视线延伸为“全行程无感续流”；创新性引入跨区域营运OD空间研判，将执法模式从“被动响应
+SCENE_DEMAND,创新服务-场景需求,scene_type,191,1,3
+SCENE_DEMAND,创新服务-场景需求,contact_user,191,1,于梁
+SCENE_DEMAND,创新服务-场景需求,phone,191,1,010-69518123
+SCENE_DEMAND,创新服务-场景需求,email,189,0.9895287958115183,ghjsk@bjtzh.gov.cn
+SCENE_DEMAND,创新服务-场景需求,create_time,191,1,2026-08-14 02:01:00
+SCENE_DEMAND,创新服务-场景需求,update_time,191,1,2026-08-14 02:01:00
+SCENE_DEMAND,创新服务-场景需求,data_time,191,1,2026-08-13 00:00:00
+SCENE_DEMAND,创新服务-场景需求,del_status,191,1,0
+SCENE_DEMAND,创新服务-场景需求,scene_range,191,1,1
+SCENE_DEMAND,创新服务-场景需求,favorited,191,1,false
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,id,97,1,97
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,biz_unique_id,97,1,98
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,tech_direction,97,1,抗量子数据安全技术
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,content_desc,97,1,依托抗量子加密技术和可信硬件构建安全、高效的跨境数据安全解决方案。攻关内容涉及抗量子密码算法库、密钥管理系统、数字签名与验签、用户身份认证与访问控制等关键技术模块，同时以全生命周期的安全保障能力和多场景适配性为目标，突破传统安全体系在量子计
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,support_unit,97,1,华控清交信息科技（北京）有限公司
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,apply_field,97,1,金融服务
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,create_time,97,1,2026-06-05 18:34:37
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,update_time,97,1,2026-06-05 18:34:37
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,data_time,97,1,2025-11-17 15:35:00
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,del_status,97,1,0
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,favorited,97,1,false

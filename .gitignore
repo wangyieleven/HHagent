@@ -1,0 +1,35 @@
+# macOS and editor caches
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# Local agent state, dependencies, and runtime output
+.codex/
+.agents/
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+*.pid
+.cache/
+
+# Office temporary lock files
+~$*
+.~lock.*#

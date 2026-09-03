@@ -1,0 +1,13 @@
+﻿接口表名,数据类别,接口报告总数,实际写入条数,分页失败数,字段数
+GOV_DATA,数字资源-政府侧数据,10659,10659,0,22
+LAB_DATA,数字资源-联合实验室数据,678,678,0,18
+SOCIAL_DATA,数字资源-社会侧数据,2794,2794,0,15
+HIGH_QUALITY_DATASET,数字资源-高质量数据集,364,364,0,20
+APP_INNOVATION,创新成果-应用创新成果,29,29,0,16
+DATA_INNOVATION,创新成果-数据创新成果,606,606,0,16
+CLOUD_NETWORK_CALC,创新服务-云网算资源,26,26,0,14
+COMPONENT_RESOURCE,创新服务-组件资源,180,180,0,17
+COMMON_SERVICE,创新服务-共性服务,8,8,0,11
+SETTLED_PROJECT,创新服务-入驻项目,165,165,0,12
+SCENE_DEMAND,创新服务-场景需求,191,191,0,18
+RELEASE_TECH_ABILITY,创新服务-技术创新能力,97,97,0,11
