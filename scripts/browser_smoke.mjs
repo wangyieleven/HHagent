@@ -142,6 +142,40 @@ try {
     'Assistant demo data was not cleared.'
   );
 
+  await page.goto(`${baseURL}/index-amazon.html`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+  assert.equal(
+    await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth),
+    true,
+    'Amazon review prototype has horizontal overflow at the desktop viewport.'
+  );
+  await page.locator('#faBtn').click();
+  await page.locator('.demo-chip[data-demo="ask"]').click();
+  await page.waitForFunction(
+    () => (document.querySelector('#faBody')?.textContent || '').includes('智慧城市资源集聚区'),
+    null,
+    { timeout: 10_000 }
+  );
+
+  await page.goto(`${baseURL}/index-ai.html`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+  await page.locator('#faBtn').waitFor({ state: 'visible', timeout: 15_000 });
+  assert.equal(
+    await page.locator('body > .ai-assistant:visible, #heheFab:visible, #faBtn:visible').count(),
+    1,
+    'AI review prototype must expose exactly one visible assistant entry.'
+  );
+  assert.match(
+    await page.locator('.fa-note').textContent(),
+    /QA流程、时限与政策口径仍待业务确认/,
+    'AI review prototype must display the pending-QA caveat.'
+  );
+  await page.locator('#faBtn').click();
+  await page.getByRole('button', { name: /我要申报场景揭榜/ }).click();
+  await page.waitForFunction(
+    () => (document.querySelector('#faBody')?.textContent || '').includes('智慧城市场景申报资料清单'),
+    null,
+    { timeout: 10_000 }
+  );
+
   await page.waitForTimeout(500);
   assert.deepEqual(unexpectedDialogs, [], `Unexpected browser dialogs: ${unexpectedDialogs.join('\n')}`);
   assert.deepEqual(pageErrors, [], `Page errors:\n${pageErrors.join('\n')}`);
@@ -149,7 +183,7 @@ try {
   assert.deepEqual(badLocalResponses, [], `HTTP error responses:\n${badLocalResponses.join('\n')}`);
   assert.deepEqual(consoleErrors, [], `Console errors:\n${consoleErrors.join('\n')}`);
 
-  console.log('HHagent browser smoke passed: demo isolation, repeated prompts, XSS handling, draft privacy and clear-data flow.');
+  console.log('HHagent browser smoke passed: demo isolation, repeated prompts, XSS handling, draft privacy, clear-data flow and alternate prototype interactions.');
 } finally {
   if (browser) await browser.close();
   server.kill('SIGTERM');

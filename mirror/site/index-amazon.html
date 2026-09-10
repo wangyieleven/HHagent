@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数智北京创新中心 - 门户首页（亚马逊式展示原型）</title>
+<meta name="description" content="数智北京创新中心：场景需求揭榜、数据资源目录、组件与云网算资源、应用创新成果——按亚马逊式卡片展示重构的门户原型。">
+<style>
+/* ============ 基础 ============ */
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --az-dark:#131921; --az-nav:#232f3e; --az-nav-h:#37475a;
+  --az-bg:#EAEDED; --az-card:#fff;
+  --az-link:#007185; --az-link-h:#C7511F;
+  --az-cta:#FFD814; --az-cta-b:#FCD200; --az-cta-h:#F7CA00;
+  --az-orange:#FF9900; --az-deal:#CC0C39;
+  --az-text:#0F1111; --az-sub:#565959; --az-border:#D5D9D9;
+  --brand-red:#E02832;
+}
+html { scroll-behavior:smooth; }
+body { font:14px/1.6 "Microsoft YaHei","PingFang SC",Arial,sans-serif; background:var(--az-bg); color:var(--az-text); }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; }
+.container { max-width:1500px; margin:0 auto; padding:0 20px; }
+img { display:block; max-width:100%; }
+
+/* ============ 顶部细条 ============ */
+.topbar { background:#0F1111; color:#ccc; font-size:12px; }
+.topbar .container { display:flex; justify-content:space-between; align-items:center; height:30px; }
+.topbar a { color:#ddd; margin-left:14px; }
+.topbar a:hover { color:var(--az-orange); }
+
+/* ============ 主头部 ============ */
+.az-header { background:var(--az-dark); color:#fff; }
+.az-header .container { display:flex; align-items:center; gap:14px; height:64px; }
+.brand { display:flex; flex-direction:column; justify-content:center; padding:6px 10px; border:1px solid transparent; border-radius:3px; cursor:pointer; flex-shrink:0; }
+.brand:hover { border-color:#fff; }
+.brand-main { display:flex; align-items:center; gap:8px; font-size:20px; font-weight:700; letter-spacing:1px; }
+.brand-mark { width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,#E02832,#FF6B35); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; }
+.brand-sub { font-size:11px; color:#999; }
+.loc { display:flex; align-items:flex-end; gap:4px; padding:8px 10px; border:1px solid transparent; border-radius:3px; cursor:pointer; flex-shrink:0; }
+.loc:hover { border-color:#fff; }
+.loc-ico { color:#fff; }
+.loc-txt { font-size:13px; line-height:1.2; }
+.loc-sub { font-size:11px; color:#999; }
+/* 搜索 */
+.searchbox { flex:1; display:flex; max-width:860px; height:42px; border-radius:8px; overflow:hidden; background:#fff; }
+.searchbox:focus-within { outline:3px solid var(--az-orange); }
+.search-cat { border:none; border-right:1px solid #ccc; background:#E6E6E6; color:#0F1111; font-size:13px; padding:0 8px; outline:none; cursor:pointer; max-width:120px; }
+.search-input { flex:1; border:none; outline:none; padding:0 14px; font-size:15px; color:#111; }
+.search-btn { width:52px; border:none; background:var(--az-orange); cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.search-btn:hover { background:#F08804; }
+/* 右侧账户区 */
+.header-acts { display:flex; align-items:center; gap:4px; margin-left:auto; flex-shrink:0; }
+.hact { padding:8px 10px; border:1px solid transparent; border-radius:3px; cursor:pointer; text-align:center; }
+.hact:hover { border-color:#fff; }
+.hact .l1 { font-size:12px; color:#ccc; }
+.hact .l2 { font-size:14px; font-weight:700; }
+.hact-btn { margin-left:6px; }
+.hact-btn .l2 { display:flex; align-items:center; gap:6px; background:var(--az-orange); color:#0F1111; padding:7px 16px; border-radius:20px; }
+.hact-btn:hover .l2 { background:#F08804; }
+
+/* ============ 二级导航 ============ */
+.subnav { background:var(--az-nav); color:#fff; font-size:14px; position:sticky; top:0; z-index:600; }
+.subnav .container { display:flex; align-items:center; height:40px; gap:2px; overflow-x:auto; scrollbar-width:none; }
+.subnav .container::-webkit-scrollbar { display:none; }
+@media (max-width:1200px){ .subnav .navpromo { display:none; } }
+.allcat { display:flex; align-items:center; gap:8px; font-weight:700; padding:6px 12px; border:1px solid transparent; border-radius:3px; cursor:pointer; flex-shrink:0; }
+.allcat:hover { border-color:#fff; }
+.subnav a.navlink { padding:6px 10px; border:1px solid transparent; border-radius:3px; white-space:nowrap; }
+.subnav a.navlink:hover { border-color:#fff; }
+.subnav .navpromo { margin-left:auto; color:var(--az-orange); font-size:13px; font-weight:700; white-space:nowrap; }
+.subnav .navpromo:hover { text-decoration:underline; }
+
+/* ============ 抽屉全部分类 ============ */
+.drawer-mask { position:fixed; inset:0; background:rgba(0,0,0,.55); opacity:0; visibility:hidden; transition:.25s; z-index:900; }
+.drawer { position:fixed; top:0; left:-380px; width:365px; height:100vh; background:#fff; z-index:901; transition:left .28s ease; overflow-y:auto; box-shadow:4px 0 24px rgba(0,0,0,.25); }
+.drawer.open { left:0; }
+.drawer-mask.open { opacity:1; visibility:visible; }
+.drawer-head { background:var(--az-nav); color:#fff; font-size:18px; font-weight:700; padding:16px 22px; display:flex; align-items:center; gap:10px; position:sticky; top:0; }
+.drawer-group { padding:14px 22px 4px; }
+.drawer-group h4 { font-size:14px; color:var(--az-link); margin-bottom:8px; }
+.drawer-group li a { display:block; padding:9px 0 9px 12px; font-size:14px; color:#111; border-bottom:1px solid #f0f0f0; }
+.drawer-group li a:hover { color:var(--az-link-h); background:#f7fafa; }
+.drawer-close { position:absolute; right:14px; top:12px; width:32px; height:32px; border:none; background:none; color:#fff; font-size:22px; cursor:pointer; }
+
+/* ============ 英雄区（意图分流 + 榜单 + 助手） ============ */
+.hero { padding:18px 0 6px; }
+.hero-grid { display:grid; grid-template-columns:1.25fr 1fr .95fr; gap:18px; }
+.card { background:var(--az-card); border-radius:8px; padding:20px 20px 18px; box-shadow:0 1px 2px rgba(0,0,0,.08); }
+.card-h { font-size:19px; font-weight:700; margin-bottom:14px; }
+/* 意图卡 */
+.intent-tile { display:flex; align-items:center; gap:14px; border:2px solid #e3e6e6; border-radius:10px; padding:16px 18px; margin-bottom:12px; cursor:pointer; transition:.15s; background:#fff; }
+.intent-tile:hover { border-color:var(--az-cta-b); background:#fffdf0; box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.intent-ico { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; }
+.intent-ico.q { background:linear-gradient(135deg,#146EB4,#3FA0F5); }
+.intent-ico.p { background:linear-gradient(135deg,#067D62,#25A18A); }
+.intent-txt b { display:block; font-size:17px; }
+.intent-txt span { font-size:12.5px; color:var(--az-sub); }
+.intent-go { margin-left:auto; color:#999; flex-shrink:0; }
+.intent-tile:hover .intent-go { color:var(--az-link-h); }
+.quick-stats { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+.qs { flex:1; min-width:86px; background:#F7FAFA; border:1px solid #e3e6e6; border-radius:8px; text-align:center; padding:8px 4px; }
+.qs b { display:block; font-size:17px; color:var(--az-deal); }
+.qs span { font-size:12px; color:var(--az-sub); }
+/* 揭榜榜单卡 */
+.rank-list li { display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #f1f1f1; }
+.rank-list li:last-child { border-bottom:none; }
+.rank-no { font-size:19px; font-weight:800; color:#c3c7c7; width:24px; text-align:center; flex-shrink:0; }
+.rank-list li:nth-child(1) .rank-no { color:var(--az-deal); }
+.rank-list li:nth-child(2) .rank-no,
+.rank-list li:nth-child(3) .rank-no { color:var(--az-orange); }
+.rank-thumb { width:44px; height:44px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:700; color:#fff; flex-shrink:0; }
+.rank-info { flex:1; min-width:0; }
+.rank-info a { display:block; font-size:13.5px; color:#0F1111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rank-info a:hover { color:var(--az-link-h); text-decoration:underline; }
+.rank-info span { font-size:12px; color:var(--az-sub); }
+.rank-tag { font-size:11px; color:var(--az-deal); font-weight:700; flex-shrink:0; }
+/* 右列：助手 + 活动 */
+.hero-right { display:flex; flex-direction:column; gap:18px; }
+.assistant-card { display:flex; flex-direction:column; align-items:center; text-align:center; }
+.assistant-card .mascot { width:110px; height:auto; margin:2px auto 8px; filter:drop-shadow(0 8px 16px rgba(224,40,50,.28)); }
+.assistant-card h3 { font-size:17px; }
+.assistant-card p { font-size:13px; color:var(--az-sub); margin:6px 0 12px; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:14px; }
+.chip { font-size:12.5px; color:var(--az-link); background:#F0F7F7; border:1px solid #cfe3e3; border-radius:14px; padding:4px 12px; cursor:pointer; }
+.chip:hover { background:#e2efef; color:var(--az-link-h); }
+.btn-cta { display:block; width:100%; text-align:center; background:var(--az-cta); border:1px solid var(--az-cta-b); border-radius:100px; padding:9px 0; font-size:14.5px; font-weight:700; color:#0F1111; cursor:pointer; }
+.btn-cta:hover { background:var(--az-cta-h); }
+.event-mini { display:flex; gap:12px; align-items:center; }
+.event-mini img { width:110px; height:70px; object-fit:cover; border-radius:6px; flex-shrink:0; }
+.event-mini .ev-date { font-size:12px; color:var(--az-deal); font-weight:700; }
+.event-mini .ev-title { font-size:13.5px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin:2px 0 4px; }
+.event-mini .ev-title:hover { color:var(--az-link-h); }
+.ev-more { font-size:12.5px; color:var(--az-link); }
+.ev-more:hover { color:var(--az-link-h); text-decoration:underline; }
+
+/* ============ 通用区块 ============ */
+.section { margin-top:22px; }
+.section-head { display:flex; align-items:baseline; gap:12px; margin-bottom:12px; }
+.section-head h2 { font-size:21px; font-weight:700; }
+.section-tag { font-size:12px; font-weight:700; color:#fff; background:var(--az-deal); border-radius:3px; padding:2px 8px; vertical-align:middle; }
+.section-tag.orange { background:var(--az-orange); color:#0F1111; }
+.section-tag.green { background:#067D62; }
+.see-more { margin-left:auto; font-size:13.5px; color:var(--az-link); }
+.see-more:hover { color:var(--az-link-h); text-decoration:underline; }
+.grid { background:var(--az-card); border-radius:8px; padding:18px; box-shadow:0 1px 2px rgba(0,0,0,.08); display:grid; gap:16px; }
+.grid.scenes { grid-template-columns:repeat(6,1fr); }
+.grid.datas  { grid-template-columns:repeat(6,1fr); }
+.grid.apps   { grid-template-columns:repeat(5,1fr); }
+.grid.projs  { grid-template-columns:repeat(6,1fr); }
+.duo { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.duo .grid { grid-template-columns:repeat(3,1fr); }
+
+/* ============ 商品卡（资源/场景/成果通用） ============ */
+.prod { border:1px solid #e7e7e7; border-radius:8px; overflow:hidden; cursor:pointer; transition:.16s; background:#fff; display:flex; flex-direction:column; }
+.prod:hover { box-shadow:0 6px 20px rgba(0,0,0,.14); border-color:#d5d9d9; transform:translateY(-2px); }
+.prod-media { position:relative; height:118px; display:flex; align-items:center; justify-content:center; }
+.prod-media .glyph { font-size:40px; font-weight:800; color:rgba(255,255,255,.92); text-shadow:0 2px 6px rgba(0,0,0,.18); }
+.prod-media img.type-ico { width:64px; height:64px; object-fit:contain; }
+.prod-badge { position:absolute; top:8px; left:8px; background:var(--az-nav); color:var(--az-orange); font-size:11px; font-weight:700; padding:3px 8px; border-radius:3px; letter-spacing:1px; }
+.prod-badge.deal { background:var(--az-deal); color:#fff; }
+.prod-badge.new { background:#067D62; color:#fff; }
+.prod-body { padding:10px 12px 12px; display:flex; flex-direction:column; flex:1; }
+.prod-title { font-size:13.5px; line-height:1.45; height:2.9em; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:6px; }
+.prod:hover .prod-title { color:var(--az-link-h); }
+.prod-meta { font-size:12px; color:var(--az-sub); display:flex; align-items:center; gap:5px; margin-top:auto; }
+.prod-meta + .prod-meta { margin-top:2px; }
+.meta-k { color:#999; }
+.prod-hot { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--az-sub); }
+.hot-bar { flex:1; height:5px; border-radius:3px; background:#eee; overflow:hidden; }
+.hot-bar i { display:block; height:100%; background:linear-gradient(90deg,#FF9900,#E02832); border-radius:3px; }
+.prod .btn-cta { margin-top:10px; padding:7px 0; font-size:13px; }
+.deadline { font-size:12px; color:var(--az-deal); font-weight:700; margin-top:4px; }
+.done-badge { display:inline-block; font-size:11px; color:#067D62; border:1px solid #067D62; border-radius:3px; padding:1px 6px; margin-top:4px; }
+
+/* ============ 轮播（活动预告） ============ */
+.carousel-wrap { position:relative; }
+.carousel { background:#fff; border-radius:8px; padding:18px; box-shadow:0 1px 2px rgba(0,0,0,.08); }
+.car-track { display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:6px; scrollbar-width:none; }
+.car-track::-webkit-scrollbar { display:none; }
+.act-card { flex:0 0 300px; border:1px solid #e7e7e7; border-radius:8px; overflow:hidden; transition:.16s; }
+.act-card:hover { box-shadow:0 6px 20px rgba(0,0,0,.14); }
+.act-card img { width:100%; height:150px; object-fit:cover; }
+.act-body { padding:10px 12px 12px; }
+.act-date { font-size:12px; color:var(--az-link); font-weight:700; }
+.act-title { font-size:13.5px; line-height:1.45; height:2.9em; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-top:4px; }
+.act-card:hover .act-title { color:var(--az-link-h); }
+.car-btn { position:absolute; top:50%; transform:translateY(-50%); width:40px; height:64px; border:none; background:rgba(255,255,255,.94); box-shadow:0 2px 10px rgba(0,0,0,.22); border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:5; }
+.car-btn:hover { background:#fff; }
+.car-btn.prev { left:-8px; } .car-btn.next { right:-8px; }
+
+/* ============ 新闻 ============ */
+.news-grid { display:grid; grid-template-columns:1.35fr 1fr; gap:18px; }
+.news-left { display:flex; gap:16px; }
+.news-left img { width:300px; height:190px; object-fit:cover; border-radius:6px; flex-shrink:0; }
+.news-kicker { display:inline-block; font-size:12px; color:#fff; background:var(--az-nav); padding:2px 10px; border-radius:3px; margin-bottom:8px; }
+.news-title { font-size:16.5px; font-weight:700; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.news-title:hover { color:var(--az-link-h); }
+.news-desc { font-size:13px; color:var(--az-sub); display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; margin-top:8px; }
+.news-list li { padding:11px 0; border-bottom:1px solid #f1f1f1; }
+.news-list li:last-child { border-bottom:none; }
+.news-list a { font-size:14px; font-weight:600; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.news-list a:hover { color:var(--az-link-h); text-decoration:underline; }
+.news-list span { font-size:12px; color:var(--az-sub); }
+
+/* ============ 入驻单位墙 ============ */
+.logo-wall { display:grid; grid-template-columns:repeat(8,1fr); gap:12px; }
+.logo-wall p { background:#fff; border-radius:8px; border:1px solid #e7e7e7; display:flex; align-items:center; justify-content:center; height:86px; padding:10px; transition:.15s; }
+.logo-wall p:hover { box-shadow:0 6px 18px rgba(0,0,0,.12); }
+.logo-wall img { max-height:100%; object-fit:contain; }
+
+/* ============ 页脚 ============ */
+footer { margin-top:28px; background:var(--az-nav); color:#ddd; }
+.foot-links { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:34px 0 26px; }
+.foot-links h4 { color:#fff; font-size:15px; margin-bottom:12px; }
+.foot-links a { display:block; font-size:13px; color:#c6cdd4; padding:4px 0; }
+.foot-links a:hover { text-decoration:underline; color:#fff; }
+.foot-back { background:#37475a; text-align:center; padding:14px; color:#fff; font-size:13px; cursor:pointer; }
+.foot-back:hover { background:#485769; }
+.foot-bottom { background:var(--az-dark); text-align:center; padding:20px 10px; font-size:12px; color:#999; line-height:2; }
+
+/* ============ 浮动合合助手 ============ */
+.float-assistant { position:fixed; right:26px; bottom:26px; z-index:800; }
+.fa-btn { width:76px; height:76px; border-radius:50%; border:none; background:#E02832; box-shadow:0 10px 24px rgba(0,0,0,.28); cursor:pointer; display:flex; align-items:center; justify-content:center; position:relative; }
+.fa-btn img { width:62px; height:62px; object-fit:contain; }
+.fa-btn .fa-dot { position:absolute; top:4px; right:4px; width:12px; height:12px; background:#6dffb0; border-radius:50%; box-shadow:0 0 8px #6dffb0; animation:blink 1.4s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+.fa-panel { position:absolute; right:0; bottom:92px; width:396px; height:580px; max-height:calc(100vh - 130px); background:#fff; border-radius:16px; box-shadow:0 24px 60px rgba(0,0,0,.3); overflow:hidden; display:none; flex-direction:column; }
+.fa-panel.open { display:flex; animation:fa-pop .32s cubic-bezier(.34,1.56,.64,1); }
+@keyframes fa-pop { from{opacity:0;transform:translateY(18px) scale(.94)} to{opacity:1;transform:none} }
+/* 全屏放大态 */
+.fa-panel.max { position:fixed; right:auto; bottom:auto; left:50%; top:50%; transform:translate(-50%,-50%); width:min(94vw,1040px); height:min(92vh,780px); border-radius:20px; }
+.fa-panel.max .fa-body { padding:20px 26px; }
+.fa-head { background:#232f3e; color:#fff; padding:13px 14px; display:flex; align-items:center; gap:10px; }
+.fa-logo { width:36px; height:36px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; color:#E02832; flex-shrink:0; }
+.fa-name { font-size:15px; font-weight:700; }
+.fa-sub { font-size:11.5px; opacity:.9; display:flex; align-items:center; gap:5px; }
+.fa-status { width:7px; height:7px; background:#6dffb0; border-radius:50%; display:inline-block; }
+.fa-actions { margin-left:auto; display:flex; gap:6px; }
+.fa-ctl { width:30px; height:30px; border:none; border-radius:8px; background:rgba(255,255,255,.16); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+.fa-ctl:hover { background:rgba(255,255,255,.32); }
+.fa-ctl svg { display:block; }
+/* 六向演示导航 */
+.fa-demos { display:flex; gap:6px; padding:10px 12px; background:#fff; border-bottom:1px solid #eef0f2; overflow-x:auto; scrollbar-width:none; }
+.fa-demos::-webkit-scrollbar { display:none; }
+.demo-chip { flex-shrink:0; border:1px solid #e3e6e6; background:#f7fafa; color:#0F1111; font-size:12.5px; padding:5px 13px; border-radius:14px; cursor:pointer; transition:.15s; font-family:inherit; }
+.demo-chip:hover { border-color:var(--brand-red); color:var(--brand-red); }
+.demo-chip.on { background:#232f3e; color:#fff; border-color:transparent; box-shadow:0 4px 12px rgba(35,47,62,.25); }
+.fa-body { flex:1; padding:14px; overflow-y:auto; background:#F7F8FA; }
+.fa-stream { max-width:760px; margin:0 auto; }
+/* 演示标记条 */
+.demo-banner { display:none; align-items:center; gap:8px; max-width:760px; margin:0 auto 12px; background:#FFF7E6; border:1px solid #FFE7A3; border-radius:10px; padding:8px 12px; font-size:12px; color:#8A6D1D; }
+.demo-banner.show { display:flex; animation:fx-in .3s forwards; opacity:0; }
+.demo-banner .rec { width:8px; height:8px; border-radius:50%; background:#E02832; animation:blink 1.2s infinite; flex-shrink:0; }
+/* 消息 */
+.msg { display:flex; gap:8px; margin-bottom:14px; animation:msg-in .3s ease; }
+@keyframes msg-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+.msg.user { justify-content:flex-end; }
+.msg .avatar { width:30px; height:30px; border-radius:50%; background:#fff; color:#E02832; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+.msg .u-bubble { background:#E02832; color:#fff; border-radius:14px 14px 4px 14px; padding:10px 14px; font-size:13.5px; max-width:78%; line-height:1.6; }
+.msg .b-bubble { background:#fff; border-radius:4px 14px 14px 14px; padding:11px 14px; font-size:13.5px; line-height:1.7; box-shadow:0 1px 4px rgba(0,0,0,.06); max-width:calc(100% - 46px); }
+.msg .b-bubble b { color:var(--brand-red); }
+.tcur { display:inline-block; width:2px; height:14px; background:var(--brand-red); vertical-align:-2px; margin-left:1px; animation:cur-blink .8s infinite; }
+@keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+/* 思考中 */
+.thinking { display:flex; gap:8px; align-items:center; background:#fff; border-radius:4px 14px 14px 14px; padding:12px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); margin-bottom:14px; width:fit-content; animation:msg-in .3s ease; }
+.thinking span { font-size:12.5px; color:#8a9199; }
+.thinking .dots { display:flex; gap:4px; }
+.thinking .dots i { width:6px; height:6px; border-radius:50%; background:var(--brand-red); animation:dot-jump 1s infinite; }
+.thinking .dots i:nth-child(2){animation-delay:.15s}
+.thinking .dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot-jump { 0%,60%,100%{transform:translateY(0);opacity:.5} 30%{transform:translateY(-5px);opacity:1} }
+/* 通用进场动画 */
+.dc, .plan-card, .flow-card, .track-card, .opts, .entry, .done-strip { opacity:0; transform:translateY(10px); animation:fx-in .38s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes fx-in { to { opacity:1; transform:none; } }
+/* 资源结果卡 */
+.demo-cards, .entry-duo { display:flex; flex-direction:column; gap:8px; margin:0 0 14px 38px; }
+.entry-duo { display:grid; grid-template-columns:1fr 1fr; }
+.dc { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #e7e7e7; border-radius:10px; padding:10px 12px; box-shadow:0 1px 4px rgba(0,0,0,.05); cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+.dc:hover { border-color:var(--brand-red); box-shadow:0 4px 14px rgba(224,40,50,.14); }
+.dc-tag { flex-shrink:0; font-size:11px; font-weight:700; color:#565959; background:#F0F2F2; border:1px solid #d5d9d9; border-radius:4px; padding:2px 7px; }
+.dc-info { flex:1; min-width:0; }
+.dc-info b { display:block; font-size:13px; }
+.dc-info span { font-size:11.5px; color:#8a9199; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dc-go { color:#c3c7c7; font-size:18px; flex-shrink:0; }
+/* 方案组合卡 */
+.plan-card { background:#fff; border:1px solid #e7e7e7; border-radius:12px; padding:12px 14px; margin:0 0 14px 38px; }
+.plan-title { font-size:12.5px; font-weight:700; color:#565959; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.plan-title .pc-badge { font-size:10.5px; color:var(--brand-red); border:1px solid rgba(224,40,50,.4); border-radius:3px; padding:1px 6px; font-weight:600; }
+.pl { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px dashed #eef0f2; font-size:12.5px; }
+.pl:last-child { border-bottom:none; padding-bottom:2px; }
+.pl-tag { flex-shrink:0; font-size:10.5px; font-weight:700; border-radius:3px; padding:2px 0; color:#565959; background:#F0F2F2; border:1px solid #d5d9d9; width:42px; text-align:center; }
+.pl b { font-weight:600; flex:1; min-width:0; }
+.pl-cost { color:#B12704; font-weight:700; font-size:12px; white-space:nowrap; }
+/* 办事流程卡 */
+.flow-card { background:#fff; border:1px solid #e7e7e7; border-radius:12px; padding:14px; margin:0 0 14px 38px; }
+.f-step { display:flex; gap:10px; align-items:flex-start; padding:7px 0; position:relative; opacity:0; animation:fx-in .34s forwards; }
+.f-step:not(:last-child)::before { content:''; position:absolute; left:13px; top:30px; bottom:-2px; width:2px; background:#e3e6e6; }
+.f-num { width:26px; height:26px; border-radius:50%; background:#eef0f2; color:#565959; font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; }
+.f-step.cur .f-num { background:var(--brand-red); color:#fff; box-shadow:0 0 0 4px rgba(224,40,50,.15); }
+.f-step b { display:block; font-size:13px; }
+.f-step span { font-size:11.5px; color:#8a9199; }
+.f-step .cur-tag { color:var(--brand-red); font-weight:700; font-size:11.5px; }
+/* 工单进度时间线 */
+.track-card { background:#fff; border:1px solid #e7e7e7; border-radius:12px; padding:14px; margin:0 0 14px 38px; }
+.tk { display:flex; gap:11px; padding:6px 0; position:relative; opacity:0; animation:fx-in .34s forwards; }
+.tk:not(:last-child)::before { content:''; position:absolute; left:5px; top:19px; bottom:-5px; width:2px; background:#e3e6e6; }
+.tk.done:not(:last-child)::before { background:#067D62; }
+.tk-dot { width:12px; height:12px; border-radius:50%; background:#e3e6e6; border:2px solid #fff; box-shadow:0 0 0 1px #d5d9d9; margin-top:4px; flex-shrink:0; z-index:1; }
+.tk.done .tk-dot { background:#067D62; }
+.tk.active .tk-dot { background:var(--brand-red); animation:tk-pulse 1.6s infinite; }
+@keyframes tk-pulse { 0%{box-shadow:0 0 0 0 rgba(224,40,50,.35)} 70%{box-shadow:0 0 0 8px rgba(224,40,50,0)} 100%{box-shadow:0 0 0 0 rgba(224,40,50,0)} }
+.tk b { display:block; font-size:13px; }
+.tk span { font-size:11.5px; color:#8a9199; }
+.tk.active b { color:var(--brand-red); }
+/* 意图入口卡 */
+.entry { border:1.5px solid #e3e6e6; border-radius:10px; padding:11px 12px; cursor:pointer; transition:.15s; background:#fff; }
+.entry:hover { border-color:#F7CA00; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+.entry b { display:block; font-size:13px; margin-bottom:3px; }
+.entry span { font-size:11px; color:#8a9199; line-height:1.5; display:block; }
+.entry.q b, .entry.p b { color:#0F1111; }
+/* 选项按钮组 */
+.opts { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px 38px; }
+.opt-btn { border:1px solid rgba(224,40,50,.45); background:#fff; color:var(--brand-red); font-size:12.5px; padding:7px 15px; border-radius:16px; cursor:pointer; transition:.15s; font-family:inherit; font-weight:600; }
+.opt-btn:hover { background:var(--brand-red); color:#fff; }
+/* 完成提示条 */
+.done-strip { display:flex; align-items:center; gap:8px; background:#E8F5F0; border:1px solid #BFE5D9; color:#067D62; border-radius:10px; padding:10px 14px; font-size:13px; font-weight:600; margin:0 0 14px 38px; }
+/* 功能导览（助手首页） */
+.launcher { display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:760px; margin:0 auto; }
+.fa-panel.max .launcher { grid-template-columns:repeat(3,1fr); }
+.mod-card { display:flex; gap:10px; align-items:flex-start; background:#fff; border:1px solid #e7e7e7; border-radius:12px; padding:12px; cursor:pointer; transition:.15s; text-align:left; font-family:inherit; opacity:0; transform:translateY(10px); animation:fx-in .38s cubic-bezier(.22,1,.36,1) forwards; }
+.mod-card:hover { border-color:var(--brand-red); box-shadow:0 6px 16px rgba(224,40,50,.15); transform:translateY(-1px); }
+.mod-ico { width:38px; height:38px; border-radius:10px; color:#fff; font-size:16px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.mod-txt { flex:1; min-width:0; }
+.mod-txt b { display:block; font-size:13.5px; margin-bottom:2px; }
+.mod-txt .sub { display:block; font-size:11.5px; color:#565959; line-height:1.5; }
+.mod-txt .ex { display:block; color:#9aa1a8; font-size:11px; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fa-input { display:flex; gap:8px; padding:12px; background:#fff; border-top:1px solid #eee; }
+.fa-input input { flex:1; border:1px solid #d5d9d9; border-radius:20px; padding:8px 14px; font-size:13px; outline:none; }
+.fa-input input:focus { border-color:var(--brand-red); }
+.fa-send { border:none; background:#E02832; color:#fff; border-radius:20px; padding:0 18px; font-size:13px; cursor:pointer; }
+@media (max-width:520px) {
+  .fa-panel { width:92vw; right:-8vw; }
+  .fa-panel.max { width:94vw; }
+}
+
+/* ============ 回到顶部 ============ */
+.backtop { position:fixed; left:50%; transform:translateX(-50%); bottom:18px; background:#37475a; color:#fff; font-size:13px; padding:10px 40px; border-radius:4px; cursor:pointer; display:none; z-index:700; box-shadow:0 4px 14px rgba(0,0,0,.3); }
+.backtop.show { display:block; }
+.backtop:hover { background:#485769; }
+
+/* ============ 响应式 ============ */
+@media (max-width:1300px) {
+  .hero-grid { grid-template-columns:1fr 1fr; }
+  .hero-right { grid-column:1 / -1; flex-direction:row; }
+  .hero-right .card { flex:1; }
+  .grid.scenes,.grid.datas,.grid.projs { grid-template-columns:repeat(4,1fr); }
+  .grid.apps { grid-template-columns:repeat(4,1fr); }
+  .logo-wall { grid-template-columns:repeat(6,1fr); }
+}
+@media (max-width:960px) {
+  .hero-grid { grid-template-columns:1fr; }
+  .hero-right { flex-direction:column; }
+  .grid.scenes,.grid.datas,.grid.projs { grid-template-columns:repeat(3,1fr); }
+  .grid.apps { grid-template-columns:repeat(3,1fr); }
+  .duo { grid-template-columns:1fr; }
+  .news-grid { grid-template-columns:1fr; }
+  .logo-wall { grid-template-columns:repeat(4,1fr); }
+  .loc,.hact.acct { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部细条 -->
+<div class="topbar">
+  <div class="container">
+    <div>数智北京创新中心 · 智慧城市资源集聚区 · 数据要素创新策源地</div>
+    <div>
+      <a href="./zcjdww/index.html" target="_blank">政策解读</a>
+      <a href="./fywmww/index.html" target="_blank">服务之门</a>
+      <a href="./sthz/index.html" target="_blank">生态合作</a>
+    </div>
+  </div>
+</div>
+
+<!-- 主头部 -->
+<header class="az-header">
+  <div class="container">
+    <a class="brand" href="./index-amazon.html">
+      <span class="brand-main"><span class="brand-mark">京</span>数智北京创新中心</span>
+      <span class="brand-sub">www.dibj.cn · 场景与数据资源超市</span>
+    </a>
+    <div class="loc" title="服务区域">
+      <svg class="loc-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      <div>
+        <div class="loc-txt">北京市</div>
+        <div class="loc-sub">全域服务</div>
+      </div>
+    </div>
+    <div class="searchbox">
+      <select class="search-cat" id="searchCat">
+        <option value="all">全部</option>
+        <option value="need">查需求</option>
+        <option value="res">查资源</option>
+        <option value="app">查成果</option>
+        <option value="news">查资讯</option>
+      </select>
+      <input class="search-input" id="searchInput" type="text" placeholder="搜索场景需求、数据资源、组件、应用成果…例如：养老 数据" maxlength="99">
+      <button class="search-btn" id="searchBtn" title="搜索" aria-label="搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1111" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      </button>
+    </div>
+    <div class="header-acts">
+      <a class="hact acct" href="javascript:void(0)" title="登录后可申报、申请资源、跟踪进度">
+        <div class="l1">您好，请登录</div>
+        <div class="l2">账户与申报</div>
+      </a>
+      <a class="hact" href="./fzpt/wytg/index.html" target="_blank" title="我要提供能力">
+        <div class="l1">企业入口</div>
+        <div class="l2">我要提供</div>
+      </a>
+      <a class="hact" href="javascript:void(0)" title="我的申报进度">
+        <div class="l1">工单进度</div>
+        <div class="l2">追进度</div>
+      </a>
+      <a class="hact hact-btn" href="./fzpt/cjyz/jbz/index.html" target="_blank">
+        <div class="l2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F1111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 6-9 12L3 9Z"/><path d="M3 9h18"/></svg>
+          我要揭榜
+        </div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- 二级导航 -->
+<nav class="subnav">
+  <div class="container">
+    <div class="allcat" id="allcatBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      全部分类
+    </div>
+    <a class="navlink" href="./fzpt/cjyz/jbz/index.html" target="_blank">场景需求</a>
+    <a class="navlink" href="./cxfuww/szzyml/sjml/index.html" target="_blank">数据资源</a>
+    <a class="navlink" href="./cxfuww/szzyml/zjml/index.html" target="_blank">组件资源</a>
+    <a class="navlink" href="./cxfuww/szzyml/ywsl/index.html" target="_blank">云网算</a>
+    <a class="navlink" href="./fzpt/szzy/gxfw/index.html" target="_blank">共性服务</a>
+    <a class="navlink" href="./fzpt/cxnlqd/index.html" target="_blank">技术创新能力</a>
+    <a class="navlink" href="./yyscww/cgcx/index.html" target="_blank">应用超市</a>
+    <a class="navlink" href="./sthz/index.html" target="_blank">生态合作</a>
+    <a class="navlink" href="#news">新闻资讯</a>
+    <a class="navpromo" href="./fzpt/cjyz/jbz/index.html" target="_blank">本批次揭榜进行中 · 点击查看需求清单</a>
+  </div>
+</nav>
+
+<!-- 抽屉：全部分类 -->
+<div class="drawer-mask" id="drawerMask"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    全部分类
+    <button class="drawer-close" id="drawerClose" aria-label="关闭">×</button>
+  </div>
+  <div class="drawer-group">
+    <h4>按意图</h4>
+    <ul>
+      <li><a href="https://dibj.cn/fzpt/wysq/xqfk/" target="_blank">我要解决问题（发布需求）</a></li>
+      <li><a href="./fzpt/wytg/index.html" target="_blank">我要提供能力（供数据/组件/应用/服务）</a></li>
+      <li><a href="./fzpt/cjyz/jbz/index.html" target="_blank">我要揭榜（承接场景）</a></li>
+      <li><a href="javascript:void(0)">我要申请（资源/入驻/参观）</a></li>
+    </ul>
+  </div>
+  <div class="drawer-group">
+    <h4>场景培育</h4>
+    <ul>
+      <li><a href="./fzpt/cjyz/jbz/index.html" target="_blank">揭榜中场景</a></li>
+      <li><a href="./fzpt/cjyz/djz/index.html" target="_blank">对接中场景</a></li>
+      <li><a href="./fzpt/cjyz/ywc/index.html" target="_blank">已完成场景</a></li>
+    </ul>
+  </div>
+  <div class="drawer-group">
+    <h4>数字资源</h4>
+    <ul>
+      <li><a href="./cxfuww/szzyml/sjml/index.html" target="_blank">数据资源目录</a></li>
+      <li><a href="./cxfuww/szzyml/zjml/index.html" target="_blank">组件资源</a></li>
+      <li><a href="./cxfuww/szzyml/ywsl/index.html" target="_blank">云网算资源</a></li>
+      <li><a href="./fzpt/szzy/gxfw/index.html" target="_blank">共性服务</a></li>
+      <li><a href="./fzpt/cxnlqd/index.html" target="_blank">技术创新能力清单</a></li>
+    </ul>
+  </div>
+  <div class="drawer-group">
+    <h4>成果与合作</h4>
+    <ul>
+      <li><a href="./yyscww/cgcx/index.html" target="_blank">应用创新成果</a></li>
+      <li><a href="./yyscww/sjcx/index.html" target="_blank">数智创新成果</a></li>
+      <li><a href="./fzpt/sjcx/rzxm/" target="_blank">入驻项目</a></li>
+      <li><a href="./sthz/jrhb/jrhbxq/index.html" target="_blank">加入伙伴</a></li>
+    </ul>
+  </div>
+  <div class="drawer-group">
+    <h4>资讯与政策</h4>
+    <ul>
+      <li><a href="#news">新闻资讯</a></li>
+      <li><a href="#events">活动预告</a></li>
+      <li><a href="./zcjdww/index.html" target="_blank">政策解读</a></li>
+      <li><a href="./fywmww/index.html" target="_blank">服务之门</a></li>
+    </ul>
+  </div>
+</aside>
+
+<!-- 英雄区 -->
+<div class="hero">
+  <div class="container hero-grid">
+
+    <!-- 意图分流卡 -->
+    <div class="card">
+      <div class="card-h">您好，来这里想做什么？</div>
+      <a class="intent-tile" href="https://dibj.cn/fzpt/wysq/xqfk/" target="_blank">
+        <div class="intent-ico q">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.3 1.7c0 1.7-2.5 2.2-2.5 3.6"/><circle cx="12" cy="17" r=".4"/></svg>
+        </div>
+        <div class="intent-txt">
+          <b>我要解决一个问题</b>
+          <span>描述业务痛点 · 发布需求 · 由平台为您匹配方案与资源</span>
+        </div>
+        <svg class="intent-go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+      <a class="intent-tile" href="./fzpt/wytg/index.html" target="_blank">
+        <div class="intent-ico p">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        </div>
+        <div class="intent-txt">
+          <b>我要提供一种能力</b>
+          <span>供数据 · 供组件 · 供应用 · 供服务，上架资源超市被需求方发现</span>
+        </div>
+        <svg class="intent-go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+      <div class="quick-stats">
+        <div class="qs"><b>14,492</b><span>数据资源</span></div>
+        <div class="qs"><b>191</b><span>场景需求</span></div>
+        <div class="qs"><b>180</b><span>组件</span></div>
+        <div class="qs"><b>97</b><span>技术创新能力</span></div>
+        <div class="qs"><b>43</b><span>入驻项目</span></div>
+      </div>
+    </div>
+
+    <!-- 揭榜榜单卡 -->
+    <div class="card">
+      <div class="card-h">揭榜热度榜 · 最新发布场景</div>
+      <ul class="rank-list">
+        <li>
+          <span class="rank-no">1</span>
+          <span class="rank-thumb" style="background:linear-gradient(135deg,#146EB4,#3FA0F5)">运</span>
+          <div class="rank-info">
+            <a href="/fzpt/cjyz/jbz/xqy?id=191&amp;tableCode=SCENE_DEMAND" target="_blank" title="&quot;两客一危一重&quot;跨区域联合监管场景">"两客一危一重"跨区域联合监管场景</a>
+            <span>交通运输 · 2026-08-13 发布</span>
+          </div>
+          <span class="rank-tag">揭榜中</span>
+        </li>
+        <li>
+          <span class="rank-no">2</span>
+          <span class="rank-thumb" style="background:linear-gradient(135deg,#B12704,#E86A33)">运</span>
+          <div class="rank-info">
+            <a href="/fzpt/cjyz/jbz/xqy?id=190&amp;tableCode=SCENE_DEMAND" target="_blank" title="出租网约跨区域联合监管场景">出租网约跨区域联合监管场景</a>
+            <span>交通运输 · 2026-08-13 发布</span>
+          </div>
+          <span class="rank-tag">揭榜中</span>
+        </li>
+        <li>
+          <span class="rank-no">3</span>
+          <span class="rank-thumb" style="background:linear-gradient(135deg,#067D62,#25A18A)">养</span>
+          <div class="rank-info">
+            <a href="/fzpt/cjyz/jbz/xqy?id=187&amp;tableCode=SCENE_DEMAND" target="_blank" title="基于数据互联和政企协同的养老综合服务场景">基于数据互联和政企协同的养老综合服务场景</a>
+            <span>养老服务 · 2026-08-04 发布</span>
+          </div>
+          <span class="rank-tag">揭榜中</span>
+        </li>
+        <li>
+          <span class="rank-no">4</span>
+          <span class="rank-thumb" style="background:linear-gradient(135deg,#5B4FC4,#8A7DF0)">治</span>
+          <div class="rank-info">
+            <a href="/fzpt/cjyz/jbz/xqy?id=186&amp;tableCode=SCENE_DEMAND" target="_blank" title="&quot;京智社管&quot;智能体场景构建">"京智社管"智能体场景构建</a>
+            <span>社会治理 · 2026-08-04 发布</span>
+          </div>
+          <span class="rank-tag">揭榜中</span>
+        </li>
+      </ul>
+      <a class="see-more" style="display:block;text-align:right;margin-top:10px" href="./fzpt/cjyz/jbz/index.html" target="_blank">查看全部 191 个场景需求</a>
+    </div>
+
+    <!-- 右列：合合助手 + 活动 -->
+    <div class="hero-right">
+      <div class="card assistant-card">
+        <img class="mascot" src="./images/assistant-mascot.png" alt="合合助手">
+        <h3>合合助手 · AI 智能导购</h3>
+        <p>说一句"我想做什么"，帮您找资源、配方案、办业务、追进度</p>
+        <div class="chips">
+          <span class="chip" data-demo="ask">平台问答</span><span class="chip" data-demo="find">资源搜索</span><span class="chip" data-demo="query">数据查询</span>
+          <span class="chip" data-demo="plan">方案生成</span><span class="chip" data-demo="apply">业务引导</span><span class="chip" data-demo="track">进度追踪</span>
+        </div>
+        <button class="btn-cta" id="heroAskBtn" type="button">立即咨询合合</button>
+      </div>
+      <div class="card">
+        <div class="card-h" style="font-size:16px">最近活动</div>
+        <div class="event-mini">
+          <a href="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522.html" target="_blank"><img src="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522/6626c3ead77346d797b22732a615a2eb.jpg" alt="2026数智北京场景创新需求发布"></a>
+          <div>
+            <div class="ev-date">2026-06-16</div>
+            <a class="ev-title" href="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522.html" target="_blank">2026数智北京场景创新需求发布暨第一届数智技术创新大赛</a>
+            <a class="ev-more" href="#events">查看全部活动预告</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 场景需求：揭榜中 -->
+<section class="section" id="scenes">
+  <div class="container">
+    <div class="section-head">
+      <h2>场景需求</h2>
+      <span class="section-tag">揭榜中 · 有能力就来揭榜</span>
+      <a class="see-more" href="./fzpt/cjyz/jbz/index.html" target="_blank">查看全部场景需求</a>
+    </div>
+    <div class="grid scenes">
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=191&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#146EB4,#3FA0F5)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">运</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">"两客一危一重"跨区域联合监管场景</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>交通运输 · 联合监管</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:88%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-30</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=190&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#B12704,#E86A33)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">运</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">出租网约跨区域联合监管场景</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>交通运输 · 出租网约</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:76%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-30</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=189&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#37475A,#5B6B80)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">路</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">国省干线事件协同处置场景</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>交通运输 · 干线公路</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:64%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-30</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=188&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#067D62,#25A18A)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">旅</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">旅游团队行程智能监测与执法辅助场景</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>文化旅游 · 执法辅助</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:58%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-20</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=187&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#8A6D1D,#C9A227)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">养</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">基于数据互联和政企协同的养老综合服务场景</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>养老服务 · 政企协同</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:71%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-20</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+      <a class="prod" href="/fzpt/cjyz/jbz/xqy?id=186&amp;tableCode=SCENE_DEMAND" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#5B4FC4,#8A7DF0)">
+          <span class="prod-badge deal">揭榜中</span><span class="glyph">治</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">"京智社管"智能体场景构建</div>
+          <div class="prod-meta"><span class="meta-k">领域</span>社会治理 · 智能体</div>
+          <div class="prod-hot"><span>关注热度</span><span class="hot-bar"><i style="width:69%"></i></span></div>
+          <div class="deadline">揭榜截止 2026-09-20</div>
+          <span class="btn-cta">查看场景需求</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 数据资源 -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>数据资源</h2>
+      <span class="section-tag orange">14,492 项目录 · 可申请使用</span>
+      <a class="see-more" href="./cxfuww/szzyml/sjml/index.html" target="_blank">查看全部数据资源</a>
+    </div>
+    <div class="grid datas">
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy-10534.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <span class="prod-badge new">新上线</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">药品批准信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>市药监领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>归集中</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy-10496.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <span class="prod-badge">热门</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">放射性药品使用许可信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>市药监领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>数据清洗</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy-10494.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">医疗器械网络交易服务第三方平台备案信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>市药监领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>数据清洗</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy/index.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">药品广告备案信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>市药监领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>已发布</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy/index.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <span class="prod-badge">热门</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">北京市药店信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>市药监领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>已发布</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+      <a class="prod" href="./cxfuww/szzyml/sjml/xqy/index.html" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)">
+          <img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数据资源">
+        </div>
+        <div class="prod-body">
+          <div class="prod-title">本市金融控股公司基本信息</div>
+          <div class="prod-meta"><span class="meta-k">提供</span>金融监管领域</div>
+          <div class="prod-meta"><span class="meta-k">状态</span>已发布</div>
+          <span class="btn-cta">申请使用</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 场景培育进展：对接中 / 已完成（成果回流） -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>场景培育进展</h2>
+      <span class="section-tag green">已完成场景沉淀为解决方案名片</span>
+    </div>
+    <div class="duo">
+      <div class="grid">
+        <div class="section-head" style="margin-bottom:2px">
+          <h2 style="font-size:16px">对接中</h2>
+          <a class="see-more" href="./fzpt/cjyz/djz/index.html" target="_blank">更多</a>
+        </div>
+        <a class="prod" href="/fzpt/cjyz/djz/xqy?id=26&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#37475A,#5B6B80)"><span class="prod-badge">对接中</span><span class="glyph">规</span></div>
+          <div class="prod-body">
+            <div class="prod-title">规自领域智能问答与专家画像大模型</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>规划自然 · 大模型</div>
+            <span class="btn-cta">查看详情</span>
+          </div>
+        </a>
+        <a class="prod" href="/fzpt/cjyz/djz/xqy?id=25&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#146EB4,#3FA0F5)"><span class="prod-badge">对接中</span><span class="glyph">气</span></div>
+          <div class="prod-body">
+            <div class="prod-title">北京及周边地区强降水高精度AI短临预报模型应用场景</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>气象 · AI预报</div>
+            <span class="btn-cta">查看详情</span>
+          </div>
+        </a>
+        <a class="prod" href="/fzpt/cjyz/djz/xqy?id=27&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#067D62,#25A18A)"><span class="prod-badge">对接中</span><span class="glyph">表</span></div>
+          <div class="prod-body">
+            <div class="prod-title">基层报表数据"一表通"场景</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>基层减负 · 数据治理</div>
+            <span class="btn-cta">查看详情</span>
+          </div>
+        </a>
+      </div>
+      <div class="grid">
+        <div class="section-head" style="margin-bottom:2px">
+          <h2 style="font-size:16px">已完成 · 可复用方案</h2>
+          <a class="see-more" href="./fzpt/cjyz/ywc/index.html" target="_blank">更多</a>
+        </div>
+        <a class="prod" href="/fzpt/cjyz/ywc/xqy?id=59&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#067D62,#25A18A)"><span class="prod-badge new">已落地</span><span class="glyph">安</span></div>
+          <div class="prod-body">
+            <div class="prod-title">工贸企业AI非现场监管场景</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>应急监管 · AI</div>
+            <span class="done-badge">沉淀为解决方案名片</span>
+            <span class="btn-cta">查看方案</span>
+          </div>
+        </a>
+        <a class="prod" href="/fzpt/cjyz/ywc/xqy?id=165&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#8A6D1D,#C9A227)"><span class="prod-badge new">已落地</span><span class="glyph">法</span></div>
+          <div class="prod-body">
+            <div class="prod-title">行政执法调查询问垂直大模型场景</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>司法行政 · 大模型</div>
+            <span class="done-badge">沉淀为解决方案名片</span>
+            <span class="btn-cta">查看方案</span>
+          </div>
+        </a>
+        <a class="prod" href="/fzpt/cjyz/ywc/xqy?id=163&amp;tableCode=SCENE_DEMAND" target="_blank">
+          <div class="prod-media" style="background:linear-gradient(135deg,#5B4FC4,#8A7DF0)"><span class="prod-badge new">已落地</span><span class="glyph">信</span></div>
+          <div class="prod-body">
+            <div class="prod-title">公共数据可信数据空间场景</div>
+            <div class="prod-meta"><span class="meta-k">领域</span>数据流通 · 可信空间</div>
+            <span class="done-badge">沉淀为解决方案名片</span>
+            <span class="btn-cta">查看方案</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 应用超市 -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>应用超市</h2>
+      <span class="section-tag orange">创新成果 · 可对接复用</span>
+      <a class="see-more" href="./yyscww/cgcx/index.html" target="_blank">进入应用超市</a>
+    </div>
+    <div class="grid apps" style="margin-bottom:18px">
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=1&amp;tableCode=APP_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#146EB4,#3FA0F5)"><span class="glyph">数</span></div>
+        <div class="prod-body">
+          <div class="prod-title">数据安全一体化平台</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>应用创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=2&amp;tableCode=APP_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#067D62,#25A18A)"><span class="glyph">联</span></div>
+        <div class="prod-body">
+          <div class="prod-title">YonLinker 连接集成平台</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>应用创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=3&amp;tableCode=APP_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#5B4FC4,#8A7DF0)"><span class="glyph">开</span></div>
+        <div class="prod-body">
+          <div class="prod-title">YonBuilder 开发平台</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>应用创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=4&amp;tableCode=APP_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#B12704,#E86A33)"><span class="glyph">聚</span></div>
+        <div class="prod-body">
+          <div class="prod-title">YonData 数据平台</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>应用创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=5&amp;tableCode=APP_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#37475A,#5B6B80)"><span class="glyph">应</span></div>
+        <div class="prod-body">
+          <div class="prod-title">YonAP 应用平台</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>应用创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+    </div>
+    <div class="grid apps">
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=536&amp;tableCode=DATA_INNOVATION&amp;_searchCategory=DATA_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)"><span class="prod-badge new">数智成果</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数智创新成果"></div>
+        <div class="prod-body">
+          <div class="prod-title">企业严重违法核查</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>数智创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=537&amp;tableCode=DATA_INNOVATION&amp;_searchCategory=DATA_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)"><span class="prod-badge new">数智成果</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数智创新成果"></div>
+        <div class="prod-body">
+          <div class="prod-title">企业行政许可核查</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>数智创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=538&amp;tableCode=DATA_INNOVATION&amp;_searchCategory=DATA_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)"><span class="prod-badge new">数智成果</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数智创新成果"></div>
+        <div class="prod-body">
+          <div class="prod-title">企业行政处罚核查</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>数智创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=539&amp;tableCode=DATA_INNOVATION&amp;_searchCategory=DATA_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)"><span class="prod-badge new">数智成果</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数智创新成果"></div>
+        <div class="prod-body">
+          <div class="prod-title">企业商标信息核查</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>数智创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+      <a class="prod" href="/yyscww/cgcx/yycxxq?id=540&amp;tableCode=DATA_INNOVATION&amp;_searchCategory=DATA_INNOVATION" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#E8F1F8,#D3E5F2)"><span class="prod-badge new">数智成果</span><img class="type-ico" src="./images/v5-icon-sjzy.png" alt="数智创新成果"></div>
+        <div class="prod-body">
+          <div class="prod-title">企业著作权软著核查</div>
+          <div class="prod-meta"><span class="meta-k">类型</span>数智创新成果</div>
+          <span class="btn-cta">了解详情</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 入驻项目 -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>入驻项目</h2>
+      <span class="section-tag">43 项 · 创新中心生态</span>
+      <a class="see-more" href="./fzpt/sjcx/rzxm/" target="_blank">查看全部入驻项目</a>
+    </div>
+    <div class="grid projs">
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=165&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#146EB4,#3FA0F5)"><span class="prod-badge">已入驻</span><span class="glyph">融</span></div>
+        <div class="prod-body">
+          <div class="prod-title">智融风险联运识别用户还款能力项目</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>金融风控 · AI</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=166&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#067D62,#25A18A)"><span class="prod-badge">已入驻</span><span class="glyph">产</span></div>
+        <div class="prod-body">
+          <div class="prod-title">基于企业公共数据的产业经营大脑数据赋能服务</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>产业数据服务</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=164&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#5B4FC4,#8A7DF0)"><span class="prod-badge">已入驻</span><span class="glyph">搜</span></div>
+        <div class="prod-body">
+          <div class="prod-title">远航智搜（voyageG）企业AI搜索数据产品</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>AI搜索 · 数据产品</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=160&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#B12704,#E86A33)"><span class="prod-badge">已入驻</span><span class="glyph">人</span></div>
+        <div class="prod-body">
+          <div class="prod-title">AI数字分身应用中心</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>数字人 · AI应用</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=161&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#8A6D1D,#C9A227)"><span class="prod-badge">已入驻</span><span class="glyph">养</span></div>
+        <div class="prod-body">
+          <div class="prod-title">"京智养"养老数据合规流通与交易服务一体化智能服务平台</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>养老服务 · 数据流通</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+      <a class="prod" href="/fzpt/sjcx/rzxm/rzxmxqy?id=157&amp;tableCode=SETTLED_PROJECT" target="_blank">
+        <div class="prod-media" style="background:linear-gradient(135deg,#37475A,#5B6B80)"><span class="prod-badge">已入驻</span><span class="glyph">运</span></div>
+        <div class="prod-body">
+          <div class="prod-title">象宝AI原生智慧运维平台</div>
+          <div class="prod-meta"><span class="meta-k">方向</span>智慧运维 · AI原生</div>
+          <span class="btn-cta">查看项目</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 活动预告 -->
+<section class="section" id="events">
+  <div class="container">
+    <div class="section-head">
+      <h2>活动预告</h2>
+      <a class="see-more" href="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522.html" target="_blank">全部活动</a>
+    </div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" id="carPrev" aria-label="上一页">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F1111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>
+      </button>
+      <div class="carousel">
+        <div class="car-track" id="carTrack">
+          <a class="act-card" href="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522.html" target="_blank">
+            <img src="./ssfwww/hdyg/2ea25e3eddb14fc2a66b220857471522/6626c3ead77346d797b22732a615a2eb.jpg" alt="2026数智北京场景创新需求发布暨第一届数智技术创新大赛">
+            <div class="act-body"><div class="act-date">2026-06-16</div><div class="act-title">2026数智北京场景创新需求发布暨第一届数智技术创新大赛</div></div>
+          </a>
+          <a class="act-card" href="./ssfwww/hdyg/afbc2ef05de84842a9352955d9fabe27.html" target="_blank">
+            <img src="./ssfwww/hdyg/afbc2ef05de84842a9352955d9fabe27/7991e0778793453b874220d67b24ff8b.jpg" alt="供需对接活动2026年第二场预通知">
+            <div class="act-body"><div class="act-date">2026-04-15</div><div class="act-title">"走进数智北京创新中心"之供需对接活动2026年第二场预通知</div></div>
+          </a>
+          <a class="act-card" href="./ssfwww/hdyg/1b4301114a33467d94c9dac61e8958c4.html" target="_blank">
+            <img src="./ssfwww/hdyg/1b4301114a33467d94c9dac61e8958c4/ca3ebd6bb4504a2d9ee4b762b1bbb201.jpg" alt="政务大模型应用管理创新论坛活动">
+            <div class="act-body"><div class="act-date">2026-01-22</div><div class="act-title">"智领未来·政务先行"政务大模型应用管理创新论坛活动</div></div>
+          </a>
+          <a class="act-card" href="./ssfwww/hdyg/0a25d484c58345148b3a52fa74c0327b.html" target="_blank">
+            <img src="./ssfwww/hdyg/0a25d484c58345148b3a52fa74c0327b/e4bb71c4b8d54a0484760af752197c1b_raw.png" alt="国企数据资源开发利用主题论坛">
+            <div class="act-body"><div class="act-date">2025-12-10</div><div class="act-title">国企数据资源开发利用主题论坛</div></div>
+          </a>
+          <a class="act-card" href="./ssfwww/hdyg/097f23a409904b51b4a6d0c9cd515260.html" target="_blank">
+            <img src="./ssfwww/hdyg/097f23a409904b51b4a6d0c9cd515260/f339a23f2af24dbda96c5a96f8270eff.jpg" alt="2025北京城市副中心大模型技术与应用创新论坛">
+            <div class="act-body"><div class="act-date">2025-11-23</div><div class="act-title">2025北京城市副中心大模型技术与应用创新论坛</div></div>
+          </a>
+          <a class="act-card" href="./ssfwww/hdyg/89314a64f1a24b0ba918ce1967e9db6a.html" target="_blank">
+            <img src="./ssfwww/hdyg/89314a64f1a24b0ba918ce1967e9db6a/bf48e812754b4ffeb4330a220872a515_raw.png" alt="2025北京市智慧城市场景创新发布暨生态共建系列活动">
+            <div class="act-body"><div class="act-date">2025-11-22</div><div class="act-title">2025北京市智慧城市场景创新发布暨数智北京创新中心生态共建系列活动</div></div>
+          </a>
+        </div>
+      </div>
+      <button class="car-btn next" id="carNext" aria-label="下一页">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F1111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- 新闻资讯 -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="section-head">
+      <h2>新闻资讯</h2>
+      <a class="see-more" href="#news">更多新闻</a>
+    </div>
+    <div class="news-grid">
+      <div class="card news-left">
+        <img src="./fzpt/xwzx/24185a0865254fe8ad7ce9abc5dc4dea/306e362594ce4ab785fd3a2045f08039.jpg" alt="专家解读：高质量数据集建设行动实施方案">
+        <div>
+          <span class="news-kicker">活动新闻</span>
+          <a class="news-title" href="./fzpt/xwzx/24185a0865254fe8ad7ce9abc5dc4dea.html" target="_blank">专家解读 | 筑牢数智底座 激活要素动能《关于推进行业高质量数据集建设行动的实施方案》解读</a>
+          <p class="news-desc">当前，人工智能正加速向经济社会各领域渗透，高质量数据集作为驱动人工智能模型迭代、落地"人工智能+"行动的"燃料"，其战略价值日益凸显。国家数据局印发的《关于推进行业高质量数据集建设行动的实施方案》系统提出了我国行业高质量数据集建设的总体要求、六大专项行动与保障措施。</p>
+        </div>
+      </div>
+      <div class="card">
+        <ul class="news-list">
+          <li>
+            <a href="./fzpt/xwzx/b66f003bed1241c2bc046750f79c7b84.html" target="_blank" title="专家解读 | 筑基智能时代，释放数据价值">专家解读 | 筑基智能时代，释放数据价值</a>
+            <span>2026-08-21</span>
+          </li>
+          <li>
+            <a href="./fzpt/xwzx/b9d1a3cbbe5f441991723c2e4bb39681.html" target="_blank" title="北京市数标委成功举办国家数据标准与测评体系宣贯会">北京市数标委成功举办国家数据标准与测评体系宣贯会</a>
+            <span>2026-08-20</span>
+          </li>
+          <li>
+            <a href="./fzpt/xwzx/e099af48afa34bf8965f9334937a86d0.html" target="_blank" title="最高200万元奖励！2026年北京数智创新大赛数据赛诚邀您同台竞技">最高200万元奖励！2026年北京数智创新大赛数据赛诚邀您同台竞技</a>
+            <span>2026-08-20</span>
+          </li>
+          <li>
+            <a href="./fzpt/xwzx/52fdea474a4d49a9898e05fc1987b41f.html" target="_blank" title="文字实录 | 2026上合组织数字经济论坛新闻发布会">文字实录 | 2026上合组织数字经济论坛新闻发布会</a>
+            <span>2026-08-19</span>
+          </li>
+          <li>
+            <a href="/fzpt/xwzx/8238108a6c2d40939e78bc11487c2959.html" target="_blank" title="2026年"数据要素×"大赛北京分赛晋级决赛项目名单公示">2026年"数据要素×"大赛北京分赛晋级决赛项目名单公示</a>
+            <span>2026-08-17</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 入驻单位 -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>入驻单位</h2>
+      <a class="see-more" href="./sthz/jrhb/jrhbxq/index.html" target="_blank">申请入驻 · 加入伙伴</a>
+    </div>
+    <div class="logo-wall">
+      <p><img src="./images/v5-rzqy-2.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-3.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-4.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-5.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-6.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-7.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-8.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-9.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-10.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-11.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-12.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-13.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-14.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-15.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-16.png" alt="入驻单位"></p>
+      <p><img src="./images/v5-rzqy-17.png" alt="入驻单位"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  <a class="foot-back" id="footBack">回到顶部</a>
+  <div class="container">
+    <div class="foot-links">
+      <div>
+        <h4>场景培育</h4>
+        <a href="./fzpt/cjyz/jbz/index.html" target="_blank">揭榜中场景</a>
+        <a href="./fzpt/cjyz/djz/index.html" target="_blank">对接中场景</a>
+        <a href="./fzpt/cjyz/ywc/index.html" target="_blank">已完成场景</a>
+        <a href="./fzpt/wytg/index.html" target="_blank">我要提供</a>
+      </div>
+      <div>
+        <h4>数字资源</h4>
+        <a href="./cxfuww/szzyml/sjml/index.html" target="_blank">数据资源目录</a>
+        <a href="./cxfuww/szzyml/zjml/index.html" target="_blank">组件资源</a>
+        <a href="./cxfuww/szzyml/ywsl/index.html" target="_blank">云网算资源</a>
+        <a href="./fzpt/szzy/gxfw/index.html" target="_blank">共性服务</a>
+      </div>
+      <div>
+        <h4>服务支持</h4>
+        <a href="https://dibj.cn/fzpt/wysq/xqfk/" target="_blank">需求反馈</a>
+        <a href="https://dibj.cn/sthz/cgyy/" target="_blank">预约参观</a>
+        <a href="./sthz/jrhb/jrhbxq/index.html" target="_blank">加入伙伴</a>
+        <a href="javascript:void(0)">申请入驻</a>
+      </div>
+      <div>
+        <h4>关于中心</h4>
+        <a href="#news">新闻资讯</a>
+        <a href="#events">活动预告</a>
+        <a href="./zcjdww/index.html" target="_blank">政策解读</a>
+        <a href="./fywmww/index.html" target="_blank">服务之门</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>数智北京创新中心 · www.dibj.cn · 智慧城市资源集聚区 · 数据要素创新策源地 · 城市数智化建设新范式</div>
+    <div>亚马逊式展示原型（index-amazon.html）· 仅供 UI 设计评审使用 · 数据与链接来自站内镜像</div>
+  </div>
+</footer>
+
+<!-- 浮动合合助手 -->
+<div class="float-assistant">
+  <div class="fa-panel" id="faPanel">
+    <div class="fa-head">
+      <div class="fa-logo">合</div>
+      <div>
+        <div class="fa-name">合合助手</div>
+        <div class="fa-sub"><span class="fa-status"></span>在线 · 数智北京智能服务总入口</div>
+      </div>
+      <div class="fa-actions">
+        <button class="fa-ctl" id="faHome" title="功能导览" aria-label="返回功能导览">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1Z"/></svg>
+        </button>
+        <button class="fa-ctl" id="faMax" title="放大全屏" aria-label="放大全屏">
+          <svg id="icoMax" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+          <svg id="icoMin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="fa-ctl" id="faClose" title="收起" aria-label="收起助手">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="fa-demos" id="faDemos">
+      <button class="demo-chip" data-demo="ask" type="button">平台问答</button>
+      <button class="demo-chip" data-demo="find" type="button">资源搜索</button>
+      <button class="demo-chip" data-demo="query" type="button">数据查询</button>
+      <button class="demo-chip" data-demo="plan" type="button">方案生成</button>
+      <button class="demo-chip" data-demo="apply" type="button">业务引导</button>
+      <button class="demo-chip" data-demo="track" type="button">进度追踪</button>
+    </div>
+    <div class="fa-body" id="faBody">
+      <div class="fa-stream"></div>
+    </div>
+    <div class="fa-input">
+      <input type="text" placeholder="问合合：市教委有哪些数据集？" maxlength="200" id="faInput">
+      <button class="fa-send" id="faSend" type="button">发送</button>
+    </div>
+  </div>
+  <button class="fa-btn" id="faBtn" aria-label="合合助手">
+    <img src="./images/assistant-mascot.png" alt="合合助手">
+    <span class="fa-dot"></span>
+  </button>
+</div>
+
+<!-- 回到顶部 -->
+<div class="backtop" id="backtop">回到顶部</div>
+
+<script>
+(function () {
+  /* ===== 抽屉 ===== */
+  var drawer = document.getElementById('drawer'),
+      mask = document.getElementById('drawerMask');
+  function openDrawer() { drawer.classList.add('open'); mask.classList.add('open'); }
+  function closeDrawer() { drawer.classList.remove('open'); mask.classList.remove('open'); }
+  document.getElementById('allcatBtn').addEventListener('click', openDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  mask.addEventListener('click', closeDrawer);
+
+  /* ===== 搜索 ===== */
+  var catMap = {
+    all:  { url: '', ph: '搜索场景需求、数据资源、组件、应用成果…例如：养老 数据' },
+    need: { url: './fzpt/cjyz/jbz/index.html', ph: '搜索场景需求，例如：监管 / 养老 / 大模型' },
+    res:  { url: './cxfuww/szzyml/sjml/index.html', ph: '搜索数据资源，例如：药品 / 企业信息' },
+    app:  { url: './yyscww/cgcx/index.html', ph: '搜索创新成果，例如：数据平台 / 核查' },
+    news: { url: '#news', ph: '搜索资讯，例如：数据要素 / 大赛' }
+  };
+  var searchCat = document.getElementById('searchCat'),
+      searchInput = document.getElementById('searchInput');
+  searchCat.addEventListener('change', function () {
+    searchInput.placeholder = catMap[this.value].ph;
+  });
+  document.getElementById('searchBtn').addEventListener('click', function () {
+    var cfg = catMap[searchCat.value];
+    if (cfg.url) { window.open(cfg.url, '_blank'); }
+    else { document.getElementById('scenes').scrollIntoView({ behavior: 'smooth' }); }
+  });
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { document.getElementById('searchBtn').click(); }
+  });
+
+  /* ===== 轮播 ===== */
+  var track = document.getElementById('carTrack');
+  document.getElementById('carPrev').addEventListener('click', function () { track.scrollBy({ left: -640, behavior: 'smooth' }); });
+  document.getElementById('carNext').addEventListener('click', function () { track.scrollBy({ left: 640, behavior: 'smooth' }); });
+
+  /* ===== 合合助手：演示引擎 ===== */
+  var faBtn = document.getElementById('faBtn'),
+      faPanel = document.getElementById('faPanel'),
+      faBody = document.getElementById('faBody'),
+      faDemos = document.getElementById('faDemos');
+
+  function togglePanel(force) {
+    var open = faPanel.classList.toggle('open', force);
+    faBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  faBtn.addEventListener('click', function () { togglePanel(); });
+  document.getElementById('faClose').addEventListener('click', function () { togglePanel(false); });
+
+  /* 全屏放大 / 还原 */
+  var faMax = document.getElementById('faMax');
+  faMax.addEventListener('click', function () {
+    var isMax = faPanel.classList.toggle('max');
+    document.getElementById('icoMax').style.display = isMax ? 'none' : 'block';
+    document.getElementById('icoMin').style.display = isMax ? 'block' : 'none';
+    faMax.title = isMax ? '还原窗口' : '放大全屏';
+    faMax.setAttribute('aria-label', isMax ? '还原窗口' : '放大全屏');
+  });
+  document.getElementById('heroAskBtn').addEventListener('click', function () { togglePanel(true); });
+
+  /* --- 基础工具 --- */
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function scrollBottom() { faBody.scrollTop = faBody.scrollHeight; }
+  function stream() {
+    var s = faBody.querySelector('.fa-stream');
+    if (!s) { s = document.createElement('div'); s.className = 'fa-stream'; faBody.appendChild(s); }
+    return s;
+  }
+  function addUser(text) {
+    var m = document.createElement('div');
+    m.className = 'msg user';
+    m.innerHTML = '<div class="u-bubble"></div>';
+    m.firstChild.textContent = text;
+    stream().appendChild(m); scrollBottom();
+  }
+  function addBot(html) {
+    var m = document.createElement('div');
+    m.className = 'msg bot';
+    m.innerHTML = '<div class="avatar">合</div><div class="b-bubble">' + (html || '') + '</div>';
+    stream().appendChild(m); scrollBottom();
+    return m.querySelector('.b-bubble');
+  }
+  async function typeBot(text, token) {
+    var b = addBot('<span class="tcur"></span>');
+    var span = document.createElement('span');
+    b.insertBefore(span, b.firstChild);
+    var speed = text.length > 70 ? 16 : 26;
+    for (var i = 0; i < text.length; i++) {
+      if (token !== undefined && token !== runToken) {
+        var cu = b.querySelector('.tcur'); if (cu) cu.remove();
+        return;
+      }
+      span.textContent += text.charAt(i);
+      if (i % 4 === 0) scrollBottom();
+      await sleep(speed);
+    }
+    var cur = b.querySelector('.tcur'); if (cur) cur.remove();
+    scrollBottom(); await sleep(260);
+  }
+  async function think(text, ms, token) {
+    var d = document.createElement('div');
+    d.className = 'thinking';
+    d.innerHTML = '<span class="dots"><i></i><i></i><i></i></span><span></span>';
+    d.lastChild.textContent = text;
+    stream().appendChild(d); scrollBottom();
+    await sleep(ms);
+    d.remove();
+    if (token !== undefined && token !== runToken) return;
+  }
+  function addCards(cards) {
+    var w = document.createElement('div');
+    w.className = 'demo-cards';
+    cards.forEach(function (c, i) {
+      var d = document.createElement('div');
+      d.className = 'dc';
+      d.style.animationDelay = (i * 130) + 'ms';
+      d.innerHTML = '<span class="dc-tag ' + c.cls + '">' + c.tag + '</span><div class="dc-info"><b>' + c.name + '</b><span>' + c.desc + '</span></div><span class="dc-go">›</span>';
+      w.appendChild(d);
+    });
+    stream().appendChild(w); scrollBottom();
+  }
+  function addPlan(layers) {
+    var w = document.createElement('div');
+    w.className = 'plan-card';
+    var rows = layers.map(function (l) {
+      return '<div class="pl"><span class="pl-tag ' + l.cls + '">' + l.tag + '</span><b>' + l.name + '</b><span class="pl-cost">' + (l.cost || '') + '</span></div>';
+    }).join('');
+    w.innerHTML = '<div class="plan-title">资源组合方案<span class="pc-badge">AI 生成 · 每层可调整</span></div>' + rows;
+    stream().appendChild(w); scrollBottom();
+  }
+  function addFlow(steps) {
+    var w = document.createElement('div');
+    w.className = 'flow-card';
+    w.innerHTML = steps.map(function (s, i) {
+      return '<div class="f-step ' + (s.cls || '') + '" style="animation-delay:' + (i * 150) + 'ms"><div class="f-num">' + (i + 1) + '</div><div><b>' + s.t + (s.cls === 'cur' ? ' <span class="cur-tag">· 您当前在此</span>' : '') + '</b><span>' + s.s + '</span></div></div>';
+    }).join('');
+    stream().appendChild(w); scrollBottom();
+  }
+  function addTrack(nodes) {
+    var w = document.createElement('div');
+    w.className = 'track-card';
+    w.innerHTML = nodes.map(function (n, i) {
+      return '<div class="tk ' + (n.cls || '') + '" style="animation-delay:' + (i * 140) + 'ms"><span class="tk-dot"></span><div><b>' + n.t + '</b><span>' + n.s + '</span></div></div>';
+    }).join('');
+    stream().appendChild(w); scrollBottom();
+  }
+  function addEntries() {
+    var w = document.createElement('div');
+    w.className = 'entry-duo';
+    w.innerHTML = '<div class="entry q"><b>我要解决一个问题</b><span>发布需求单 → 平台撮合资源与揭榜方</span></div><div class="entry p" style="animation-delay:130ms"><b>我要提供一种能力</b><span>供数据 / 组件 / 应用 / 服务 · 被需求方发现</span></div>';
+    stream().appendChild(w); scrollBottom();
+  }
+  function addDone(text) {
+    var d = document.createElement('div');
+    d.className = 'done-strip';
+    d.textContent = text;
+    stream().appendChild(d); scrollBottom();
+  }
+  function addOpts(opts) {
+    var w = document.createElement('div');
+    w.className = 'opts';
+    opts.forEach(function (o) {
+      var b = document.createElement('button');
+      b.className = 'opt-btn'; b.type = 'button'; b.textContent = o.label;
+      b.addEventListener('click', function () {
+        var token = ++runToken;
+        w.remove();
+        addUser(o.label);
+        if (o.steps) { playSteps(o.steps, token); }
+        else {
+          think('正在处理…', 700, token).then(function () {
+            if (token === runToken) addBot('好的，已为您记录。<b>（演示环境）</b>接入真实系统后，此操作将直接生效。');
+          });
+        }
+      });
+      w.appendChild(b);
+    });
+    stream().appendChild(w); scrollBottom();
+  }
+
+  /* --- 六向演示脚本 --- */
+  var PLAN_GO = [
+    { type: 'think', text: '正在结构化需求并预填表单…', ms: 1100 },
+    { type: 'bubble', html: '需求单草稿 <b>#XQ-20260908-01</b> 已生成，AI 预填 9/12 个字段：行业、问题域、业务目标、所需资源类型、预算区间、周期、是否公开…' },
+    { type: 'type', text: '提交后进入撮合：系统将主动推送匹配的供给方，需求单的响应情况可在「追进度」中实时查看。' },
+    { type: 'done', text: '✓ 需求单草稿已就绪，等待您确认提交' }
+  ];
+  var DEMOS = {
+    ask: { title: '问平台', steps: [
+      { type: 'user', text: '数智北京创新中心是做什么的？我能怎么参与？' },
+      { type: 'think', text: '正在检索平台介绍…', ms: 800 },
+      { type: 'type', text: '数智北京创新中心定位为智慧城市资源集聚区、数据要素创新策源地。平台核心是「场景供需撮合」：政企单位发布场景需求，企业揭榜攻关；同时提供数据、组件、云网算、模型能力等资源超市服务。' },
+      { type: 'type', text: '参与方式按您的意图分为两类：' },
+      { type: 'entries' },
+      { type: 'type', text: '企业还可以申请入驻创新中心、加入生态伙伴计划。不确定从哪开始？直接告诉我您想解决什么问题。' }
+    ]},
+    find: { title: '找资源', steps: [
+      { type: 'user', text: '我想找能做能耗优化相关的资源' },
+      { type: 'think', text: '语义检索 14,492 项资源中…', ms: 1100 },
+      { type: 'type', text: '已完成跨库检索，为您匹配到 3 项高相关资源：' },
+      { type: 'cards', cards: [
+        { tag: '组件', cls: 't-comp', name: '能耗监测组件', desc: '实时采集 · 接口文档齐全 · 已被申请 26 次' },
+        { tag: '数据', cls: 't-data', name: '重点用能单位能耗数据', desc: '市级目录 · 日更新 · 质量等级 A' },
+        { tag: '服务', cls: 't-svc', name: '能耗分析模型服务', desc: '共性服务 · 支持定制报表 · SLA 99.9%' }
+      ]},
+      { type: 'type', text: '以上资源均支持工单申请。需要我基于它们生成组合方案，还是直接发起某项申请？' },
+      { type: 'opts', opts: [
+        { label: '基于资源生成组合方案' },
+        { label: '申请「能耗监测组件」' },
+        { label: '先收藏，再看看' }
+      ]}
+    ]},
+    query: { title: '查数据', steps: [
+      { type: 'user', text: '市教委有哪些数据集？' },
+      { type: 'think', text: '正在查询公共数据目录（10,659 项）…', ms: 1000 },
+      { type: 'type', text: '市教委名下数据集共 12 项，按更新时间排列，前 3 项如下：' },
+      { type: 'cards', cards: [
+        { tag: '数据', cls: 't-data', name: '北京市普通中小学校基本信息', desc: '日更新 · 无条件开放 · 已发布' },
+        { tag: '数据', cls: 't-data', name: '市属高校招生计划数据', desc: '年更新 · 依申请开放 · 数据清洗中' },
+        { tag: '数据', cls: 't-data', name: '教育督导评估结果数据', desc: '季更新 · 依申请开放 · 已发布' }
+      ]},
+      { type: 'type', text: '登录后可查看字段级详情与数据样例；「依申请开放」数据可在线发起申请，预审 3 个工作日内反馈。' }
+    ]},
+    plan: { title: '配方案', steps: [
+      { type: 'user', text: '我们要为养老机构建一个智能服务平台，需要哪些资源？' },
+      { type: 'think', text: '解析需求要素 + 匹配资源组合…', ms: 1200 },
+      { type: 'type', text: '已识别要素：行业「养老服务」· 目标「智能服务平台」。基于平台真实资源，为您草拟组合方案：' },
+      { type: 'plan', layers: [
+        { tag: '数据', cls: 'data', name: '养老机构名录 · 老年人口分布 · 居家养老服务数据', cost: '依申请' },
+        { tag: '组件', cls: 'comp', name: '智能呼叫组件 · 适老化表单组件', cost: '¥8–12万' },
+        { tag: '模型', cls: 'model', name: '适老化语音交互大模型 API', cost: '按量计费' },
+        { tag: '服务', cls: 'svc', name: '系统集成伙伴（平台已认证 3 家）', cost: '¥30–50万' }
+      ]},
+      { type: 'type', text: '组合总预算区间 ¥45–80 万，交付周期约 12 周。您可以调整任意一层，或让我继续：' },
+      { type: 'opts', opts: [
+        { label: '生成需求单草稿', steps: PLAN_GO },
+        { label: '调整方案组合' },
+        { label: '转人工顾问' }
+      ]}
+    ]},
+    apply: { title: '办业务', steps: [
+      { type: 'user', text: '我想申请入驻创新中心，流程是怎样的？' },
+      { type: 'think', text: '正在调取入驻办理指南…', ms: 800 },
+      { type: 'type', text: '入驻申请共 4 步，全程线上办理，平均 10 个工作日完成：' },
+      { type: 'flow', steps: [
+        { t: '提交资质材料', s: '营业执照 · 企业介绍 · 拟入驻项目说明', cls: 'cur' },
+        { t: '平台预审', s: '3 个工作日 · 材料完整性与资质核验' },
+        { t: '实地考察 / 路演', s: '预约制 · 中心组织专家参与' },
+        { t: '签约入驻', s: '获得工位、资源包与场景优先对接权' }
+      ]},
+      { type: 'type', text: '我可以现在帮您预填申请表，逐项引导填写。要开始吗？' },
+      { type: 'opts', opts: [
+        { label: '开始预填申请表' },
+        { label: '先下载入驻指南' }
+      ]}
+    ]},
+    track: { title: '追进度', steps: [
+      { type: 'user', text: '我上周提交的揭榜申请，现在到哪一步了？' },
+      { type: 'think', text: '查询您的工单（1 条进行中）…', ms: 1000 },
+      { type: 'bubble', html: '找到工单：<b>「基于数据互联和政企协同的养老综合服务场景」揭榜申请</b>（编号 GD-2026-0876），当前进度：' },
+      { type: 'track', nodes: [
+        { t: '提交申请', s: '08-28 14:32 · 材料齐全', cls: 'done' },
+        { t: '平台预审通过', s: '08-30 09:15 · 符合申报主体要求', cls: 'done' },
+        { t: '评估 / 路演', s: '进行中 · 预计 09-15 完成', cls: 'active' },
+        { t: '结果确认', s: '等待中', cls: '' },
+        { t: '签约对接', s: '等待中', cls: '' }
+      ]},
+      { type: 'type', text: '当前节点「评估/路演」预计 09-15 完成，超时将自动升级提醒。需要为您开启节点变更通知吗？' },
+      { type: 'opts', opts: [
+        { label: '开启节点通知' },
+        { label: '不用了，我定期来看' }
+      ]}
+    ]}
+  };
+
+  /* --- 模块定义（名称 · 副标题 · 示例 · 图标） --- */
+  var MODULES = {
+    ask:   { title: '平台问答', ico: '问', bg: '#232f3e', sub: '平台是什么、怎么参与，一问就懂', ex: '创新中心是做什么的？' },
+    find:  { title: '资源搜索', ico: '找', bg: '#232f3e', sub: '说大白话也能搜：语义匹配全站资源', ex: '我想做能耗优化' },
+    query: { title: '数据查询', ico: '查', bg: '#232f3e', sub: '查数据集、开放条件、更新频率', ex: '市教委有哪些数据集？' },
+    plan:  { title: '方案生成', ico: '配', bg: '#232f3e', sub: '一句话需求，配齐数据·组件·模型·服务', ex: '建养老平台需要什么？' },
+    apply: { title: '业务引导', ico: '办', bg: '#232f3e', sub: '申报·入驻·申请，步骤材料全引导', ex: '入驻流程怎么走？' },
+    track: { title: '进度追踪', ico: '追', bg: '#232f3e', sub: '工单到哪步、还要多久，随时查', ex: '我的揭榜申请到哪了？' }
+  };
+
+  /* --- 播放器（runToken 支持随时打断切换） --- */
+  var playing = false, runToken = 0;
+  async function playSteps(steps, token) {
+    playing = true;
+    for (var i = 0; i < steps.length; i++) {
+      if (token !== runToken) { playing = false; return; }
+      var s = steps[i];
+      if (s.type === 'user') { addUser(s.text); await sleep(560); }
+      else if (s.type === 'think') { await think(s.text, s.ms, token); }
+      else if (s.type === 'type') { await typeBot(s.text, token); }
+      else if (s.type === 'bubble') { addBot(s.html); await sleep(420); }
+      else if (s.type === 'cards') { addCards(s.cards); await sleep(s.cards.length * 130 + 480); }
+      else if (s.type === 'plan') { addPlan(s.layers); await sleep(640); }
+      else if (s.type === 'flow') { addFlow(s.steps); await sleep(s.steps.length * 150 + 480); }
+      else if (s.type === 'track') { addTrack(s.nodes); await sleep(s.nodes.length * 140 + 520); }
+      else if (s.type === 'entries') { addEntries(); await sleep(560); }
+      else if (s.type === 'opts') { addOpts(s.opts); await sleep(380); }
+      else if (s.type === 'done') { addDone(s.text); await sleep(460); }
+    }
+    if (token === runToken) playing = false;
+  }
+  async function playDemo(key) {
+    var m = MODULES[key];
+    if (!m || !DEMOS[key]) return;
+    var token = ++runToken;
+    faDemos.querySelectorAll('.demo-chip').forEach(function (c) {
+      c.classList.toggle('on', c.getAttribute('data-demo') === key);
+    });
+    faBody.innerHTML = '<div class="demo-banner show"><span class="rec"></span>场景演示 · ' + m.title + ' — ' + m.sub + '（演示数据）</div><div class="fa-stream"></div>';
+    scrollBottom();
+    await sleep(280);
+    if (token !== runToken) return;
+    await playSteps(DEMOS[key].steps, token);
+  }
+
+  /* --- 功能导览首页 --- */
+  function showHome() {
+    runToken++;
+    playing = false;
+    faDemos.querySelectorAll('.demo-chip').forEach(function (c) { c.classList.remove('on'); });
+    var html = '<div class="fa-stream">'
+      + '<div class="msg bot"><div class="avatar">合</div><div class="b-bubble">您好，我是<b>合合助手</b>，数智北京创新中心的智能服务总入口。我能帮您做 6 件事，点击卡片查看演示：</div></div>'
+      + '<div class="launcher">';
+    Object.keys(MODULES).forEach(function (k, i) {
+      var m = MODULES[k];
+      html += '<button class="mod-card" type="button" data-demo="' + k + '" style="animation-delay:' + (i * 90) + 'ms">'
+        + '<span class="mod-ico" style="background:' + m.bg + '">' + m.ico + '</span>'
+        + '<span class="mod-txt"><b>' + m.title + '</b><span class="sub">' + m.sub + '</span><span class="ex">例：' + m.ex + '</span></span>'
+        + '</button>';
+    });
+    html += '</div>'
+      + '<div class="msg bot" style="margin-top:12px"><div class="avatar">合</div><div class="b-bubble">也可以直接在下方输入框提问，或点击顶部标签快速切换。</div></div>'
+      + '</div>';
+    faBody.innerHTML = html;
+    faBody.querySelectorAll('.mod-card').forEach(function (card) {
+      card.addEventListener('click', function () { playDemo(card.getAttribute('data-demo')); });
+    });
+  }
+
+  /* --- 事件绑定 --- */
+  faDemos.addEventListener('click', function (e) {
+    var chip = e.target.closest('.demo-chip');
+    if (chip) playDemo(chip.getAttribute('data-demo'));
+  });
+  faDemos.querySelectorAll('.demo-chip').forEach(function (c) {
+    var m = MODULES[c.getAttribute('data-demo')];
+    if (m) c.title = m.title + '：' + m.sub;
+  });
+  document.getElementById('faHome').addEventListener('click', function () { showHome(); });
+  document.querySelectorAll('.chips .chip[data-demo]').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      togglePanel(true);
+      playDemo(chip.getAttribute('data-demo'));
+    });
+  });
+  showHome();
+
+  /* 自由输入：演示环境回复（自动打断当前演示） */
+  async function sendFree(text) {
+    if (!text.trim()) return;
+    var token = ++runToken;
+    playing = false;
+    if (!faBody.querySelector('.fa-stream')) {
+      faBody.innerHTML = '<div class="fa-stream"></div>';
+    }
+    addUser(text);
+    await think('正在理解您的问题…', 800, token);
+    if (token !== runToken) return;
+    await typeBot('收到！本页为交互演示原型，完整对话能力将在接入合合助手引擎后开放。您可以点击右上角"功能导览"，查看 6 个方向的完整演示～', token);
+  }
+  document.getElementById('faSend').addEventListener('click', function () {
+    var input = document.getElementById('faInput');
+    sendFree(input.value); input.value = '';
+  });
+  document.getElementById('faInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { document.getElementById('faSend').click(); }
+  });
+
+  /* ===== 回到顶部 ===== */
+  var backtop = document.getElementById('backtop');
+  window.addEventListener('scroll', function () {
+    backtop.classList.toggle('show', window.scrollY > 600);
+  });
+  backtop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.getElementById('footBack').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
+</body>
+</html>

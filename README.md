@@ -18,6 +18,13 @@ python3 -m http.server 8734 --bind 127.0.0.1 --directory mirror/site
 
 打开 <http://127.0.0.1:8734/>，点击首页吉祥物或合合助手入口。停止服务按 `Ctrl+C`。
 
+本轮新增的两份备选设计可分别通过以下地址评审：
+
+- <http://127.0.0.1:8734/index-ai.html>：官网原布局上的六模块智能问答方案；
+- <http://127.0.0.1:8734/index-amazon.html>：卡片化信息架构探索方案。
+
+两份页面均为桌面端 UI 评审原型，不替换默认首页，也不代表移动端已验收。`index-ai.html` 引用的 17 条场景培育 QA 中有 10 处仍标记为待确认，流程、时限和政策口径不得直接作为正式对外答复。
+
 只应将 `mirror/site` 作为本地静态 Web 根目录。不要将包含业务参考资料的整个仓库目录直接对外提供 HTTP 服务。
 
 ## 当前功能
@@ -64,6 +71,8 @@ window.__HH_RUNTIME_CONFIG__ = {
 | 路径 | 用途 |
 | --- | --- |
 | `mirror/site/index.html` | 当前首页与助手入口 |
+| `mirror/site/index-ai.html` | 六模块智能问答备选设计（桌面评审原型） |
+| `mirror/site/index-amazon.html` | 卡片化信息架构备选设计（桌面评审原型） |
 | `mirror/site/css/hehe-assistant.css` | 助手 UI、响应式和表单布局 |
 | `mirror/site/js/commonUrl.js` | Demo / Sandbox / Production 运行时接口开关 |
 | `mirror/site/js/header-login.js` | 不落地令牌的安全登录状态展示 |

@@ -11,13 +11,16 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "mirror" / "site"
+PROTOTYPE_HTML = [SITE / "index-ai.html", SITE / "index-amazon.html"]
 
 REQUIRED_FILES = [
     SITE / "index.html",
+    *PROTOTYPE_HTML,
     SITE / "css" / "hehe-assistant.css",
     SITE / "js" / "commonUrl.js",
     SITE / "js" / "Common_AjaxCallApi.js",
@@ -83,7 +86,7 @@ def main() -> int:
         if reference not in index:
             fail(errors, f"index.html 未引用关键助手资源：{reference}")
 
-    for path in RUNTIME_JS:
+    for path in RUNTIME_JS + PROTOTYPE_HTML:
         text = read_text(path)
         matches = sorted(set(PRIVATE_IP.findall(text)))
         if matches:
@@ -176,6 +179,19 @@ def main() -> int:
         if required not in browser_smoke:
             fail(errors, f"browser_smoke.mjs 缺少核心回归断言：{required}")
 
+    index_ai = read_text(SITE / "index-ai.html")
+    index_amazon = read_text(SITE / "index-amazon.html")
+    if "QA流程、时限与政策口径仍待业务确认" not in index_ai:
+        fail(errors, "index-ai.html 必须明确提示 QA 流程、时限和政策口径仍待业务确认")
+    if "官方QA清单" in index_ai:
+        fail(errors, "index-ai.html 不得把含待确认项的 QA 建议清单标为官方口径")
+    if "body > .ai-assistant" not in index_ai or "#heheFab { display:none !important; }" not in index_ai:
+        fail(errors, "index-ai.html 必须隐藏旧助手入口，只保留 v5 评审入口")
+    if "仅供 UI 设计评审使用" not in index_amazon:
+        fail(errors, "index-amazon.html 必须明确标注为 UI 设计评审原型")
+    if 'title=""' in index_amazon:
+        fail(errors, "index-amazon.html 包含被中文引号截断的 title 属性")
+
     node = shutil.which("node")
     if node:
         for path in RUNTIME_JS + [SITE / "js" / "hehe-assistant-forms.js", ROOT / "scripts" / "browser_smoke.mjs"]:
@@ -189,6 +205,30 @@ def main() -> int:
             if result.returncode != 0:
                 detail = (result.stderr or result.stdout).strip()
                 fail(errors, f"JavaScript 语法检查失败：{path.relative_to(ROOT)}\n{detail}")
+        inline_script = re.compile(r"<script\b([^>]*)>(.*?)</script>", re.IGNORECASE | re.DOTALL)
+        for html_path in PROTOTYPE_HTML:
+            for index, match in enumerate(inline_script.finditer(read_text(html_path)), start=1):
+                attrs, source = match.groups()
+                if re.search(r"\bsrc\s*=", attrs, re.IGNORECASE) or not source.strip():
+                    continue
+                if re.search(r"\btype\s*=\s*['\"](?:application/ld\+json|text/template)", attrs, re.IGNORECASE):
+                    continue
+                with tempfile.NamedTemporaryFile(mode="w", suffix=".js", encoding="utf-8") as handle:
+                    handle.write(source)
+                    handle.flush()
+                    result = subprocess.run(
+                        [node, "--check", handle.name],
+                        cwd=ROOT,
+                        text=True,
+                        capture_output=True,
+                        check=False,
+                    )
+                if result.returncode != 0:
+                    detail = (result.stderr or result.stdout).strip()
+                    fail(
+                        errors,
+                        f"内联 JavaScript 语法检查失败：{html_path.relative_to(ROOT)} 第 {index} 段\n{detail}",
+                    )
     else:
         print("[WARN] 未找到 Node.js，已跳过 JavaScript 语法检查。")
 
