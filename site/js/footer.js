@@ -1,0 +1,25 @@
+document.write("<style>");
+document.write(".footer { font: 400 12px\/100% \"微软雅黑\"; color: #fff; display: flex; align-items: center;justify-content: center;width: 100%; height: 47px; overflow: hidden; background:#E02832 !important;}");
+document.write(".footer span { margin: 0 15px; }");
+document.write(".footer a { color: #fff; }");
+document.writeln("@media only screen and (max-width: 830px) {");
+document.writeln("    .footer {display: grid; height:auto; padding: 16px 0;}");
+document.writeln("    .footer span {margin: 6px 15px;}");
+document.writeln("}");
+document.write("<\/style>");
+document.write("<div class=\"footer\">");
+document.write("	<span>入驻咨询：010-59703511；010-59703522<\/span>");
+document.write("	<span>网站标识码：1100000248<\/span>");
+document.write("	<span><a href=\"https:\/\/beian.miit.gov.cn\/#\/Integrated\/index\" target=\"_blank\">京ICP备2024042909号-5<\/a><\/span>");
+document.write("	<span>所属权：北京市大数据中心<\/span><span>技术服务：北京数据集团 15611675008<\/span>");
+document.write("<\/div>");
+var _yfx_trackdata = _yfx_trackdata || [];	
+var _vaq = _vaq || [];
+_vaq.push(["setSiteId","10000499"]); 
+(function() {
+    var yfxjs = document.createElement("script");
+    yfxjs.charset = "utf-8";
+    yfxjs.src = "https://yhxw.tj.beijing.gov.cn/vas.js";
+    var yfxjs_t = document.getElementsByTagName("script")[0];
+    yfxjs_t.parentNode.insertBefore(yfxjs, yfxjs_t);
+})();

@@ -1,0 +1,298 @@
+/* September reference design. Scoped to the shared assistant surface. */
+body #aiChatPanel.hehe-picmatch.hh-redesign {
+  --ink:#0a1430; --muted:#637593; --blue:#0668ff;
+  position:fixed!important;top:var(--hh-nav-bottom,80px)!important;bottom:6px!important;
+  right:6px!important;left:auto!important;width:420px!important;
+  height:calc(100dvh - var(--hh-nav-bottom,80px) - 6px)!important;max-height:none!important;
+  min-height:0!important;max-width:calc(100vw - 12px)!important;
+  border:1px solid #fff!important;border-radius:23px!important;
+  background:#f8fcff url('../images/hehe-ui/soft-waves.png') center top/auto 500px no-repeat!important;
+  box-shadow:0 8px 42px #749eea35!important;z-index:10020!important;
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;
+  transform:translateX(calc(100% + 18px))!important;opacity:0!important;visibility:hidden!important;
+  transition:width .36s cubic-bezier(.22,1,.36,1),transform .36s cubic-bezier(.22,1,.36,1),opacity .2s,visibility .2s!important;
+  font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif!important;color:var(--ink)!important;
+  text-align:left;box-sizing:border-box;
+}
+body #aiChatPanel.hh-redesign.open {transform:translateX(0)!important;opacity:1!important;visibility:visible!important;}
+body #aiChatPanel.hh-redesign *,body #aiChatPanel.hh-redesign *::before,body #aiChatPanel.hh-redesign *::after{box-sizing:border-box;}
+body #aiChatPanel.hh-redesign button,body #aiChatPanel.hh-redesign input{font-family:inherit;}
+body #aiChatPanel.hh-redesign button{cursor:pointer;}
+body #aiChatPanel.hh-redesign button:focus-visible{outline:2px solid #076cff;outline-offset:3px;}
+body #aiChatPanel.hh-redesign [hidden]{display:none!important;}
+body #heheFab{display:none!important;}
+body #aiChatPanel.hh-redesign .hehe-beta-chip,body #aiChatPanel.hh-redesign .hehe-sc-badge,body #aiChatPanel.hh-redesign .chat-disclaimer{display:none!important;}
+body #aiChatPanel.hh-redesign i[class^="ri-"]{font-weight:400;font-style:normal;line-height:1;display:inline-block;flex-shrink:0;}
+body #aiChatPanel.hh-redesign .hh-chat-icon{display:inline-block;width:1em;height:1em;background:currentColor;mask:url('../images/hehe-ui/chat-dots.svg') center/contain no-repeat;-webkit-mask:url('../images/hehe-ui/chat-dots.svg') center/contain no-repeat;flex-shrink:0;}
+body #aiChatPanel.hh-redesign .chat-header{flex:0 0 58px!important;min-height:58px!important;height:58px!important;padding:14px 13px 5px 16px!important;border:0!important;background:transparent!important;box-shadow:none!important;display:flex!important;align-items:flex-start!important;gap:8px!important;}
+body #aiChatPanel.hh-redesign .hh-brand-spark{color:#2477ff;font-size:24px;margin-top:2px;}
+body #aiChatPanel.hh-redesign .chat-title{flex:1;min-width:0;display:block!important;}
+body #aiChatPanel.hh-redesign .chat-name-row{display:flex;gap:6px;align-items:center;}
+body #aiChatPanel.hh-redesign .chat-name{font-size:16px!important;line-height:21px!important;font-weight:700!important;letter-spacing:0!important;color:#111b2a!important;}
+body #aiChatPanel.hh-redesign .chat-beta{background:#adf2d9!important;color:#07926b!important;font:10px/16px Arial!important;padding:0 4px!important;border-radius:4px!important;}
+body #aiChatPanel.hh-redesign .chat-sub{font-size:10px!important;color:#68799b!important;margin:1px 0 0!important;line-height:15px!important;letter-spacing:1px;}
+body #aiChatPanel.hh-redesign .chat-actions{display:flex;gap:1px;align-items:center;margin-left:auto;}
+body #aiChatPanel.hh-redesign .chat-btn{color:#202b40!important;width:24px!important;min-width:24px!important;height:25px!important;}
+body #aiChatPanel.hh-redesign .hh-expand,body #aiChatPanel.hh-redesign .hh-new-mini{border:0;background:transparent;color:#50617e;display:flex;align-items:center;gap:3px;padding:4px;font-size:11px;border-radius:6px;height:25px;}
+body #aiChatPanel.hh-redesign .hh-expand i,body #aiChatPanel.hh-redesign .hh-new-mini i{font-size:15px;}
+body #aiChatPanel.hh-redesign .hh-expand:hover,body #aiChatPanel.hh-redesign .hh-new-mini:hover{background:#e2eeff;color:#0066ff;}
+body #aiChatPanel.hh-redesign .hh-new-mini{display:none;}
+body #aiChatPanel.hh-redesign.hh-mode-chat .hh-new-mini{display:flex;}
+body #aiChatPanel.hh-redesign.hh-mode-chat .hh-expand span{display:none;}
+body #aiChatPanel.hh-redesign .hh-shell{display:flex;min-height:0;flex:1;overflow:hidden;}
+body #aiChatPanel.hh-redesign .hh-main{display:flex;flex-direction:column;min-width:0;min-height:0;width:100%;overflow:hidden;}
+body #aiChatPanel.hh-redesign .hh-welcome{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#d4e4fa transparent;}
+body #aiChatPanel.hh-redesign .hh-sidebar,body #aiChatPanel.hh-redesign .hh-right,body #aiChatPanel.hh-redesign .hh-wide-copy,body #aiChatPanel.hh-redesign .hh-modes,body #aiChatPanel.hh-redesign .hh-card-go{display:none;}
+body #aiChatPanel.hh-redesign .hh-hero-group{position:relative;}
+body #aiChatPanel.hh-redesign .hh-hero{height:126px;min-height:126px;padding:0;background:transparent;overflow:hidden;position:relative;}
+body #aiChatPanel.hh-redesign .hh-mascot{position:absolute;width:204px;height:auto;max-width:none;margin:0;left:70px;top:-7px;filter:none;}
+body #aiChatPanel.hh-redesign .hh-greeting{left:43px;top:20px;z-index:1;transform:rotate(-14deg);}
+body #aiChatPanel.hh-redesign .hh-hi{width:56px;height:42px;font:italic 24px/1 "Comic Sans MS",cursive;color:#056aff;background:#d7e7ffb3;box-shadow:none;border-radius:60% 50% 60% 30%;}
+body #aiChatPanel.hh-redesign .hh-slogan{right:12px;top:51px;font:italic 12px/1.6 "Kaiti SC",KaiTi,serif;color:#3267b3;transform:rotate(-12deg);letter-spacing:1px;z-index:2;}
+body #aiChatPanel.hh-redesign .hh-greet-text{padding:14px 8px 10px;background:#fafdffda;border-radius:50% 50% 0 0 / 12px 12px 0 0;text-align:center;position:relative;}
+body #aiChatPanel.hh-redesign .hh-greet-title{font-size:17px!important;line-height:25px!important;font-weight:700!important;color:#10192d!important;}
+body #aiChatPanel.hh-redesign .hh-greet-desc{font-size:12px!important;line-height:20px!important;color:#637391!important;margin:4px 0 0!important;letter-spacing:0!important;white-space:nowrap;}
+body #aiChatPanel.hh-redesign .hh-cards{padding:5px 12px 13px;gap:8px;background:transparent;grid-template-columns:repeat(3,minmax(0,1fr));}
+body #aiChatPanel.hh-redesign .hh-card{min-height:116px;border:1px solid #ffffffaa;box-shadow:inset 0 2px 2px #ffffffb0;border-radius:11px;padding:13px 7px 10px;gap:8px;align-items:center;overflow:hidden;position:relative;}
+/* Service palette follows the supplied orange / teal / red / blue reference. */
+body #aiChatPanel.hh-redesign .hh-service-consult{--card-color:#ee8900;--card-rgb:255,173,23;--card-tint:#fffaf0;}
+body #aiChatPanel.hh-redesign .hh-service-data{--card-color:#009e95;--card-rgb:0,183,166;--card-tint:#effcfa;}
+body #aiChatPanel.hh-redesign .hh-service-policy{--card-color:#f02f37;--card-rgb:255,78,88;--card-tint:#fff3f4;}
+body #aiChatPanel.hh-redesign .hh-service-apply{--card-color:#0765f5;--card-rgb:36,153,255;--card-tint:#eef7ff;}
+body #aiChatPanel.hh-redesign .hh-card{
+  border-color:rgba(var(--card-rgb),.28);
+  background:linear-gradient(139deg,transparent 0% 76%,#ffffff8c 76.2%,transparent 76.6%),linear-gradient(139deg,transparent 0% 70%,rgba(var(--card-rgb),.13) 70.2%,rgba(var(--card-rgb),.36) 100%),linear-gradient(120deg,#fff 0%,var(--card-tint) 100%);
+  box-shadow:inset 0 1px 2px #fff,0 2px 7px rgba(var(--card-rgb),.06);
+}
+body #aiChatPanel.hh-redesign .hh-card-ico{background:transparent!important;color:var(--card-color)!important;width:30px;height:29px;font-size:28px;filter:none;border-radius:0;}
+body #aiChatPanel.hh-redesign .hh-card-title{font-size:11px;line-height:17px;color:var(--card-color);font-weight:600;white-space:nowrap;gap:0;letter-spacing:0;}
+body #aiChatPanel.hh-redesign .hh-card-arrow{color:inherit;font-size:17px;margin:0;display:flex;}
+body #aiChatPanel.hh-redesign .hh-card-desc{font-size:10px;line-height:16px;letter-spacing:0;color:#7d899c;width:100%;}
+body #aiChatPanel.hh-redesign .hh-service-policy{display:none;}
+body #aiChatPanel.hh-redesign .hh-service-apply .hh-card-ico i:before{content:"\ed0e";}
+body #aiChatPanel.hh-redesign .hh-suggestions{padding:0 14px 12px;background:transparent;}
+body #aiChatPanel.hh-redesign .hh-suggestions-head{margin:0 0 7px;min-height:23px;}
+body #aiChatPanel.hh-redesign .hh-suggestions-title{font-size:11px;font-weight:400;color:#637391;}
+body #aiChatPanel.hh-redesign .hh-refresh{padding:2px 0;min-height:23px;font-size:11px;color:#637391;}
+body #aiChatPanel.hh-redesign .hh-question-list{gap:6px;}
+body #aiChatPanel.hh-redesign .hh-question{min-height:28px;padding:6px 15px;border:0;border-radius:18px;background:#f1f6fc;color:#5f718f;font-size:10px;line-height:16px;letter-spacing:0;}
+body #aiChatPanel.hh-redesign .hh-question:hover{background:#e5efff;box-shadow:none;transform:none;}
+body #aiChatPanel.hh-redesign .hh-input-area{margin:12px 14px 38px;padding:0!important;border:1px solid #d1dceb;border-radius:15px;background:#ffffffd9;position:relative;flex:0 0 80px;height:80px;box-shadow:0 3px 20px #dbe9fb30;}
+body #aiChatPanel.hh-redesign .chat-input-bar{padding:9px 10px 0!important;border:0!important;background:transparent!important;display:block!important;}
+body #aiChatPanel.hh-redesign .chat-input{width:100%!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0 2px!important;height:27px!important;font-size:12px!important;color:#20334f!important;}
+body #aiChatPanel.hh-redesign .chat-input::placeholder{color:#a3afc2;}
+body #aiChatPanel.hh-redesign .chat-send{position:absolute;right:6px;top:auto;bottom:3px;width:35px!important;height:35px!important;min-width:35px!important;border:0!important;border-radius:50%!important;background:linear-gradient(135deg,#59adff 0%,#2877e8 100%)!important;box-shadow:none!important;color:#fff!important;font-size:18px;display:flex!important;align-items:center;justify-content:center;padding:0!important;transition:opacity .15s ease,transform .15s ease,filter .15s ease;}
+body #aiChatPanel.hh-redesign .chat-send:disabled{opacity:.45!important;cursor:not-allowed;}
+body #aiChatPanel.hh-redesign .chat-send:not(:disabled):hover{filter:brightness(1.06);transform:translateY(-1px);}
+body #aiChatPanel.hh-redesign .chat-send:not(:disabled):active{transform:translateY(0);filter:brightness(.96);}
+body #aiChatPanel.hh-redesign .chat-send:focus-visible{outline:2px solid #2877e8;outline-offset:3px;}
+body #aiChatPanel.hh-redesign .hh-tools{position:absolute;left:7px;bottom:7px;margin:0;gap:6px;}
+body #aiChatPanel.hh-redesign .hh-tool-chip{min-height:27px;border:0;background:#f2f5f8;border-radius:16px;padding:5px 10px;font-size:11px;line-height:16px;color:#3e4e69;gap:5px;}
+body #aiChatPanel.hh-redesign .hh-tool-chip i{font-size:16px;}
+body #aiChatPanel.hh-redesign .hh-tool-chip.is-on{background:#e0edff;color:#0769ef;}
+body #aiChatPanel.hh-redesign .hh-disclaimer{position:absolute;top:100%;margin:7px 0 0;left:0;right:0;white-space:nowrap;font-size:9px;line-height:16px;color:#a1afc3;}
+body #aiChatPanel.hh-redesign .hh-attachment{display:none;}
+body #aiChatPanel.hh-redesign .hh-file-tag{position:absolute;bottom:calc(100% + 5px);left:0;padding:6px 10px;border-radius:8px;background:#e7f1ff;font-size:12px;max-width:100%;overflow-wrap:anywhere;}
+body #aiChatPanel.hh-redesign .hh-file-tag button{border:0;background:none;margin-left:8px;}
+body #aiChatPanel.hh-redesign .hh-stream-wrap{display:none!important;}
+body #aiChatPanel.hh-redesign.hh-mode-chat .hh-welcome{display:none!important;}
+body #aiChatPanel.hh-redesign.hh-mode-chat .hh-stream-wrap{display:flex!important;flex:1;min-height:0;overflow:hidden;}
+body #aiChatPanel.hh-redesign .chat-stream{flex:1;min-height:0!important;height:auto!important;max-height:none!important;overflow-y:auto!important;display:block!important;padding:15px!important;background:transparent!important;}
+body #aiChatPanel.hh-redesign .chat-msg{max-width:100%;}
+body #aiChatPanel.hh-redesign .msg-stack{min-width:0;max-width:100%;}
+body #aiChatPanel.hh-redesign .msg-bubble{overflow-wrap:anywhere;}
+body #aiChatPanel.hh-redesign.hh-utility-open .hh-stream-wrap,body #aiChatPanel.hh-redesign.hh-utility-open .hh-welcome{display:none!important;}
+body #aiChatPanel.hh-redesign .hh-utility{flex:1;min-height:0;overflow:auto;padding:32px;}
+body #aiChatPanel.hh-redesign .hh-utility h2{font-size:26px;margin:0 0 15px;}
+body #aiChatPanel.hh-redesign .hh-utility p{color:#637391;font-size:15px;line-height:1.8;}
+body #aiChatPanel.hh-redesign .hh-empty{padding:60px 0;color:#7c8eaa;text-align:center;}
+body #aiChatPanel.hh-redesign .hh-history-item{display:block;width:100%;margin-top:12px;padding:18px;text-align:left;background:#fff;border:1px solid #dce8fb;border-radius:14px;color:#244b83;}
+body #aiChatPanel.hh-redesign .hh-back{margin-top:24px;border:0;border-radius:20px;background:#086bff;color:#fff;padding:10px 18px;}
+
+/* Expanded drawer: same header, live stream and composer, three-column home. */
+body #aiChatPanel.hh-redesign.hh-is-workbench{width:calc(100vw - 12px)!important;background-size:100% 100%!important;border-radius:22px!important;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-header{height:54px!important;min-height:54px!important;flex-basis:54px!important;justify-content:flex-end;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-title,body #aiChatPanel.hh-redesign.hh-is-workbench .hh-brand-spark{display:none!important;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-actions{gap:16px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-expand{font-size:12px;gap:6px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-shell{gap:28px;padding:0 14px 0 0;overflow:visible;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar{display:flex;flex-direction:column;flex:0 0 280px;background:#f8fdffb8;padding:28px 24px 24px;position:relative;margin-top:-54px;padding-top:28px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar-brand{height:64px;flex-shrink:0;display:flex;align-items:center;gap:12px;width:100%;padding:0 8px;border:0;background:transparent;color:#14203a;text-align:left;border-radius:14px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar-brand:hover{background:#edf6ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar-brand .hh-brand-mark{width:46px;height:42px;object-fit:contain;flex:0 0 auto;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-brand-name{font-size:25px;font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-brand-beta{font:12px/20px Arial,sans-serif;background:#dff6ea;color:#318f65;border-radius:5px;padding:0 6px;font-style:normal;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-nav{display:flex;flex-direction:column;gap:8px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item{height:56px;border:0;background:transparent;display:flex;align-items:center;gap:20px;border-radius:14px;padding:0 18px;color:#344565;font-size:18px;text-align:left;white-space:nowrap;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item i{font-size:26px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item.is-active{background:#e7f2ff;color:#0754df;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item:hover,body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-footer button:hover{background:#e8f3ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner{height:100px;min-height:100px;border-radius:16px;background:#e4f8ff url('../images/hehe-ui/soft-waves.png') center/cover;display:flex;align-items:center;overflow:hidden;margin-top:auto;margin-bottom:15px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner img{height:108px;width:105px;object-fit:contain;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner span{font:italic 19px/1.6 "Kaiti SC",KaiTi,serif;color:#0067ff;transform:rotate(-8deg);white-space:nowrap;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-footer{border-top:1px solid #e2eef9;padding-top:12px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-footer button{display:flex;align-items:center;gap:20px;background:none;border:0;padding:12px 18px;color:#3f5172;font-size:16px;width:100%;border-radius:12px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-footer i{font-size:23px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-main{flex:1;padding-top:8px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-welcome{display:flex;flex-direction:column;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-narrow-copy{display:none;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-wide-copy{display:inline;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hero-group{flex:1 0 290px;min-height:290px;display:flex;align-items:center;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hero{position:absolute;inset:0;width:100%;height:100%;min-height:0;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mascot{width:435px;left:16px;top:0;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greeting{left:32px;top:55px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hi{width:100px;height:80px;font-size:42px;background:#e2effac9;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-slogan{top:22px;right:0;font-size:25px;line-height:1.45;letter-spacing:3px;color:#0067ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-text{background:transparent;position:relative;margin-left:43%;padding:42px 0 0;text-align:left;z-index:1;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-title{font-size:43px!important;line-height:1.35!important;letter-spacing:-1px!important;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-title strong{color:#0067ff;font-weight:700;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-desc{font-size:18px!important;line-height:1.55!important;margin-top:16px!important;white-space:normal;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-modes{display:flex;flex:0 0 88px;min-height:88px;align-self:center;width:77%;padding:5px;border:5px solid #ffffffd9;background:#eaf3ffb3;border-radius:50px;margin:0 0 20px;z-index:1;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode{flex:1;display:flex;align-items:center;justify-content:center;gap:14px;background:transparent;border:0;border-radius:45px;color:#0c1731;padding:4px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode i{font-size:36px;color:#09bd90;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode:last-child i{color:#0ca3ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode.is-active{background:#0871ff;color:white;box-shadow:inset 0 3px 7px #6dbbff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode.is-active i{color:#bbebff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode b{display:block;text-align:left;font-size:19px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode small{display:block;text-align:left;font-size:12px;margin-top:4px;opacity:.7;white-space:nowrap;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-cards{padding:0;gap:18px;grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px;flex-shrink:0;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card{min-height:206px;align-items:flex-start;padding:20px 20px 12px;border-radius:15px;gap:10px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-service-policy{display:flex;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-service-apply .hh-card-ico i:before{content:"\ee8f";}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-ico{font-size:45px;width:48px;height:48px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-title{font-size:18px;line-height:25px;white-space:normal;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-arrow{display:none;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-desc{font-size:14px;line-height:21px;color:#74839b;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-go{display:flex;align-items:center;justify-content:center;align-self:flex-start;margin-top:auto;border:1px solid rgba(var(--card-rgb),.35);background:#ffffff80;width:37px;height:37px;border-radius:50%;color:var(--card-color);font-size:22px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-suggestions{display:flex;align-items:center;padding:0;margin:0 0 8px;gap:12px;flex:0 0 40px;position:relative;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-suggestions-head{margin:0;flex:0 0 auto;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-suggestions-title{font-size:14px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-refresh{position:absolute;right:0;font-size:14px;top:8px;gap:6px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-question-list{flex-direction:row;flex:1;min-width:0;margin-right:70px;gap:8px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-question{width:auto;flex:1;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:9px 12px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-input-area{flex-basis:113px;height:113px;margin:8px 0 27px;border-radius:21px;border-color:#d2e5ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-input-bar{padding:14px 18px 0!important;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-input{font-size:16px!important;width:100%!important;height:32px!important;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .chat-send{top:auto;bottom:5.5px;right:16px;width:55px!important;height:55px!important;font-size:24px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-tools{left:19px;bottom:14px;gap:12px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-tool-chip{font-size:14px;background:#f7faff;border:1px solid #d8e4f4;padding:8px 15px;gap:9px;min-height:38px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-tool-chip i{font-size:21px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-attachment{display:flex;position:absolute;bottom:20px;right:94px;font-size:25px;background:none;border:0;color:#60769b;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right{display:flex;flex-direction:column;gap:12px;flex:0 0 320px;min-height:0;padding:8px 0 25px;overflow:auto;scrollbar-width:thin;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right section{border-radius:18px;background:#ffffffb8;border:1px solid #ffffffd9;padding:17px 16px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right h3{display:flex;align-items:center;gap:14px;font-size:18px;margin:0;font-weight:600;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right h3 i{color:#2796ff;font-size:25px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right header button{border:0;background:none;font-size:13px;color:#62779c;display:flex;align-items:center;gap:5px;padding:4px 0;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row{background:#ffffffd9;border:0;border-radius:25px;min-height:45px;display:flex;align-items:center;gap:8px;width:100%;padding:11px 15px;color:#3f5378;font-size:13px;margin-top:7px;text-align:left;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row>span:last-child,body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row>i:last-child{margin-left:auto;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row:hover{background:#eaf3ff;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-frequent-row{font-size:15px;gap:16px;min-height:46px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-frequent-row>span:nth-child(2){flex:1;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-small-icon{font-size:26px;}
+body #aiChatPanel.hh-redesign .green{color:#0ab883;}
+body #aiChatPanel.hh-redesign .orange{color:#ff8734;}
+body #aiChatPanel.hh-redesign .blue{color:#1581ff;}
+body #aiChatPanel.hh-redesign .purple{color:#9e55ef;}
+body #aiChatPanel.hh-redesign .is-editing .is-muted{opacity:.4;text-decoration:line-through;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-city-banner{display:block;width:100%;border-radius:16px;object-fit:cover;margin-top:auto;}
+body.hh-workbench-open{overflow:hidden!important;}
+body .ai-assistant.open #aiAssistantToggle{visibility:hidden!important;}
+body #aiChatPanel.hh-redesign.hh-reduce-motion{transition:none!important;}
+/* Wider companion drawer, requested after the first visual review. */
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-header{padding:16px 18px 6px!important;flex-basis:66px!important;min-height:66px!important;height:66px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-name{font-size:18px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-sub{font-size:11px!important;margin-top:4px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-actions{gap:5px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-expand{font-size:12px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-hero{height:162px;min-height:162px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-mascot{width:270px;left:calc(50% - 120px);top:-13px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greeting{left:48px;top:25px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-slogan{right:18px;top:65px;font-size:14px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greet-text{padding:16px 12px 13px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greet-title{font-size:20px!important;line-height:28px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greet-desc{font-size:14px!important;line-height:23px!important;white-space:normal;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-cards{padding:7px 18px 18px;gap:10px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card{padding:15px 9px 12px;min-height:134px;gap:10px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card-title{font-size:13px;line-height:20px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card-desc{font-size:11px;line-height:18px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-suggestions{padding:0 18px 14px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-suggestions-title,body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-refresh{font-size:13px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-question{font-size:13px;line-height:20px;padding:8px 15px;min-height:36px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-input-area{margin:14px 18px 38px;flex-basis:100px;height:100px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-input-bar{padding:12px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-input{font-size:14px!important;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .chat-send{width:42px!important;height:42px!important;right:9px;top:auto;bottom:4px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-tools{left:10px;bottom:10px;gap:8px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-tool-chip{font-size:12px;padding:6px 12px;min-height:30px;}
+body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-disclaimer{font-size:10px;}
+@media(min-width:1800px){body #aiChatPanel.hh-redesign.hh-is-workbench .hh-main{max-width:1180px;margin:auto;align-self:stretch;height:100%;}}
+@media(max-width:1450px){
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-shell{gap:20px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar{flex-basis:220px;padding-left:16px;padding-right:16px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar-brand{gap:9px;padding-left:4px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar-brand .hh-brand-mark{width:39px;height:36px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-brand-name{font-size:21px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item{font-size:16px;gap:13px;padding:0 13px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right{flex-basis:270px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right section{padding:16px 12px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row{font-size:12px;padding:10px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mascot{width:310px;left:0;top:28px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greeting{left:4px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-title{font-size:34px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-desc{font-size:14px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-slogan{font-size:19px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-modes{width:90%;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card{padding:15px 12px 12px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-title{font-size:16px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-desc{font-size:12px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner span{font-size:15px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner img{width:78px;}
+}
+@media(max-height:850px) and (min-width:1001px){
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hero-group{min-height:230px;flex-basis:230px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mascot{top:-4px;width:295px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-title{font-size:33px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-desc{font-size:14px!important;margin-top:10px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-modes{flex-basis:68px;min-height:68px;margin-bottom:15px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card{min-height:176px;padding-top:14px;gap:7px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card-ico{font-size:32px;height:36px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-nav-item{height:46px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right-row{min-height:36px;padding-top:8px;padding-bottom:8px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right section{padding-top:12px;padding-bottom:12px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right header{margin-bottom:8px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right{padding-top:0;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-input-area{flex-basis:98px;height:98px;}
+}
+@media(max-width:1100px){body #aiChatPanel.hh-redesign.hh-is-workbench .hh-right{display:none;}}
+@media(max-width:760px){
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar{display:none;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-shell{padding:0 14px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hero-group{flex-basis:250px;min-height:250px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mascot{width:220px;left:-10px;top:25px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greeting{top:40px;left:0;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-hi{font-size:25px;width:60px;height:50px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-slogan{font-size:15px;top:8px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-title{font-size:26px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-greet-desc{font-size:12px!important;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-card{min-height:160px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-modes{width:100%;min-height:66px;flex-basis:66px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode{gap:6px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode i{font-size:23px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode b{font-size:14px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mode small{display:none;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-suggestions-title{display:none;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-question-list .hh-question:nth-child(n+2){display:none;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-tools{left:8px;gap:6px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-tool-chip{font-size:12px;padding:7px 8px;gap:4px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .hh-attachment{right:72px;font-size:21px;}
+  body #aiChatPanel.hh-redesign.hh-is-workbench .chat-send{right:8px;bottom:10.5px;width:45px!important;height:45px!important;}
+}
+@media(prefers-reduced-motion:reduce){body #aiChatPanel.hh-redesign{transition:none!important;}body #aiChatPanel.hh-redesign *{animation:none!important;transition:none!important;}}
+@media(max-width:430px){
+  body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-cards{padding-left:12px;padding-right:12px;gap:7px;}
+  body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card{padding-left:6px;padding-right:6px;}
+  body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card-title{font-size:11px;}
+  body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greet-desc{font-size:12px!important;}
+}

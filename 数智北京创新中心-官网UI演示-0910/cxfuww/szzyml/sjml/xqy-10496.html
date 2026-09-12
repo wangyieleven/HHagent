@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="SiteName" content="数智北京创新中心">
+    <!-- <title>搜索结果详情 - 数智北京创新中心</title> -->
+    <meta name="SiteDomain" content="dibj.cn">
+    <meta name="SiteIDCode" content="1100000248">
+    <meta name="District" content="北京">
+    <meta name="ColumnName" content="搜索结果详情">
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../css/base.css">
+    <script charset="utf-8" src="https://yhxw.tj.beijing.gov.cn/vas.js"></script><script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/commonUrl.js"></script>
+    <script src="../../../js/visit-log.js"></script>
+    <script src="../../../js/hdSyn.js"></script>
+    <link rel="stylesheet" href="../../../css/layui.css">
+    <script>
+        var LAYUI_GLOBAL = {
+            dir: '/'
+        };
+    </script>
+    <script src="../../../js/layui.js"></script><link id="layuicss-laydate" rel="stylesheet" href="../../../css/modules/laydate/default/laydate.css?v=5.3.1" media="all"><link id="layuicss-layer" rel="stylesheet" href="../../../css/modules/layer/default/layer.css?v=3.5.1" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="../../../css/modules/code.css?v=3" media="all">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        a:hover {
+            /* color: #FF7A25 !important; */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 32px;
+            min-height: calc(100vh - 209px);
+        }
+
+        .sections-title {
+            text-align: center;
+            font: bold 26px/160% "微软雅黑";
+            color: #18395C;
+            padding-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sections-title .btn.apply-btn {
+            font: 400 16px / 36px "微软雅黑";
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #1067E8;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+        }
+
+        /* 标题 — 参考 content_page2 h2 */
+        .detail-title {
+            text-align: center;
+            font: bold 26px/160% "微软雅黑";
+            color: #18395C;
+            padding-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 标题右侧按钮 — 参考 content_page2 h2 .btn（直接在按钮上绝对定位） */
+        .detail-title .btn.apply-btn {
+            position: absolute;
+            right: 0;
+            top: 4px;
+            display: block;
+            font: 400 16px/36px "微软雅黑";
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #ff7a25;
+            text-decoration: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* .detail-title .btn.apply-btn:hover {
+            background: #0e5bcf;
+            color: #fff !important;
+        } */
+
+        .detail-title .action-btn {
+            position: absolute;
+            right: 0;
+            top: 4px;
+            display: block;
+            font: 400 16px/36px "微软雅黑";
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #ff7a25;
+            text-decoration: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* .detail-title .action-btn:hover {
+            background: #0e5bcf;
+            color: #fff !important;
+        } */
+
+        /* 多按钮时第二个按钮偏移 */
+        .detail-title .btn.apply-btn+.btn.apply-btn,
+        .detail-title .action-btn+.btn.apply-btn,
+        .detail-title .action-btn+.action-btn {
+            right: 130px;
+        }
+
+        /* 分区标题 — 参考 content_page2 .basic h3 + span 蓝色下划线 */
+        .section-title {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            text-align: left;
+            margin-top: 32px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #E6E6E6;
+            padding-bottom: 0;
+        }
+
+        .section-title span {
+            display: inline-block;
+            font: 400 18px/100% "微软雅黑";
+            color: #e8a62f;
+            border-bottom: 2px solid #e8a62f !important;
+            padding-bottom: 12px;
+        }
+
+        /* 信息网格 — 参考 content_page2 .basic .iteam（2列表格边框布局） */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+        .info-grid .info-item {
+            display: flex;
+            font: 400 14px/160% "微软雅黑";
+            color: #666;
+            min-height: 50px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+
+        .info-grid .info-item:nth-child(2n) {
+            border-left: 0;
+        }
+
+        .info-grid .info-label {
+            color: #465160;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-right: 4px;
+            font: bold 14px/160% "微软雅黑";
+            font-size: 16px;
+        }
+
+        .info-grid .info-value {
+            color: #465160;
+            word-break: break-all;
+            font-size: 16px;
+        }
+
+        /* 描述块 — 参考 slideTxtBox3 .bd .desc */
+        .desc-block {
+            width: 100%;
+            padding: 16px 0;
+            font: 400 16px/160% "微软雅黑";
+            color: #666;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Tab栏 — 参考 slideTxtBox3 .hd ul */
+        .tab-bar {
+            display: inline-block;
+            width: 100%;
+            border-bottom: 1px solid #E4E4E4;
+            margin-bottom: 0;
+            margin-top: 32px;
+            text-align: left;
+        }
+
+        .tab-bar .tab-item {
+            float: left;
+            margin: 0 20px 0 0;
+            padding-bottom: 10px;
+            font: normal 18px/100% "微软雅黑";
+            color: #3D3D3D;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-bar .tab-item.active {
+            /* color: #18395C; */
+            border-bottom: 2px solid #e8a62f;
+            font-weight: normal;
+            color: #e8a62f;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 16px 0;
+            font: 400 16px/160% "微软雅黑";
+            color: #666;
+            white-space: pre-wrap;
+            word-break: break-all;
+            text-align: left;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 样例数据表 — 参考 mockdata-table */
+        .sample-table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        .sample-table {
+            min-width: 100%;
+            border: 1px solid #E6E6E6;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 14px/150% "微软雅黑";
+        }
+
+        .sample-table th {
+            background: #f1f5f9;
+            color: #465160;
+            padding: 16px 24px;
+            border-bottom: 1px solid #E6E6E6;
+            border-right: 1px solid #E6E6E6;
+            text-align: center;
+            font: bold 14px/24px "微软雅黑";
+            white-space: nowrap;
+        }
+
+        .sample-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #E6E6E6;
+            border-right: 1px solid #E6E6E6;
+            color: #465160;
+            font-size: 14px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .sample-table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px 0;
+            color: #999;
+            font: normal 16px/200% "微软雅黑";
+        }
+
+        .footer {
+            font: 400 12px/100% "微软雅黑";
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 47px;
+            overflow: hidden;
+            background: #0238C1 url(//dibj.cn//images/index_bottom.png) no-repeat center top;
+            background-size: cover;
+        }
+
+        .footer span {
+            margin: 0 15px;
+        }
+
+        .footer a {
+            color: #fff;
+        }
+
+        /* 弹窗样式（保持不变） */
+        .search-login-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-login-modal-overlay.is-active {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .search-login-modal {
+            background: #fff;
+            border-radius: 8px;
+            padding: 32px 40px;
+            text-align: center;
+            min-width: 460px;
+            max-width: 520px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-height: 380px;
+            max-height: 520px;
+            transition: min-height 0.6s ease;
+        }
+
+        .search-login-modal.compact {
+            min-height: 0;
+        }
+
+        .search-login-modal.flipped {
+            min-height: 420px;
+        }
+
+        .search-login-modal p {
+            font: normal 16px/1.6 "微软雅黑";
+            color: #333;
+            margin: 0 0 24px 0;
+        }
+
+        .search-login-modal .modal-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .search-login-modal .modal-btns a {
+            padding: 8px 24px;
+            font: normal 14px/1.5 "微软雅黑";
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .search-login-modal .btn-primary {
+            background: #ff7a25;
+            color: #fff;
+            border: 1px solid #ff7a25;
+        }
+
+        /* .search-login-modal .btn-primary:hover {
+            background: #0d56c7;
+        } */
+
+        .search-login-modal .btn-secondary {
+            background: #fff;
+            color: #666;
+            border: 1px solid #d9d9d9;
+        }
+
+        .search-login-modal .btn-secondary:hover {
+            border-color: #ff7a25;
+            color: #ff7a25;
+        }
+
+        @media only screen and (max-width: 1700px) {
+            .container {
+                width: 90%;
+            }
+        }
+
+        @media only screen and (max-width: 830px) {
+            body {
+                min-width: 100%;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .search-login-modal {
+                min-width: auto;
+                width: calc(100% - 32px);
+                margin: 0 16px;
+                max-width: none;
+                padding: 24px 20px;
+                min-height: 410px;
+            }
+
+
+
+            .detail-title {
+                overflow: unset;
+            }
+
+            .info-grid {
+                display: block;
+            }
+
+            .info-grid .info-item {
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                padding: 24px 10px;
+            }
+
+            .info-grid .info-item:nth-child(2n) {
+                border-left: 1px solid #E6E6E6;
+            }
+
+            .detail-title .btn.apply-btn,
+            .detail-title .action-btn {
+                position: static;
+                display: inline-block;
+                margin-top: 12px;
+            }
+
+            .sample-table-container {
+                overflow-x: auto;
+            }
+
+            .sample-table td {
+                white-space: nowrap;
+            }
+
+            .sample-table tr {
+                display: table-row;
+            }
+
+            .footer {
+                display: grid;
+                height: auto;
+                padding: 16px 0;
+            }
+
+            .footer span {
+                margin: 6px 15px;
+            }
+        }
+
+        .dialogBtnClass {
+            color: #1677ff;
+        }
+
+        .dialogBtnClass:hover {
+            color: #ff2516 !important;
+            cursor: pointer;
+        }
+
+        /* 卡片翻转样式 */
+        .flip-card-container {
+            perspective: 1000px;
+            width: 100%;
+            min-height: 380px;
+            transition: min-height 0.6s ease;
+        }
+
+        .flip-card-container.flipped {
+            min-height: 400px;
+        }
+
+        @media only screen and (max-width: 830px) {
+            .search-login-modal.flip-card-container {
+                min-height: 410px;
+            }
+        }
+
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 240px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            min-height: 400px;
+        }
+
+        .flip-card-back .form-group {
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .flip-card-back .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .flip-card-back .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .flip-card-back .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            resize: none;
+            /* 禁止拖拽调整大小 */
+            min-height: 80px;
+            max-height: 80px;
+            /* 最多展示3行 */
+        }
+
+        .flip-card-back .form-group textarea:focus {
+            outline: none;
+            border-color: #1677ff;
+        }
+
+        .flip-card-back .word-count {
+            display: block;
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .flip-card-back .form-group input:focus {
+            outline: none;
+            border-color: #1067E8;
+        }
+
+        .flip-card-back #demandForm {
+            width: 100%;
+        }
+
+        .flip-card-back .form-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .flip-card-back .btn-submit {
+            background: #ff7a25;
+            color: #fff;
+            border: 1px solid #ff7a25;
+            padding: 10px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+
+        .flip-card-back .btn-back {
+            background: #fff;
+            color: #666;
+            border: 1px solid #d9d9d9;
+            padding: 10px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .flip-card-back .btn-back:hover {
+            border-color: #ff7a25;
+            color: #ff7a25;
+        }
+
+        .flip-card-back .success-message {
+            color: #52c41a;
+            font-size: 14px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .flip-card-back .required {
+            color: #ff4d4f;
+            margin-left: 4px;
+        }
+
+        .flip-card-back .error-message {
+            display: none;
+            color: #ff4d4f;
+            font-size: 12px;
+            margin-top: 4px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .flip-card-back .error-message.show {
+            display: block;
+        }
+
+        .flip-card-back .form-group.error input {
+            border-color: #ff4d4f;
+        }
+
+        /* 联系方式独立展示样式（方案二） */
+        .contact-block {
+            background-color: #f9fafb;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 12px 0;
+            text-align: left;
+            border: 1px dashed #d1d5db;
+        }
+
+        .contact-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 640px) {
+            .contact-item {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+<title>政府侧数据-详情</title><style id="favorite-style">.detail-title .favorite-star{position:absolute;width:28px;height:28px;border-radius:4px;border:1px solid #FDE6D5;background:rgba(255,255,255,.9);color:#999;display:inline-flex;align-items:center;justify-content:center;font-size:18px;line-height:1;cursor:pointer;z-index:4;padding:0;}.detail-title .favorite-star.is-favorited{color:#FF7A25;border-color:#FF7A25;}.detail-title .favorite-star:disabled{opacity:.6;cursor:not-allowed;}.detail-title .visit-count{position:absolute;z-index:4;font:400 14px/28px "微软雅黑";color:#465160;white-space:nowrap;}.favorite-login-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;z-index:9999;}.favorite-login-modal-overlay.is-active{display:flex;}.favorite-login-modal{width:520px;max-width:calc(100vw - 32px);background:#fff;border-radius:8px;padding:22px 22px 18px 22px;box-sizing:border-box;}.favorite-login-modal p{margin:0 0 18px 0;font:400 16px/170% "微软雅黑";color:#333;}.favorite-login-modal a{color:#1677ff;text-decoration:none;}.favorite-login-modal .modal-btns{display:flex;justify-content:center;}.favorite-login-modal .favorite-login-close{padding:7px 22px;border-radius:4px;text-decoration:none;font-size:14px;cursor:pointer;background:#ff7a25;color:#fff;border:1px solid #ff7a25;}</style></head>
+
+<body>
+    <!-- header 开始 -->
+    <script src="../../../js/header.js"></script><div class="header">    <div class="nav">        <img src="../../../images/index_logo.png" class="logo">		<input type="checkbox" name="" id="">          <div class="hamburger-lines">              <span class="line line1"></span>              <span class="line line2"></span>              <span class="line line3"></span>          </div>        <ul class="menu-items">                <a href="./index.html" class="">首页</a>                <a href="../../index.html">创新服务</a>                <a href="../../../yyscww/index.html">创新成果</a>                <a href="../index.html" class="cur">数字资源</a>                <a href="../../../fzpt/wytg/index.html">我要提供</a>                <a href="../../../sthz/index.html">我要申请</a>                <a href="../../../zcjdww/index.html">政策解读</a>                <a href="../../../fywmww/index.html">关于我们</a>                <a href="../../../fzpt/swcj/index.html">走进创新中心</a>                <div class="user_login">                <div class="userTtile" id="userTtile">                                    </div>                <a class="login" href="../../../portal/user/index/index.html" target="_blank">登 录 <img src="../../../images/v5_login_icon.png"></a>            </div>            </ul>    </div></div><script type="text/javascript" src="../../../js/header-login.js"></script><script type="text/javascript" src="../../../js/Common_AjaxCallApi.js"></script><script type="text/javascript" src="../../../js/common_ajax.js"></script>            <style>	.header {background:#E02832 !important;}	.header .nav ul {width: calc(100% - 240px);}	    .userTtile {color: #fff;font-family: '微软雅黑';font-size: 14px;margin-left: 10px; margin-right: 20px; float: right;}    .nav input[type="checkbox"],.nav .hamburger-lines {display: none;}    .user_login {display: flex;justify-content: end;align-items: center;}	.header .nav .login:hover { background:none; }	.header .nav .login img { margin-left: 15px;}	 @media only screen and (max-width: 1700px) {             .header .nav ul a { margin-left: 24px;}    }    @media only screen and (max-width: 1400px) {     .header .nav ul a  {margin-left:18px;}     .header .nav .login {width:80px;}    } @media only screen and (max-width: 830px) {    .header { overflow: unset; height: 80px;}    .header .nav { padding: 0px 30px 0 30px; overflow: unset; z-index: 9999; height: 60px; display: inline-block;}    .nav input[type="checkbox"],.nav .hamburger-lines {display: block;}    .nav {display: block;position: relative;}    .nav input[type="checkbox"] {position: absolute;display: block;height: 26px;width: 26px;top: 20px;right: 20px;z-index: 5;opacity: 0;}    .nav .hamburger-lines {display: block;height: 28px;width: 28px;position: absolute;top: 17px;right: 10px;z-index: 2;}    .nav .hamburger-lines .line {display: block;height: 3px;width: 100%;border-radius: 10px;background: #fff;}    .nav .hamburger-lines .line1 {transform-origin: 0% 0%;transition: transform 0.4s ease-in-out;}    .nav .hamburger-lines .line2 {transition: transform 0.2s ease-in-out;}    .nav .hamburger-lines .line3 {transform-origin: 0% 100%;transition: transform 0.4s ease-in-out;}    .header .nav ul { float: right; display: unset; display: none;}    .nav .menu-items { float: right; padding-top: 100px;background: #fff;height: 100vh; width: 90vw !important; transform: translateX(100%);display: flex;flex-direction: column;margin-right: -40px;padding-right: 50px;transition: transform 0.5s ease-in-out;box-shadow: 0px 5px 10px 0px #aaa;}    .nav .menu-items a { width: 100%;}    .header .nav ul a { width: 100%;}    .logo {position: absolute;top: 16px;left: 15px; }    .nav input[type="checkbox"]:checked ~ .menu-items {transform: translateX(0); background: #e8a62f; display: block;}    .nav input[type="checkbox"]:checked ~ .hamburger-lines {right: 0;}    .nav input[type="checkbox"]:checked ~ .hamburger-lines .line1 {transform: rotate(55deg);}    .nav input[type="checkbox"]:checked ~ .hamburger-lines .line2 {transform: scaleY(0);}    .nav input[type="checkbox"]:checked ~ .hamburger-lines .line3 {transform: rotate(-55deg);}    .user_login { position: absolute;left: 15px;top: 20px;}    .userTtile { font-size:12px}    .header .nav .login { width: 100px; height: 36px; font-size: 12px; background: #E02832;}    .header .nav .login:hover {background: #E02832;}    }</style>	
+    <!-- header 结束 -->
+    <script type="text/javascript" src="../../../js/header-login.js"></script>
+    <script type="text/javascript" src="../../../js/Common_AjaxCallApi.js"></script>
+    <script type="text/javascript" src="../../../js/common_ajax.js"></script>
+    <script type="text/javascript" src="../../../js/demand-registration.js"></script>
+    <style>
+        .header .nav ul {
+            width: calc(100% - 240px);
+        }
+
+        .userTtile {
+            color: #fff;
+            font-family: '微软雅黑';
+            font-size: 14px;
+            margin-left: 10px;
+            margin-right: 20px;
+            float: right;
+        }
+
+        .nav input[type="checkbox"],
+        .nav .hamburger-lines {
+            display: none;
+        }
+
+        .user_login {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+
+        .header .nav .login:hover {
+            background: none;
+        }
+
+        @media only screen and (max-width: 1700px) {
+            .header .nav ul a {
+                margin-left: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 1400px) {
+            .header .nav ul a {
+                margin-left: 18px;
+            }
+
+            .header .nav .login {
+                width: 80px;
+            }
+        }
+
+        @media only screen and (max-width: 830px) {
+            .header {
+                overflow: unset;
+                height: 80px;
+            }
+
+            .header .nav {
+                padding: 0px 30px 0 30px;
+                overflow: unset;
+                z-index: 9999;
+                height: 60px;
+                display: inline-block;
+            }
+
+            .nav input[type="checkbox"],
+            .nav .hamburger-lines {
+                display: block;
+            }
+
+            .nav {
+                display: block;
+                position: relative;
+            }
+
+            .nav input[type="checkbox"] {
+                position: absolute;
+                display: block;
+                height: 26px;
+                width: 26px;
+                top: 20px;
+                right: 20px;
+                z-index: 5;
+                opacity: 0;
+            }
+
+            .nav .hamburger-lines {
+                display: block;
+                height: 28px;
+                width: 28px;
+                position: absolute;
+                top: 17px;
+                right: 10px;
+                z-index: 2;
+            }
+
+            .nav .hamburger-lines .line {
+                display: block;
+                height: 3px;
+                width: 100%;
+                border-radius: 10px;
+                background: #fff;
+            }
+
+            .nav .hamburger-lines .line1 {
+                transform-origin: 0% 0%;
+                transition: transform 0.4s ease-in-out;
+            }
+
+            .nav .hamburger-lines .line2 {
+                transition: transform 0.2s ease-in-out;
+            }
+
+            .nav .hamburger-lines .line3 {
+                transform-origin: 0% 100%;
+                transition: transform 0.4s ease-in-out;
+            }
+
+            .header .nav ul {
+                float: right;
+                display: unset;
+                display: none;
+            }
+
+            .nav .menu-items {
+                float: right;
+                padding-top: 100px;
+                background: #fff;
+                height: 100vh;
+                width: 90vw !important;
+                transform: translateX(100%);
+                display: flex;
+                flex-direction: column;
+                margin-right: -40px;
+                padding-right: 50px;
+                transition: transform 0.5s ease-in-out;
+                box-shadow: 0px 5px 10px 0px #aaa;
+            }
+
+            .nav .menu-items a {
+                width: 100%;
+            }
+
+            .header .nav ul a {
+                width: 100%;
+            }
+
+            .logo {
+                position: absolute;
+                top: 16px;
+                left: 15px;
+            }
+
+            .nav input[type="checkbox"]:checked~.menu-items {
+                transform: translateX(0);
+                background: #1067E8;
+                display: block;
+            }
+
+            .nav input[type="checkbox"]:checked~.hamburger-lines {
+                right: 0;
+            }
+
+            .nav input[type="checkbox"]:checked~.hamburger-lines .line1 {
+                transform: rotate(55deg);
+            }
+
+            .nav input[type="checkbox"]:checked~.hamburger-lines .line2 {
+                transform: scaleY(0);
+            }
+
+            .nav input[type="checkbox"]:checked~.hamburger-lines .line3 {
+                transform: rotate(-55deg);
+            }
+
+            .user_login {
+                position: absolute;
+                left: 15px;
+                top: 20px;
+            }
+
+            .userTtile {
+                font-size: 12px
+            }
+
+            .header .nav .login {
+                width: 100px;
+                height: 36px;
+                font-size: 12px;
+                background: #FF7A25;
+            }
+
+            .header .nav .login:hover {
+                background: #FF7A25;
+            }
+        }
+    </style>
+    <!-- content -->
+    <div class="container">
+        <div id="detail-container"><div class="detail-title">放射性药品使用许可信息（数据清洗）<span class="visit-count" style="right: 168px; top: 8px;">浏览量：138</span><button type="button" class="favorite-star" aria-label="收藏" style="right: 130px; top: 8px;">☆</button><a href="javascript:void(0);" class="action-btn" id="btn-download" style="background:#ff7a25;">获取数据</a></div><div class="section-title"><span style=" border-bottom: 2px solid #e8a62f; padding-bottom: 12px; color: #e8a62f; ">基本信息</span></div><div class="info-grid"><div class="info-item"><span class="info-label">部门名称：</span><span class="info-value">北京市药品监督管理局</span></div><div class="info-item"><span class="info-label">数据资源名称：</span><span class="info-value">放射性药品使用许可信息（数据清洗）</span></div><div class="info-item"><span class="info-label">服务类型：</span><span class="info-value">DATA</span></div><div class="info-item"><span class="info-label">是否共享：</span><span class="info-value">无条件共享</span></div><div class="info-item"><span class="info-label">是否开放：</span><span class="info-value">是</span></div></div><div class="section-title"><span style=" border-bottom: 2px solid #e8a62f; padding-bottom: 12px; color: #e8a62f; ">样例数据</span></div><div style="overflow-x:auto;"><table class="sample-table"><thead><tr><th>变更次数</th><th>有效期至</th><th>发证日期</th><th>发证机关</th><th>医疗机构类别</th><th>科室名称</th><th>许可证类别</th><th>科室负责人</th><th>科室地址</th><th>法定代表人</th><th>注册地址</th><th>医疗机构名称</th><th>许可证号</th><th>更新时间</th><th>记录唯一标识</th><th>法定代表人联系电话</th><th>统一社会信用代码</th><th>投诉举报电话</th><th>日常监管机构</th><th>企业社会信用代码</th><th>签发人</th><th>数据交换位</th><th>时间戳</th><th>实例标识</th><th>业务类型</th><th>操作状态</th><th>公示标识</th><th>打印标识</th><th>许可证状态</th><th>同步标识</th><th>同步操作类型</th><th>同步数据来源</th><th>同步批次版本号</th><th>同步批次号</th></tr></thead><tbody><tr><td>4</td><td>2027-04-15</td><td>2022-04-05</td><td>北京市海淀区市场监督管理局</td><td>专科医院</td><td>北京科园信海医药经营有限公司</td><td>化学药品</td><td>黄建平</td><td>北京市丰台区花乡高立庄616号</td><td>林国强</td><td>北京市丰台区花乡高立庄616号</td><td>北京科园信海医药经营有限公司</td><td>京AA0100006</td><td>2025-07-29 21:17:49</td><td>103617</td><td>010-69156688</td><td>91110105710903028T</td><td>010-69156688</td><td>1</td><td>91110105710903028T</td><td>赵明</td><td>接口同步</td><td>2025-10-17 13:51:00</td><td>103622</td><td>补证</td><td>I</td><td>Y</td><td>1</td><td>无效</td><td>1</td><td>1</td><td>数据导入</td><td>1</td><td>1</td></tr><tr><td>5</td><td>2028-04-06</td><td>2022-01-23</td><td>北京市海淀区市场监督管理局</td><td>中医医院</td><td>唐晓峰</td><td>化学药品</td><td>何志远</td><td>北京市大兴区亦庄经济技术开发区科创十一街18号</td><td>谢丽娟</td><td>北京市大兴区亦庄经济技术开发区科创十一街18号</td><td>北京双鹤药业经营有限公司</td><td>京AA0100007</td><td>2025-06-10 16:50:20</td><td>103637</td><td>010-85731199</td><td>91110105MA004L5H2X</td><td>010-85731199</td><td>2</td><td>91110105MA004L5H2X</td><td>钱华</td><td>接口同步</td><td>2025-04-29 01:53:53</td><td>103642</td><td>核发</td><td>I</td><td>N</td><td>1</td><td>过期</td><td>1</td><td>1</td><td>数据导入</td><td>1</td><td>1</td></tr></tbody></table></div></div>
+    </div>
+    <script src="../../../js/ssjg_xqy.js?_t=20260701180421660"></script>
+
+    <!-- login modal -->
+    <div class="search-login-modal-overlay" id="searchLoginModal">
+
+        <div class="search-login-modal">
+            <!-- <p>请您登录个人中心查看</p> -->
+            <h3 id="searchModalTitle" style="font-size:18px;font-weight:700;color:#333;margin:0 0 25px 0;">资源获取说明</h3>
+            <p id="searchModalDesc" style="font:normal 16px/1.6 '微软雅黑';color:#333;margin:0 0 24px 0;">请您登录个人中心查看</p>
+            <div class="modal-btns">
+                <a href="../../../portal/user/index/index.html" class="btn-primary">登录个人中心</a>
+                <a href="javascript:void(0);" class="btn-secondary" id="searchLoginClose">稍后登录</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchLoginClose').addEventListener('click', function (e) {
+            e.preventDefault();
+            var modal = document.getElementById('searchLoginModal');
+            modal.classList.remove('is-active');
+            var modalContent = modal.querySelector('.search-login-modal');
+            if (modalContent) modalContent.classList.remove('compact');
+        });
+    </script>
+
+    <!-- cooperation modal -->
+    <div class="search-login-modal-overlay" id="cooperationModal">
+        <div class="search-login-modal">
+            <p>合作对接可联系秦老师，联系电话：18601139697</p>
+            <div class="modal-btns">
+                <a href="javascript:void(0);" class="btn-primary" id="cooperationConfirm">确认</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('cooperationConfirm').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('cooperationModal').classList.remove('is-active');
+        });
+    </script>
+
+    <!-- lab data modal -->
+    <div class="search-login-modal-overlay" id="labDataModal">
+        <div class="search-login-modal">
+            <p id="labDataContactInfo"></p>
+            <div class="modal-btns">
+                <a href="javascript:void(0);" class="btn-primary" id="labDataConfirm">确认</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('labDataConfirm').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('labDataModal').classList.remove('is-active');
+        });
+    </script>
+
+    <!-- gov get data modal -->
+    <div class="search-login-modal-overlay" id="govGetDataModal">
+        <div class="search-login-modal flip-card-container">
+            <div class="flip-card" id="govFlipCard">
+                <!-- 正面 -->
+                <div class="flip-card-front">
+                    <h3 id="govModalTitle" style="font-size:18px;font-weight:700;color:#333;margin:0 0 25px 0;">数据获取说明
+                    </h3>
+                    <div id="govModalDesc" style="font:normal 16px/1.6 '微软雅黑';color:#333;text-align:left;">
+                        您正在获取的数据属于非开放数据，需要到数智北京创新中心申请后获取。获取请联系：
+                        <div class="contact-block">
+                            <span class="contact-item">👨‍🏫 秦老师：18601139697</span>
+                            <span class="contact-item">👩‍💼 刘老师：19801266061</span>
+                        </div>
+                        或者<span class="dialogBtnClass" id="btnRegister">进行登记</span>，我们会安排专人与您对接。如需线下参观，请提前<a href="/sthz/cgyy/" class="dialogBtnClass">进行预约</a>。
+                    </div>
+                    <div class="modal-btns">
+                        <a href="javascript:void(0)" class="btn-primary" style="padding: 7px 22px; border-radius: 4px; text-decoration: none; font-size: 14px; cursor: pointer; background: #ff7a25; color: #fff; border: 1px solid #ff7a25;" onclick="document.getElementById('govGetDataModal').classList.remove('is-active')">我已知晓</a>
+                    </div>
+                </div>
+                <!-- 背面 - 表单 -->
+                <div class="flip-card-back">
+                    <h3 style="font-size:18px;font-weight:700;color:#333;margin:0 0 20px 0;">需求反馈</h3>
+                    <form id="demandForm">
+                        <div class="form-group">
+                            <label for="contactPerson">联系人姓名<span class="required">*</span></label>
+                            <input type="text" id="contactPerson" name="contactPerson" placeholder="请输入联系人姓名（仅支持中文）">
+                            <span class="error-message" id="contactPersonError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">联系电话<span class="required">*</span></label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="请输入手机号码">
+                            <span class="error-message" id="phoneNumberError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="companyName">企业名称/联系人单位<span class="required">*</span></label>
+                            <input type="text" id="companyName" name="companyName" placeholder="请输入企业名称或单位">
+                            <span class="error-message" id="companyNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="details">需求描述（选填）</label>
+                            <textarea id="details" name="details" placeholder="请输入需求描述（最多500字）" maxlength="500" rows="3"></textarea>
+                            <span class="word-count">剩余 <span id="detailsWordCount">500</span> 字</span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-submit" id="btnSubmit">提交反馈</button>
+                            <button type="button" class="btn-back" id="btnBack">返回</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 政府数据弹窗不添加点击遮罩层关闭功能
+    </script>
+
+    <!-- scene apply modal -->
+    <div class="search-login-modal-overlay" id="sceneApplyModal">
+        <div class="search-login-modal">
+            <h3 id="govModalTitle" style="font-size:18px;font-weight:700;color:#333;margin:0 0 25px 0;">场景申请说明
+            </h3>
+            <p>场景申请业务须选择法人身份登录。若您选择个人身份登录，将无法开展场景业务的相关办理流程。</p>
+            <div class="modal-btns">
+                <a href="javascript:void(0);" class="btn-primary" id="btnConfirmSceneApply">确认申请</a>
+                <a href="javascript:void(0);" class="btn-secondary" onclick="document.getElementById('sceneApplyModal').classList.remove('is-active')">取消申请</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // sceneApplyModal 确认申请：检查登录状态后跳转
+        document.getElementById('btnConfirmSceneApply').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('sceneApplyModal').classList.remove('is-active');
+            fetch('/portal/oauth/currentUser')
+                .then(function (r) { return r.json(); })
+                .then(function (res) {
+                    if (res && res.data) {
+                        window.location.href = 'https://dibj.cn/portal/page/scene/scenesReported?p1=' + (window.__currentBizUniqueId || '');
+                    } else {
+                        window.location.href = '../../../portal/user/index/index.html';
+                    }
+                })
+                .catch(function () {
+                    window.location.href = '../../../portal/user/index/index.html';
+                });
+        });
+    </script>
+    <div class="line"></div>
+    <!-- footer -->
+    <script type="text/javascript">
+        const articleId = null;
+        const siteId = "c8cbc1d238c049bb9dd997dd3f61069e";
+        const columnId = "c8cbc1d238c049bb9dd997dd3f61069e";
+    </script>
+    <script type="text/javascript">
+        function toggleBodyScroll(enable) {
+            document.body.style.overflow = enable ? '' : 'hidden';
+        }
+
+        var modalOverlays = document.querySelectorAll('.search-login-modal-overlay');
+        modalOverlays.forEach(function (overlay) {
+            var observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    if (mutation.attributeName === 'class') {
+                        var isActive = overlay.classList.contains('is-active');
+                        toggleBodyScroll(!isActive);
+                    }
+                });
+            });
+            observer.observe(overlay, { attributes: true });
+        });
+
+        document.addEventListener('touchmove', function (e) {
+            var activeOverlay = document.querySelector('.search-login-modal-overlay.is-active');
+            if (activeOverlay) {
+                var modal = activeOverlay.querySelector('.search-login-modal');
+                if (modal) {
+                    var isScrollable = modal.scrollHeight > modal.clientHeight;
+                    var canScrollUp = modal.scrollTop > 0;
+                    var canScrollDown = modal.scrollTop < (modal.scrollHeight - modal.clientHeight);
+
+                    if (!isScrollable || (!canScrollUp && e.touches[0].clientY > e.changedTouches[0].clientY) || (!canScrollDown && e.touches[0].clientY < e.changedTouches[0].clientY)) {
+                        e.preventDefault();
+                    }
+                } else {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
+    </script>
+    <script type="text/javascript" src="../../../js/ua-parser.min.js"></script>
+    <script type="text/javascript" src="../../../js/saveColumn.js"></script>
+    <script type="text/javascript" src="../../../js/footer.js"></script><style>.footer { font: 400 12px/100% "微软雅黑"; color: #fff; display: flex; align-items: center;justify-content: center;width: 100%; height: 47px; overflow: hidden; background:#E02832 !important;}.footer span { margin: 0 15px; }.footer a { color: #fff; }@media only screen and (max-width: 830px) {
+    .footer {display: grid; height:auto; padding: 16px 0;}
+    .footer span {margin: 6px 15px;}
+}
+</style><div class="footer">	<span>入驻咨询：010-59703511；010-59703522</span>	<span>网站标识码：1100000248</span>	<span><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">京ICP备2024042909号-5</a></span>	<span>所属权：北京市大数据中心</span><span>技术服务：北京数据集团 15611675008</span></div>
+
+
+<div class="favorite-login-modal-overlay" id="favoriteLoginModal"><div class="favorite-login-modal"><p><a href="https://dibj.cn/portal/oauth/login/capcloud?targetUrl=https%3A%2F%2Fdibj.cn%2Fcxfuww%2Fszzyml%2Fsjml%2Fxqy%2F%3Fid%3D10496%26tableCode%3DGOV_DATA?targetUrl=https%3A%2F%2Fdibj.cn%2Fcxfuww%2Fszzyml%2Fsjml%2Fxqy%2F%3Fid%3D10496%26tableCode%3DGOV_DATA" target="_blank" id="favoriteLoginLink">登录</a>后即可收藏该内容，方便下次快速查找。</p><div class="modal-btns"><a href="javascript:void(0);" id="favoriteLoginClose" class="favorite-login-close">我已知晓</a></div></div></div></body></html>

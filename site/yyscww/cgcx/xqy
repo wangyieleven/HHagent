@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="SiteName" content="数智北京创新中心">
+    <title>应用创新-详情页 - 数智北京创新中心</title>
+    <!-- 栏目埋点 -->
+<meta name="SiteName" content="数智北京创新中心">
+<meta name="SiteDomain" content="dibj.cn">
+<meta name="SiteIDCode" content="1100000248">
+<meta name="District" content="北京" >
+<meta name="ColumnName" content="应用创新-详情页">
+<meta name="ColumnDescription" content="">
+<meta name="ColumnKeywords" content="">
+<meta name="ColumnType" content="COLUMN">
+<script language="javascript">
+var _yfx_nodeid = "cf2327a34fd546cfa0fc687233610d03";
+var _yfx_nodeName = "应用创新-详情页";
+var _yfx_contentid = "";
+var _yfx_title = "";
+
+</script>
+<script type="application/ld+json">
+"@context":"https://schema.org"
+"@type": "WebPage",
+"name":"应用创新-详情页",
+"url":"https://www.dibj.cn/yyscww/cgcx/xqy/'
+</script>        <!-- 栏目埋点 -->
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/css/base.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/commonUrl.js"></script>
+        <script src="/js/yyscxq.js"></script>
+        <link rel="stylesheet" href="/css/layui.css">
+        <script>
+            var LAYUI_GLOBAL = {
+                dir: '/'
+            };
+        </script>
+        <script src="/js/layui.js"></script>
+        <script src="/js/hdSyn.js?_t=20260723141719798"></script>
+        <script src="/js/visit-log.js?_t=20260723141719798"></script>
+        <style>
+            .container {
+                min-height: calc(100vh - 209px);
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .content_page2 {
+                width: 100%;
+                margin: 0px auto;
+                margin-top: 32px;
+                display: block;
+                overflow: hidden;
+            }
+
+            .content_page2 h2 {
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                text-align: center;
+                font: bold 26px / 160% "微软雅黑";
+                color: #18395C;
+                padding-bottom: 16px;
+                position: relative;
+            }
+
+            .content_page2 h2 p {
+                margin: 0 10px;
+                width: 80%;
+                margin: 0px auto;
+            }
+
+            .content_page2 h2 .btn {
+                font: 400 12px/23px "微软雅黑";
+                color: #e8a62f;
+                text-align: center;
+                width: 72px;
+                height: 23px;
+                cursor: pointer;
+                border-radius: 6px;
+                border: 1px solid #e8a62f;
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 9px;
+            }
+
+            .content_page2 h2 .btn_disabled {
+                font: 400 12px/23px "微软雅黑";
+                color: #7A8490;
+                text-align: center;
+                width: 84px;
+                height: 23px;
+                border-radius: 6px;
+                border: 1px solid #7A8490;
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 9px;
+            }
+
+            .content_page2 .basic {
+                width: 100%;
+                margin-top: 40px;
+                display: block;
+                overflow: hidden;
+            }
+
+            .content_page2 .basic h3 {
+                border-bottom: 1px solid #E4E4E4;
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                text-align: left;
+            }
+
+            .content_page2 .basic h3 span {
+                border-bottom: 2px solid #ff7a25;
+                /* border-image: linear-gradient(99deg, #0252D3 0%, #1B6AED 97%) 0 0 2 0; */
+                color: #18395C;
+                font: 400 18px/100% "微软雅黑";
+                padding-bottom: 12px;
+                display: inline-block;
+            }
+
+            .content_page2 .basic .iteam {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                column-gap: 10px;
+                padding: 16px 0px;
+            }
+
+            .content_page2 .basic .iteam li {
+                font: 400 16px / 160% "微软雅黑";
+                color: #465160;
+                padding: 8px 0;
+            }
+
+            .content_page2 .desc {
+                width: 100%;
+                padding: 30px 10px;
+                font: 400 16px / 160% "微软雅黑";
+                color: #465160;
+            }
+
+            .content_page2 h4 {
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                border-top: 1px solid1px solid #E4E4E4;
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                text-align: left;
+                margin-top: 32px;
+            }
+
+            .content_page2 h4 span {
+                float: left;
+                display: inline-block;
+                background: #0252D3;
+                padding: 14px 50px;
+                font: 400 24px/100% "微软雅黑";
+                color: #fff;
+            }
+
+            .slideTxtBox3 {
+                width: 100%;
+                margin: 0px auto;
+                margin-top: 40px;
+            }
+
+            .slideTxtBox3 .hd {
+                position: relative;
+            }
+
+            .slideTxtBox3 .hd ul {
+                display: inline-block;
+                text-align: left;
+                width: 100%;
+                border-bottom: 1px solid #E4E4E4;
+            }
+
+            .slideTxtBox3 .hd ul li {
+                float: left;
+                margin: 0 20px 0 0;
+                cursor: pointer;
+                font: normal 18px/100% "微软雅黑";
+                color: #3D3D3D;
+                padding-bottom: 10px;
+            }
+
+            .slideTxtBox3 .hd ul li.on {
+                border-bottom: 2px solid #ff7a25;
+                /* border-image: linear-gradient(99deg, #0252D3 0%, #1B6AED 97%) 0 0 2 0; */
+            }
+
+            .slideTxtBox3 .bd {
+                padding-top: 0px;
+            }
+
+            .slideTxtBox3 .bd .desc {
+                padding: 16px 0px;
+                font: 400 16px/160% "微软雅黑";
+                color: #666;
+                text-align: left;
+            }
+
+            .dialogBtnClass {
+                color: #1677ff;
+            }
+
+            .dialogBtnClass:hover {
+                color: #ff2516 !important;
+                cursor: pointer;
+            }
+
+            #loading {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .spinner {
+                border: 8px solid #f3f3f3;
+                border-top: 8px solid #F69400;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @media only screen and (max-width: 1700px) {
+                .container {
+                    width: 90%;
+                }
+            }
+
+            @media only screen and (max-width: 830px) {
+                body {
+                    min-width: 100%;
+                }
+
+                .content_page2 .basic .iteam {
+                    display: block;
+                }
+
+                .content_page2 .basic .iteam li {
+                    width: 100%;
+                    display: block;
+                    overflow: hidden;
+                }
+
+            }
+        </style>
+        <style>
+            /* 翻转卡片弹窗样式 */
+            .search-login-modal-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 99999;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .search-login-modal-overlay.is-active {
+                display: flex;
+            }
+
+            .search-login-modal {
+                background: #fff;
+                border-radius: 8px;
+                padding: 32px 40px;
+                text-align: center;
+                min-width: 460px;
+                max-width: 520px;
+                width: 90%;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                min-height: 380px;
+                max-height: 520px;
+                transition: min-height 0.6s ease;
+            }
+
+            .search-login-modal.compact {
+                min-height: 0;
+            }
+
+            .search-login-modal.flipped {
+                min-height: 420px;
+            }
+
+            .search-login-modal p {
+                font: normal 16px/1.6 "微软雅黑";
+                color: #333;
+                margin: 0 0 24px 0;
+            }
+
+            .search-login-modal .modal-btns {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
+                margin-top: 10px;
+            }
+
+            .search-login-modal .modal-btns a {
+                padding: 8px 24px;
+                font: normal 14px/1.5 "微软雅黑";
+                border-radius: 4px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .search-login-modal .btn-primary {
+                background: #ff7a25;
+                color: #fff;
+                border: 1px solid #ff7a25;
+            }
+
+            .search-login-modal .btn-secondary {
+                background: #fff;
+                color: #666;
+                border: 1px solid #d9d9d9;
+            }
+
+            .search-login-modal .btn-secondary:hover {
+                border-color: #ff7a25;
+                color: #ff7a25;
+            }
+
+
+
+            .flip-card {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+            }
+
+            .flip-card.flipped {
+                transform: rotateY(180deg);
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                min-height: 240px;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+
+            .flip-card-back {
+                transform: rotateY(180deg);
+                min-height: 400px;
+            }
+
+            .flip-card-back .form-group {
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            .flip-card-back .form-group label {
+                display: block;
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            .flip-card-back .form-group input {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #d9d9d9;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+            .flip-card-back .form-group textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #d9d9d9;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+                resize: none;
+                min-height: 80px;
+                max-height: 80px;
+            }
+
+            .flip-card-back .form-group textarea:focus {
+                outline: none;
+                border-color: #1677ff;
+            }
+
+            .flip-card-back .word-count {
+                display: block;
+                text-align: right;
+                font-size: 12px;
+                color: #999;
+                margin-top: 5px;
+            }
+
+            .flip-card-back .form-group input:focus {
+                outline: none;
+                border-color: #1067E8;
+            }
+
+            .flip-card-back #demandForm {
+                width: 100%;
+            }
+
+            .flip-card-back .form-actions {
+                display: flex;
+                gap: 16px;
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .flip-card-back .btn-submit {
+                background: #ff7a25;
+                color: #fff;
+                border: 1px solid #ff7a25;
+                padding: 10px 32px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .flip-card-back .btn-back {
+                background: #fff;
+                color: #666;
+                border: 1px solid #d9d9d9;
+                padding: 10px 32px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .flip-card-back .btn-back:hover {
+                border-color: #ff7a25;
+                color: #ff7a25;
+            }
+
+            .flip-card-back .required {
+                color: #ff4d4f;
+                margin-left: 4px;
+            }
+
+            .flip-card-back .error-message {
+                display: none;
+                color: #ff4d4f;
+                font-size: 12px;
+                margin-top: 4px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .flip-card-back .error-message.show {
+                display: block;
+            }
+
+            .flip-card-back .form-group.error input {
+                border-color: #ff4d4f;
+            }
+
+            .flip-card-container {
+                perspective: 1000px;
+                width: 100%;
+                min-height: 380px;
+                transition: min-height 0.6s ease;
+            }
+
+            .flip-card-container.flipped {
+                min-height: 400px;
+            }
+
+            @media only screen and (max-width: 830px) {
+                .search-login-modal.flip-card-container {
+                    min-height: 410px;
+                }
+            }
+
+            /* 联系方式区块样式 */
+            .contact-block {
+                background-color: #f9fafb;
+                padding: 10px;
+                border-radius: 4px;
+                margin: 12px 0;
+                text-align: left;
+                border: 1px dashed #d1d5db;
+            }
+
+            .contact-item {
+                display: inline-block;
+                margin-right: 15px;
+            }
+
+            @media (max-width: 640px) {
+                .contact-item {
+                    display: block;
+                    margin-bottom: 4px;
+                }
+            }
+
+            @media only screen and (max-width: 830px) {
+                .search-login-modal {
+                    min-width: auto;
+                    width: calc(100% - 32px);
+                    margin: 0 16px;
+                    max-width: none;
+                    padding: 24px 20px;
+                    min-height: 410px;
+                }
+            }
+        </style>
+</head>
+
+<body>
+    <!-- header 开始 -->
+ <script src="/js/header.js"></script>        <!-- header 结束 -->
+        <!-- 面包屑 -->
+        <div class="breadcrumb">
+            <ul>
+                <a href="/">首页</a>
+                    &gt;
+                    <a href="/yyscww/"
+                        title="创新成果">创新成果</a>
+
+                    &gt;
+                    <a href="/yyscww/cgcx/"
+                        title="应用创新">应用创新</a>
+
+            </ul>
+        </div>
+        <!-- 面包屑 结束 -->
+        <!-- 内容 开始 -->
+        <div class="container">
+            <div id="loading" style="display:none;">
+                <div class="spinner"></div>
+                <p>加载中...</p>
+            </div>
+            <!-- 基本信息容器 -->
+            <div class="content_page2" id="basic-info">
+                <!-- 场景名称和申请按钮会由 JS 动态渲染 -->
+            </div>
+            <!-- 场景概述、现状、创新需求容器 -->
+            <div class="slideTxtBox3">
+                <div class="hd">
+                    <ul>
+                        <li>创新成果描述</li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <!-- 概述 -->
+                    <ul class="iteam_1">
+                        <div class="desc" id="desc">
+                            <!-- 概述内容会由 JS 动态渲染 -->
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 结束 -->
+        <!-- footer 开始 -->
+
+<script type="text/javascript">
+      const articleId = null;
+    const siteId = "c8cbc1d238c049bb9dd997dd3f61069e";
+    const columnId = "cf2327a34fd546cfa0fc687233610d03";
+</script>
+<script type="text/javascript" src="/js/ua-parser.min.js"></script>
+<script type="text/javascript" src="/js/saveColumn.js"></script>
+<script type="text/javascript" src="/js/footer.js"></script>
+            <!-- footer 开始 -->
+            <script type="text/javascript" src="/js/jquery.SuperSlide.2.1.1.js"></script>
+            <script type="text/javascript" src="/js/layui.js"></script>
+            <script type="text/javascript">
+                jQuery(".slideTxtBox3").slide();
+            </script>
+            <script type="text/javascript" src="/js/Common_AjaxCallApi.js"></script>
+            <script type="text/javascript" src="/js/common_ajax.js"></script>
+            <script type="text/javascript" src="/js/demand-registration.js"></script>
+
+            <!-- cooperate modal with flip card -->
+            <div class="search-login-modal-overlay" id="cooperateModalOverlay">
+                <div class="search-login-modal flip-card-container">
+                    <div class="flip-card" id="cooperateFlipCard">
+                        <!-- front -->
+                        <div class="flip-card-front">
+                            <h3 id="govModalTitle" style="font-size:18px;font-weight:700;color:#333;margin:0 0 25px 0;">
+                                合作对接说明</h3>
+                            <div id="govModalDesc" style="font:normal 16px/1.6 '微软雅黑';color:#333;text-align:left;">
+                                您正在寻求合作的成果已发布在数智北京创新中心，合作对接请您联系：
+                                <div class="contact-block">
+                                    <span class="contact-item">👨‍🏫 秦启威：18601139697</span>
+                                    <span class="contact-item">👩‍💼 刘甜甜：19801266061</span>
+                                </div>
+                                或者进行<span class="dialogBtnClass" id="btnRegister">需求登记</span>，我们会安排专人与您对接。如需参观，请提前<a
+                                    href="/sthz/cgyy/" class="dialogBtnClass">进行预约</a>。
+                            </div>
+                            <div class="modal-btns">
+                                <a href="javascript:void(0)" class="btn-primary"
+                                    style="padding:7px 22px;border-radius:4px;text-decoration:none;font-size:14px;cursor:pointer;background:#ff7a25;color:#fff;border:1px solid #ff7a25;"
+                                    id="closeCooperateModalFront">我已知晓</a>
+                            </div>
+                        </div>
+                        <!-- back - form -->
+                        <div class="flip-card-back">
+                            <h3 style="font-size:18px;font-weight:700;color:#333;margin:0 0 20px 0;">需求登记</h3>
+                            <form id="demandForm">
+                                <div class="form-group">
+                                    <label for="contactPerson">联系人姓名<span class="required">*</span></label>
+                                    <input type="text" id="contactPerson" name="contactPerson"
+                                        placeholder="请输入联系人姓名（仅支持中文）">
+                                    <span class="error-message" id="contactPersonError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">联系电话<span class="required">*</span></label>
+                                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="请输入手机号码">
+                                    <span class="error-message" id="phoneNumberError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyName">企业名称/联系人单位<span class="required">*</span></label>
+                                    <input type="text" id="companyName" name="companyName" placeholder="请输入企业名称或单位">
+                                    <span class="error-message" id="companyNameError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="details">需求描述（选填）</label>
+                                    <textarea id="details" name="details" placeholder="请输入需求描述（最多500字）" maxlength="500"
+                                        rows="3"></textarea>
+                                    <span class="word-count">剩余 <span id="detailsWordCount">500</span> 字</span>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-back" id="btnBack">返回</button>
+                                    <button type="button" class="btn-submit" id="btnSubmit">提交登记</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // “我已知晓”关闭弹窗
+                document.getElementById('closeCooperateModalFront').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var modal = document.getElementById('cooperateModalOverlay');
+                    if (modal) modal.classList.remove('is-active');
+                });
+                // 点击遮罩层关闭弹窗并重置卡片
+                document.getElementById('cooperateModalOverlay').addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        this.classList.remove('is-active');
+                        // 重置翻转卡片状态
+                        var flipCard = this.querySelector('.flip-card');
+                        var container = this.querySelector('.flip-card-container');
+                        var modalContent = this.querySelector('.search-login-modal');
+                        if (flipCard) flipCard.classList.remove('flipped');
+                        if (container) {
+                            container.classList.remove('flipped');
+                            container.style.minHeight = '380px';
+                        }
+                        if (modalContent) {
+                            modalContent.classList.remove('flipped');
+                            modalContent.style.minHeight = '380px';
+                        }
+                    }
+                });
+            </script>
+</body>
+
+</html>
