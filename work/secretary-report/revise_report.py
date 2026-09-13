@@ -57,6 +57,23 @@ replace(38,'一是由业务人员核定首批服务清单。优先确认需求�
 replace(39,'二是按业务条件开展试点接入。先接入经审核的知识检索和只读目录服务，再接统一身份、草稿管理及具备条件的业务接口。正式写入设置服务端校验、用户确认、幂等控制和审计；结果未知时先按原请求查询，避免重复提交。以真实任务或脱敏测试任务验证咨询依据、统计准确性、字段修改、补正接续与办理反馈，未接通环节持续标明演示或人工办理。')
 replace(40,'三是按试点效果确定扩展范围。对普通检索增强生成、图谱增强检索、受控ReAct与固定工作流进行场景化比较，评估答复依据准确率、目录统计一致性、草稿修改成功率、重复提交防护、人工接续完整性、响应耗时和运行成本。指标基线与目标值在试点中核定，不提前填报效果。达到业务、技术和安全验收要求后，再扩展至更多项目实施及资源供给环节。')
 replace(42,'附件：整体架构、Harness能力分工、工作台交互原型及数据知识治理设计（图表1—11）')
+# Tighten the engineering chapter for a leadership report while preserving its seven responsibilities.
+replace(24,'拟采用Agent Harness统一组织智能体任务运行，管理上下文、工具、技能、沙箱、模型和评测。常见咨询调用知识检索，目录统计调用受控查询，复杂匹配按需使用ReAct推理与行动循环，规则明确的办理采用固定工作流。知识图谱与检索增强生成（RAG）作为可复用知识工具。具体框架、模型和部署组合通过试点论证，对应关系见附件表2。')
+replace(25,'（一）执行控制。按任务意图、复杂度和风险选择路径，依据工具结果调整计划和核验结论。正式提交、信息变更和补正设置确认、暂停恢复与人工接续节点。限制执行轮次、耗时和成本，达到边界时停止或转交，不要求常见问题经过复杂推理链。')
+replace(26,'（二）上下文与记忆。分别管理会话记录、任务状态及经授权的长期偏好。当前页面、资源标识、筛选条件、草稿版本和提交确认保存在独立状态记录中，不仅依靠模型摘要恢复。切换用户、企业或项目后重新核验权限；敏感资料按需使用，并提供清理机制。')
+replace(27,'（三）知识工具。围绕政策、事项、资源、项目和机构建立经核验的关系，结合关键词、向量检索、图谱扩展和重排返回原文依据。简单问题直接检索，复杂问题按需多次调用。图谱不自动判定资格，数量和汇总由结构化查询工具计算，不以生成回答代替精确统计。')
+replace(28,'（四）工具与技能。登记知识检索、目录统计、草稿更新、状态查询和业务提交工具，明确参数、权限和版本，通过函数调用或模型上下文协议（MCP）接入。将审核后的材料规则、指引和模板组织为技能（Skills）按需加载。技能不授予额外权限，提交须经用户确认和后端校验；结果未知先查询，避免重复写入。')
+replace(29,'（五）沙箱与产物。对附件解析、授权数据整理和申请材料生成提供按任务隔离的环境，限制文件、网络与计算资源，管理产物来源、版本和访问权限。OCR与复杂表格抽取先形成待核对内容。沙箱不持有不必要的生产凭据，不绕过业务工具写入原系统。')
+replace(30,'（六）模型适配。统一适配对话与推理、向量化、重排和按需多模态能力，通过任务事件更新查询结果、草稿字段及待确认内容，保持办理页与问答区状态一致。更换模型或降级时维持原有权限、字段约束和业务口径，不向用户展示模型内部推理。')
+replace(31,'（七）可观测与评测。记录必要的任务阶段、工具调用、证据、版本、耗时、成本、异常及人工接续情况。重点回归答复依据、统计口径、草稿修改、恢复补正、防重复提交与越权防护。反馈经人工复核和测试后发布，不让智能体自行改写生产规则。')
+replace(2,'拟依托数智北京创新中心现有门户、资源目录及业务系统，建设“合合”统一智能服务入口，帮助创新主体查服务、找资源、准备申请和跟进办理，以高质量数据和知识治理提供支撑，以智能体运行与控制工程（Agent Harness）组织执行。目前已形成基于真实目录快照和业务资料的本地原型。建议核定业务口径、身份权限和接口条件后，先开展需求反馈与目录查询试点，再逐步接续项目实施流程。现将有关情况报告如下。')
+replace(37,'目前已形成三类身份演示、日期分组历史、等宽问答与办理联动、字段校验、提交前确认及独立“我的办理”等本地原型，并完成核心逻辑和浏览器主要路径检查。问答与提取采用规则和示例，查询采用目录快照；真实大模型、统一身份、正式上传提交及审批状态接口尚未接入，草稿和模拟记录仅保留于本次访问。附件不作为业务上线证明。')
+replace(38,'一是核定首批服务清单。由业务人员确认需求反馈、参观预约、目录统计及项目参与规则，补齐登录后表单、权限、材料模板、状态字典和人工接续方式，逐条审核待确认问答，形成有效口径与测试用例。')
+replace(39,'二是开展试点接入。先接知识检索和只读目录，再接身份、草稿及具备条件的业务接口。正式写入设置服务端校验、用户确认、幂等和审计，结果未知先查询。以真实或脱敏任务验证依据、统计、字段修改和办理反馈，未接通环节标明演示或人工办理。')
+replace(40,'三是评估后逐步扩展。比较普通RAG、图谱增强、受控ReAct与固定工作流，核验依据准确性、统计一致性、修改成功率、防重复提交、人工接续、耗时和成本。基线与目标在试点中核定，不提前填报成效；通过验收后再扩展项目实施与资源供给环节。')
+# Avoid a closing paragraph taking a page of its own.
+ps[41]._element.getparent().remove(ps[41]._element)
+
 # Keep V5's A4 body typography; ensure black headings throughout.
 for style in doc.styles:
  if style.type==1 and (style.name.startswith('Heading') or style.name in ['Title','Subtitle']):style.font.color.rgb=RGBColor(0,0,0)
@@ -103,7 +120,7 @@ def table(headers,rows,widths):
 def image_page(num,heading,file,caption):
  page(f'图{num}  {heading}')
  p=paragraph('',10,align=WD_ALIGN_PARAGRAPH.CENTER);p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1
- p.add_run().add_picture(str(ROOT/'work/secretary-report/screenshots'/file),width=Cm(24.2))
+ p.add_run().add_picture(str(ROOT/'work/secretary-report/screenshots'/file),width=Cm(23.5))
  paragraph(caption,10)
 
 sec=doc.add_section(WD_SECTION.NEW_PAGE);sec.orientation=WD_ORIENT.LANDSCAPE;sec.page_width=Cm(29.7);sec.page_height=Cm(21);sec.top_margin=Cm(1.25);sec.bottom_margin=Cm(1.1);sec.left_margin=Cm(1.65);sec.right_margin=Cm(1.65)
@@ -160,8 +177,8 @@ refs=[
 ('第五批智慧城市场景揭榜通知','https://zwfwj.beijing.gov.cn/zwgk/2024zcwj/202608/t20260803_4806700.html','原截止时间为2026-08-17 17:00；是否延期待核验。'),
 ('参观预约与项目操作材料','https://dibj.cn/sthz/cgyy/','本轮实时页面未成功核验，分支字段来自附件与历史镜像；实时场次、登录后表单和受理状态待联调。')]
 for name,url,note in refs:
- paragraph(name,11,True);p=paragraph(note+'\n'+url,10);p.paragraph_format.keep_together=True
-paragraph('原型不包含真实认证、正式上传、业务提交、审批状态读取、生产知识治理或完整智能体运行服务。当前页面、统计与演示流程可用于需求评审，不能作为业务上线或效果验收证明。',11)
+ paragraph(name,10,True).paragraph_format.space_after=Pt(2);p=paragraph(note+'\n'+url,9.5);p.paragraph_format.keep_together=True;p.paragraph_format.space_after=Pt(4)
+
 # Explicit black header/footer text and normal, continuous page numbers.
 for sec in doc.sections:
  for h in [sec.header,sec.footer]:
