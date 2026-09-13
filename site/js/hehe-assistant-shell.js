@@ -46,7 +46,7 @@
     var conversationSequence = 0;
 
     header.prepend(node('span', 'hh-brand-spark', icon('sparkling-fill')));
-    var expand = node('button', 'hh-expand', icon('expand-diagonal-line') + '<span>工作台</span>');
+    var expand = node('button', 'hh-expand', icon('sidebar-unfold-line') + '<span>工作台</span>');
     expand.type = 'button'; expand.id = 'hhExpand'; actions.prepend(expand);
     var newChat = node('button', 'hh-new-mini', icon('chat-new-line'));
     newChat.type = 'button'; newChat.setAttribute('aria-label', '新建对话');
@@ -179,7 +179,7 @@
     }
     function setWide(value) {
       wide=value;panel.classList.toggle('hh-is-workbench',wide);
-      expand.innerHTML=icon(wide?'collapse-diagonal-line':'expand-diagonal-line')+'<span>'+(wide?'收起工作台':'工作台')+'</span>';
+      expand.innerHTML=icon(wide?'sidebar-fold-line':'sidebar-unfold-line')+'<span>'+(wide?'收起工作台':'工作台')+'</span>';
       expand.setAttribute('aria-label',wide?'切换为侧边抽屉':'展开为工作台');expand.title=expand.getAttribute('aria-label');expand.setAttribute('aria-expanded',String(wide));
       input.placeholder=wide?'请输入您的问题，或输入“/”选择技能…':'请输入您的问题';
       syncTop();syncOpen();

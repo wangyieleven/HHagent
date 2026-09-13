@@ -23,6 +23,7 @@
     .then(function(){return load('hehe-assistant-layout-core.js');})
     .then(function(){return load('hehe-assistant-shell.js');})
     .then(function(){return load('hehe-business-workbench.js');})
+    .then(function(){return load('hehe-side-assistant.js');})
     .catch(function(error){
       console.error('[HHagent] layout modules failed to load.',error);
       var disclaimer=document.getElementById('heheDisclaimer');
