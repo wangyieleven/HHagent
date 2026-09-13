@@ -42,6 +42,8 @@
     var wide = false;
     var previousFocus = null;
     var history = [];
+    var activeConversation = null;
+    var conversationSequence = 0;
 
     header.prepend(node('span', 'hh-brand-spark', icon('sparkling-fill')));
     var expand = node('button', 'hh-expand', icon('expand-diagonal-line') + '<span>工作台</span>');
@@ -96,12 +98,51 @@
     brand.append(logo,node('span','hh-brand-name','合合助手'),node('em','hh-brand-beta','Beta'));
     sidebar.append(brand);
     var nav = node('nav','hh-side-nav');
-    var navItems = [['新建对话','chat-new-line','new'],['历史对话','history-line','history'],['我的收藏','star-line','favorites'],['数据空间','database-2-line','data'],['应用广场','apps-2-line','apps']];
+    var navItems = [['新建对话','chat-new-line','new'],['我的收藏','star-line','favorites'],['我的办理','file-list-3-line','办理']];
     navItems.forEach(function (item) {
       var b = node('button','hh-nav-item',icon(item[1]) + '<span>' + item[0] + '</span>');
       b.type='button'; b.dataset.nav=item[2]; nav.append(b);
     });
     sidebar.append(nav);
+    var historyPanel=node('section','hh-sidebar-history');
+    historyPanel.setAttribute('aria-label','历史对话');
+    sidebar.append(historyPanel);
+    function renderHistory(){
+      historyPanel.replaceChildren();
+      historyPanel.append(node('h2','hh-history-heading','历史对话'));
+      if(!history.length){historyPanel.append(node('p','hh-history-empty','暂无历史对话，开始交流后会显示在这里'));return;}
+      var today=new Date();today.setHours(0,0,0,0);
+      var week=new Date(today);week.setDate(today.getDate()-((today.getDay()+6)%7));
+      var month=new Date(today.getFullYear(),today.getMonth(),1);
+      var groups=[['今天',[]],['本周',[]],['本月',[]],['更早',[]]];
+      history.slice().sort(function(a,b){return b.updatedAt-a.updatedAt;}).forEach(function(h){
+        var i=h.updatedAt>=today.getTime()?0:h.updatedAt>=week.getTime()?1:h.updatedAt>=month.getTime()?2:3;
+        groups[i][1].push(h);
+      });
+      groups.forEach(function(group){
+        if(!group[1].length)return;
+        var section=node('div','hh-history-group');section.append(node('h3','',group[0]));
+        group[1].forEach(function(h){
+          var b=node('button','hh-conversation-item'+(h===activeConversation?' is-active':''));b.type='button';b.textContent=h.title;b.title=h.title;
+          if(h===activeConversation)b.setAttribute('aria-current','true');
+          b.addEventListener('click',function(){
+            window.HeheAgent.cancel();captureConversation();activeConversation=h;
+            stream.replaceChildren.apply(stream,h.nodes);hideUtility();syncChat();renderHistory();
+          });section.append(b);
+        });historyPanel.append(section);
+      });
+    }
+    function captureConversation(){
+      if(!stream.children.length)return;
+      var first=stream.querySelector('.chat-msg.user');
+      if(!first)return;
+      if(!activeConversation){activeConversation={id:++conversationSequence,updatedAt:Date.now(),title:'',nodes:[],userCount:0};history.unshift(activeConversation);}
+      var count=stream.querySelectorAll('.chat-msg.user').length;
+      if(count!==activeConversation.userCount){activeConversation.updatedAt=Date.now();activeConversation.userCount=count;}
+      activeConversation.title=(first.querySelector('.msg-bubble')||first).textContent.trim().slice(0,60)||'新对话';
+      activeConversation.nodes=Array.from(stream.childNodes);
+    }
+    renderHistory();
     var miniBanner = node('div','hh-mini-banner','<img src="' + new URL('images/assistant-mascot.png',base).href + '" alt=""><span>让数据创造<br>更美好的北京</span>');
     sidebar.append(miniBanner);
     sidebar.append(node('div','hh-side-footer','<button type="button" data-nav="settings">'+icon('settings-3-line')+'设置</button><button type="button" data-nav="help">'+icon('question-line')+'帮助与反馈</button>'));
@@ -159,32 +200,24 @@
     launcher.setAttribute('role','button');launcher.tabIndex=0;launcher.setAttribute('aria-controls','aiChatPanel');launcher.setAttribute('aria-label','打开合合助手');
     launcher.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();launcher.click();}});
     function syncChat(){var has=stream.children.length>0;panel.classList.toggle('hh-mode-chat',has);panel.classList.toggle('hh-mode-welcome',!has);}
-    new MutationObserver(syncChat).observe(stream,{childList:true});
+    new MutationObserver(function(){syncChat();captureConversation();renderHistory();}).observe(stream,{childList:true});
     function hideUtility(){utility.hidden=true;panel.classList.remove('hh-utility-open');nav.querySelectorAll('button').forEach(function(b){b.classList.remove('is-active');});}
     function resetChat(){
-      if(stream.children.length)history.unshift({title:(stream.querySelector('.chat-msg.user')||stream).textContent.trim().slice(0,45),nodes:Array.from(stream.childNodes)});
-      window.HeheAgent.cancel();stream.replaceChildren();input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));hideUtility();syncChat();input.focus();
+      captureConversation();activeConversation=null;
+      window.HeheAgent.cancel();stream.replaceChildren();input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));hideUtility();syncChat();renderHistory();input.focus();
     }
     newChat.addEventListener('click',resetChat);
     function showUtility(kind){
       utility.replaceChildren();utility.hidden=false;panel.classList.add('hh-utility-open');
-      var labels={history:'历史对话',favorites:'我的收藏',data:'数据空间',apps:'应用广场',settings:'设置',help:'帮助与反馈'};
+      var labels={favorites:'我的收藏',settings:'设置',help:'帮助与反馈'};
       utility.append(node('h2','',labels[kind]));
-      if(kind==='history'){
-        utility.append(node('p','','本次访问中的对话保存在这里。'));
-        if(!history.length)utility.append(node('div','hh-empty','还没有历史对话，开始一次新的交流吧。'));
-        history.forEach(function(h){var b=node('button','hh-history-item');b.type='button';b.textContent=h.title;b.addEventListener('click',function(){window.HeheAgent.cancel();stream.replaceChildren.apply(stream,h.nodes);hideUtility();syncChat();});utility.append(b);});
-      }else if(kind==='favorites')utility.append(node('div','hh-empty','暂无收藏内容'));
-      else if(kind==='data'||kind==='apps'){
-        utility.append(node('p','',kind==='data'?'查询可用数据资源，了解申请条件。':'选择您想了解的创新服务。'));
-        var qs=kind==='data'?['查询公共数据目录','查询企业数据资源','了解数据申请条件']:['平台有哪些创新服务？','如何申请入驻创新中心？','如何申请算力服务？'];
-        qs.forEach(function(q){var b=node('button','hh-history-item');b.type='button';b.textContent=q;b.addEventListener('click',function(){hideUtility();window.HeheAgent.start(q);});utility.append(b);});
-      }else if(kind==='settings'){
+      if(kind==='favorites')utility.append(node('div','hh-empty','暂无收藏内容'));
+      else if(kind==='settings'){
         var b=node('button','hh-history-item','减少界面动效');b.type='button';b.setAttribute('aria-pressed',String(panel.classList.contains('hh-reduce-motion')));b.addEventListener('click',function(){panel.classList.toggle('hh-reduce-motion');b.setAttribute('aria-pressed',String(panel.classList.contains('hh-reduce-motion')));});utility.append(b);
       }else utility.append(node('p','','点击服务卡片或输入问题开始交流。通过右上角“工作台”可以展开助手，再次点击可回到侧边抽屉。按 Esc 或关闭按钮收起助手。'));
       var back=node('button','hh-back','返回合合助手');back.type='button';back.addEventListener('click',hideUtility);utility.append(back);
     }
-    sidebar.addEventListener('click',function(e){var b=e.target.closest('[data-nav]');if(!b)return;var key=b.dataset.nav;if(key==='new')resetChat();else if(key==='home')hideUtility();else{showUtility(key);nav.querySelectorAll('button').forEach(function(n){n.classList.toggle('is-active',n===b);});}});
+    sidebar.addEventListener('click',function(e){var b=e.target.closest('[data-nav]');if(!b)return;var key=b.dataset.nav;if(key==='new')resetChat();else if(key==='home')hideUtility();else if(key==='办理'){hideUtility();window.HeheAgent.start('查询我的申请进度');}else{showUtility(key);nav.querySelectorAll('button').forEach(function(n){n.classList.toggle('is-active',n===b);});}});
     // Generated answers arrive in the same stream in both sizes.
     new MutationObserver(function(){if(stream.children.length&&panel.classList.contains('hh-utility-open'))hideUtility();}).observe(stream,{childList:true});
     setWide(false);syncChat();syncOpen();

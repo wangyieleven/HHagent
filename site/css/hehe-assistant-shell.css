@@ -296,3 +296,17 @@ body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-disclaimer{font-size:10p
   body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-card-title{font-size:11px;}
   body #aiChatPanel.hh-redesign:not(.hh-is-workbench) .hh-greet-desc{font-size:12px!important;}
 }
+
+/* Date-grouped conversation history shares the workbench sidebar. */
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-sidebar{min-height:0;}
+body #aiChatPanel.hh-redesign .hh-sidebar-history{flex:1;min-height:100px;overflow-y:auto;scrollbar-width:thin;margin:22px 0 16px;padding:0 4px;}
+body #aiChatPanel.hh-redesign .hh-history-heading{font-size:13px;font-weight:600;color:#657793;margin:0 10px 14px;}
+body #aiChatPanel.hh-redesign .hh-history-group{margin-bottom:20px;}
+body #aiChatPanel.hh-redesign .hh-history-group h3{font-size:12px;font-weight:400;color:#8b98ac;margin:0 10px 6px;}
+body #aiChatPanel.hh-redesign .hh-conversation-item{display:block;width:100%;padding:10px;border:0;border-radius:9px;background:transparent;color:#4b5f7d;font:inherit;font-size:13px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+body #aiChatPanel.hh-redesign .hh-conversation-item:hover{background:#edf4ff;}
+body #aiChatPanel.hh-redesign .hh-conversation-item.is-active{background:#e5efff;color:#2463da;}
+body #aiChatPanel.hh-redesign .hh-conversation-item:focus-visible{outline:2px solid #2877e8;outline-offset:-2px;}
+body #aiChatPanel.hh-redesign .hh-history-empty{font-size:12px;line-height:1.8;color:#8b98ac;margin:0 10px;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-mini-banner{flex-shrink:0;margin-top:0;}
+body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-footer,body #aiChatPanel.hh-redesign.hh-is-workbench .hh-side-nav{flex-shrink:0;}
